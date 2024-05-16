@@ -1,1 +1,1 @@
-# jo-application
+# Jo-application
