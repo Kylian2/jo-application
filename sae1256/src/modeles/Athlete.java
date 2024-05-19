@@ -1,4 +1,4 @@
-package joApp;
+package modeles;
 
 import java.util.*;
 
@@ -76,7 +76,7 @@ public class Athlete {
 		throw new UnsupportedOperationException();
 	}
 
-	public Athete rechercher() {
+	public Athlete rechercher() {
 		// TODO - implement Athlete.rechercher
 		throw new UnsupportedOperationException();
 	}

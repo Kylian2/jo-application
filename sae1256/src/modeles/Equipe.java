@@ -1,4 +1,4 @@
-package joApp;
+package modeles;
 
 import java.util.*;
 
@@ -26,7 +26,7 @@ public class Equipe {
 	 * 
 	 * @param Athlete
 	 */
-	public void ajouterMembre(membre Athlete) {
+	public void ajouterMembre(Athlete membre) {
 		// TODO - implement Equipe.ajouterMembre
 		throw new UnsupportedOperationException();
 	}
@@ -59,7 +59,7 @@ public class Equipe {
 	 * 
 	 * @param Athlete
 	 */
-	public void retirerMembre(membre Athlete) {
+	public void retirerMembre(Athlete membre) {
 		// TODO - implement Equipe.retirerMembre
 		throw new UnsupportedOperationException();
 	}

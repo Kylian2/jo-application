@@ -1,4 +1,4 @@
-package joApp;
+package modeles;
 
 public class Recompense {
 
