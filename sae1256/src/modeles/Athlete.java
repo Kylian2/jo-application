@@ -4,6 +4,9 @@ import java.util.*;
 
 public class Athlete {
 
+	private static final char HOMME = 'H';
+	private static final char FEMME = 'F';
+	
 	private Collection<Epreuve> inscriptions;
 	private Collection<Resultat> sesResultats;
 	private Pays pays;
@@ -31,8 +34,29 @@ public class Athlete {
 	 * @param genre
 	 */
 	Athlete(String nom, String prenom, int taille, int poids, String description, String dateNaissance, char genre) {
-		// TODO - implement Athlete.Athlete
-		throw new UnsupportedOperationException();
+		this.nom = nom; 
+		this.prenom = prenom; 
+		
+		if(taille > 0) {
+			this.taille = taille;
+		}else {
+			throw new Error("Attribut de taille invalide, la taille doit être supérieure à 0.");
+		}
+		
+		if(poids > 0) {
+			this.poids = poids;
+		}else {
+			throw new Error("Attribut de poids invalide, le poids doit être supérieur à 0.");
+		}
+		
+		this.description = description;
+		this.dateNaissance = dateNaissance;
+		
+		if(genre == HOMME || genre == FEMME) {
+			this.genre = genre;
+		}else {
+			throw new Error("Genre invalide, les deux genre possibles sont HOMME ou FEMME.");
+		}
 	}
 
 	/**
