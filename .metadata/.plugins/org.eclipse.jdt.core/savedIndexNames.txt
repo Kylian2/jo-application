@@ -1,3 +1,0 @@
-INDEX VERSION 1.134+/Users/kylianrichard/Documents/BUT1-S2-2023-2024/SAE1256/SEA1256-workspace/.metadata/.plugins/org.eclipse.jdt.core
-1865797976.index
-2619853595.index
