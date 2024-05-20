@@ -40,13 +40,13 @@ public class Athlete {
 		if(taille > 0) {
 			this.taille = taille;
 		}else {
-			throw new Error("Attribut de taille invalide, la taille doit être supérieure à 0.");
+			throw new Error("Attribut de taille invalide, la taille doit être supérieure à 0cm.");
 		}
 		
 		if(poids > 0) {
 			this.poids = poids;
 		}else {
-			throw new Error("Attribut de poids invalide, le poids doit être supérieur à 0.");
+			throw new Error("Attribut de poids invalide, le poids doit être supérieur à 0kg.");
 		}
 		
 		this.description = description;
@@ -146,6 +146,10 @@ public class Athlete {
 	public boolean modifier() {
 		// TODO - implement Athlete.modifier
 		throw new UnsupportedOperationException();
+	}
+	
+	public Pays getPays() {
+		return pays;
 	}
 
 }
