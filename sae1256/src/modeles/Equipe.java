@@ -17,12 +17,19 @@ public class Equipe {
 	 * @param pays
 	 * @param discipline
 	 */
-	Equipe(String nom, Pays pays, Discipline discipline) {
+	Equipe(String nom, Discipline discipline) {
 		this.nom = nom; 
-		this.pays = pays;
 		this.discipline = discipline;
 		recompenses = new Recompense();
 		membres = new ArrayList<Athlete>();
+	}
+	
+	public void setPays(Pays pays) {
+		this.pays = pays;
+	}
+	
+	public String getNom() {
+		return nom;
 	}
 
 	/**

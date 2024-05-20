@@ -17,6 +17,11 @@ public class Pays {
 		
 		membres = new ArrayList<Athlete>();
 		equipes = new ArrayList<Equipe>();
+		
+		//Une equipe pour chaque discipline est créée et ajoutée à la liste des équipes du pays
+		for(Discipline discipline : Discipline.disciplinesList ) {
+			ajouterEquipe(new Equipe("Equipe de "+ nom + " de " + discipline.getNom(), discipline));
+		}
 	}
 
 	/**
@@ -24,8 +29,9 @@ public class Pays {
 	 * @param equipe
 	 */
 	public boolean ajouterEquipe(Equipe equipe) {
-		// TODO - implement Pays.ajouterEquipe
-		throw new UnsupportedOperationException();
+		equipes.add(equipe);
+		equipe.setPays(this);
+		return true;
 	}
 
 	/**
@@ -42,9 +48,13 @@ public class Pays {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean afficherEquipes() {
-		// TODO - implement Pays.afficherEquipes
-		throw new UnsupportedOperationException();
+	//Version pour les tests dans la console.
+	//La méthode peut etre modifiée si besoin
+	public boolean afficherEquipes() { 
+		for (Equipe equipe: equipes) {
+			System.out.println(equipe.getNom());
+		}
+		return true;
 	}
 
 	public void modifier() {

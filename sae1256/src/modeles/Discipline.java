@@ -3,6 +3,8 @@ package modeles;
 import java.util.*;
 
 public class Discipline {
+	
+	public static ArrayList<Discipline> disciplinesList = new ArrayList<Discipline>();
 
 	private Collection<Athlete> pratiquants;
 	private Collection<Epreuve> sesEpreuves;
@@ -16,9 +18,23 @@ public class Discipline {
 	 * @param nom
 	 * @param description
 	 */
-	Discipline(String nom, String description) {
-		// TODO - implement Discipline.Discipline
-		throw new UnsupportedOperationException();
+	public Discipline(String nom, String description) {
+		boolean unique = true;
+		
+		//Verifie que la discipline est unique
+		for (Discipline discipline : disciplinesList) {
+			if(nom == discipline.getNom()) {
+				unique = false;
+				throw new Error("Deux disciplines ne peuvent pas avoir le meme nom");
+			}
+		}
+		
+		if(unique) {
+			this.nom = nom;
+			this.description = description;
+			//Ajout de la discipline à la liste des disciplines
+			disciplinesList.add(this);
+		}
 	}
 
 	/**
@@ -69,6 +85,10 @@ public class Discipline {
 	public boolean modifier() {
 		// TODO - implement Discipline.modifier
 		throw new UnsupportedOperationException();
+	}
+	
+	public String getNom() {
+		return nom;
 	}
 
 }
