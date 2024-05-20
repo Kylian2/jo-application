@@ -5,7 +5,7 @@ import java.util.*;
 public class Equipe {
 
 	private Pays pays;
-	private Collection<Athlete> membres;
+	private ArrayList<Athlete> membres;
 	private Discipline discipline;
 	private Recompense recompenses;
 	private int numero;
@@ -18,8 +18,11 @@ public class Equipe {
 	 * @param discipline
 	 */
 	Equipe(String nom, Pays pays, Discipline discipline) {
-		// TODO - implement Equipe.Equipe
-		throw new UnsupportedOperationException();
+		this.nom = nom; 
+		this.pays = pays;
+		this.discipline = discipline;
+		recompenses = new Recompense();
+		membres = new ArrayList<Athlete>();
 	}
 
 	/**
@@ -27,8 +30,11 @@ public class Equipe {
 	 * @param Athlete
 	 */
 	public void ajouterMembre(Athlete membre) {
-		// TODO - implement Equipe.ajouterMembre
-		throw new UnsupportedOperationException();
+		if(membre.getPays().getNom() == pays.getNom()) { //A voir si possibilité de faire comme en C++ pour comparer
+			membres.add(membre);
+		}else {
+			throw new Error("L'athlète ne fait pas partie du pays de l'équipe");
+		}
 	}
 
 	public boolean afficherAthlete() {
