@@ -1,11 +1,23 @@
 package modeles;
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.*;
 
-public class Athlete {
+public class Athlete implements Serializable{
+	
+    private static final long serialVersionUID = 1L;
+    public static ArrayList<Athlete> athletesList = new ArrayList<>();
+    public static final String fileName = "athlete.dat";
 
-	private static final char HOMME = 'H';
-	private static final char FEMME = 'F';
+	public static final char HOMME = 'H';
+	public static final char FEMME = 'F';
 	
 	private Collection<Epreuve> inscriptions;
 	private Collection<Resultat> sesResultats;
@@ -33,7 +45,7 @@ public class Athlete {
 	 * @param dateNaissance
 	 * @param genre
 	 */
-	Athlete(String nom, String prenom, int taille, int poids, String description, String dateNaissance, char genre) {
+	public Athlete(String nom, String prenom, int taille, int poids, String description, String dateNaissance, char genre) {
 		this.nom = nom; 
 		this.prenom = prenom; 
 		
@@ -57,6 +69,8 @@ public class Athlete {
 		}else {
 			throw new Error("Genre invalide, les deux genre possibles sont HOMME ou FEMME.");
 		}
+		
+		this.enregister();
 	}
 
 	/**
@@ -150,6 +164,58 @@ public class Athlete {
 	
 	public Pays getPays() {
 		return pays;
+	}
+	
+	public String toString() {
+		return nom + " " + prenom + " : " + description;
+	}
+	
+	
+	//Cette méthode permet d'enregister (serialiser) les athlètes.
+	//Les athletes sont stocké dans une liste pour etre facilement manipulable
+	//Lorsque cette fonction est appelé sur un athlete, elle ajoute l'athlete à la 
+	//la liste est enregistre la liste sur le disque
+	public void enregister() {
+		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            athletesList.add(this); 
+			outputStream.writeObject(athletesList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	//Cette methodes est relativement similaire à enregister() à la différence
+	//qu'elle ne rajoute pas l'athlete, elle serialize uniquement pour que les 
+	//modifications sont enregistrées. 
+	public void enregisterModifications() {
+		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
+			outputStream.writeObject(athletesList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	//Permet de récupérer les elements qui ont été sérialisé dans un fichier. 
+	public static void recuperer() { //
+		File f = new File(fileName);
+		if(f.exists()) {
+			try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+	            ArrayList<Athlete> deserializedAthletes = (ArrayList<Athlete>) inputStream.readObject();
+	            athletesList.clear();
+	            for(Athlete athlete: deserializedAthletes ) {
+	            	athletesList.add(athlete);
+	            }
+	        } catch (IOException | ClassNotFoundException e) {
+	            e.printStackTrace();
+	        }
+		}else {
+			System.out.println("Impossible de récupérer les données, le fichier n'existe pas");
+		}
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+		this.enregisterModifications();
 	}
 
 }
