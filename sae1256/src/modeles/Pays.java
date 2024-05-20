@@ -5,10 +5,19 @@ import java.util.*;
 public class Pays {
 
 	private Collection<Athlete> membres;
-	private Collection<Equipe> lesEquipes;
+	private Collection<Equipe> equipes;
 	private Recompense recompenses;
 	private String code;
 	private String nom;
+	
+	public Pays(String code, String nom) {
+		this.code = code;
+		this.nom = nom;
+		recompenses = new Recompense();
+		
+		membres = new ArrayList<Athlete>();
+		equipes = new ArrayList<Equipe>();
+	}
 
 	/**
 	 * 
@@ -46,6 +55,10 @@ public class Pays {
 	public boolean afficherNbMedailles() {
 		// TODO - implement Pays.afficherNbMedailles
 		throw new UnsupportedOperationException();
+	}
+	
+	public String getNom() {
+		return nom;
 	}
 
 }
