@@ -24,11 +24,7 @@ public class Athlete implements Serializable{
 	private Pays pays;
 	private Equipe equipe;
 	private Discipline discipline;
-<<<<<<< HEAD
 	private ArrayList<Session> engagements;
-=======
-	private Collection<Session> engagements;
->>>>>>> 967ca3a77ebd7d27279a97b2a19b18af9c732c17
 	private Recompense recompenses;
 	private int numero;
 	private String nom;
@@ -147,6 +143,16 @@ public class Athlete implements Serializable{
 	public boolean afficher() {
 		// TODO - implement Athlete.afficher
 		throw new UnsupportedOperationException();
+	}
+	
+	//Affichage console
+	public void afficherAttribut() {
+		System.out.println(nom + " " + prenom + " :");
+		System.out.println(dateNaissance);
+		System.out.println("Pays : " + pays.getNom());
+		System.out.println("Discipline : " + discipline.getNom());
+		System.out.println("Poids : " + poids);
+		System.out.println("Taille : " + taille);
 	}
 
 	/**

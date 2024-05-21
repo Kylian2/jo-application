@@ -71,5 +71,6 @@ public class Test {
         System.out.println("\n" + Athlete.athletesList.get(0));
         Athlete.athletesList.get(0).setDiscipline(Discipline.disciplinesList.get(2));
         System.out.println(GBR.ajouterAthlete(Athlete.athletesList.get(0)));
+        
 	}
 }
