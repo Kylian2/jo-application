@@ -70,5 +70,17 @@ public class Pays {
 	public String getNom() {
 		return nom;
 	}
+	
+	public boolean ajouterAthlete(Athlete athlete) {
+		membres.add(athlete);
+		athlete.setPays(this);
+		for(Equipe equipe : equipes) {
+			if (equipe.getDiscipline().getNom() == athlete.getDiscipline().getNom()) {
+				equipe.ajouterMembre(athlete);
+				return true;
+			}
+		}
+		return false;
+	}
 
 }
