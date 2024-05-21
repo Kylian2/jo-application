@@ -13,18 +13,18 @@ import java.util.*;
 public class Athlete implements Serializable{
 	
     private static final long serialVersionUID = 1L;
-    public static ArrayList<Athlete> athletesList = new ArrayList<>();
+    public static ArrayList<Athlete> athletesList = new ArrayList<Athlete>();
     public static final String fileName = "athlete.dat";
 
 	public static final char HOMME = 'H';
 	public static final char FEMME = 'F';
 	
-	private Collection<Epreuve> inscriptions;
-	private Collection<Resultat> sesResultats;
+	private ArrayList<Epreuve> inscriptions;
+	private ArrayList<Resultat> sesResultats;
 	private Pays pays;
 	private Equipe equipe;
-	private Discipline pratique;
-	private Collection<Session> engagements;
+	private Discipline discipline;
+	private ArrayList<Session> engagements;
 	private Recompense recompenses;
 	private int numero;
 	private String nom;
@@ -69,6 +69,13 @@ public class Athlete implements Serializable{
 		}else {
 			throw new Error("Genre invalide, les deux genre possibles sont HOMME ou FEMME.");
 		}
+		
+		this.discipline = null;
+		this.pays = null;
+		this.recompenses = new Recompense();
+		this.engagements = new ArrayList<Session>();
+		this.inscriptions = new ArrayList<Epreuve>();
+		this.sesResultats = new ArrayList<Resultat>();
 		
 		this.enregister();
 	}
