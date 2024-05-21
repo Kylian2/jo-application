@@ -28,7 +28,9 @@ public class Test {
 		
 		//Verification de la créations des équipes d'un pays à la création du pays
 		Pays France = new Pays("FRA", "France");
+		Pays GBR = new Pays("GBR","Grande-Bretagne");
 		France.afficherEquipes();
+		GBR.afficherEquipes();
 		
 		System.out.println("\n-------- TEST SERIALISATION ---------");
 
@@ -65,5 +67,9 @@ public class Test {
         for(Athlete athlete : Athlete.athletesList) {
         	System.out.println(athlete);
         }
+        
+        System.out.println("\n" + Athlete.athletesList.get(0));
+        Athlete.athletesList.get(0).setDiscipline(Discipline.disciplinesList.get(2));
+        System.out.println(GBR.ajouterAthlete(Athlete.athletesList.get(0)));
 	}
 }

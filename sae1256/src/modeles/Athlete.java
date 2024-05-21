@@ -23,7 +23,7 @@ public class Athlete implements Serializable{
 	private Collection<Resultat> sesResultats;
 	private Pays pays;
 	private Equipe equipe;
-	private Discipline pratique;
+	private Discipline discipline;
 	private Collection<Session> engagements;
 	private Recompense recompenses;
 	private int numero;
@@ -77,9 +77,13 @@ public class Athlete implements Serializable{
 	 * 
 	 * @param discipline
 	 */
-	public boolean definirDiscipline(Discipline discipline) {
-		// TODO - implement Athlete.definirDiscipline
-		throw new UnsupportedOperationException();
+	public boolean setDiscipline(Discipline discipline) {
+		this.discipline = discipline;
+		return true;
+	}
+	
+	public Discipline getDiscipline() {
+		return this.discipline;
 	}
 
 	/**
@@ -164,6 +168,10 @@ public class Athlete implements Serializable{
 	
 	public Pays getPays() {
 		return pays;
+	}
+	
+	public void setPays(Pays pays) {
+		this.pays = pays;
 	}
 	
 	public String toString() {

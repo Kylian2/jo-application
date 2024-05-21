@@ -24,8 +24,16 @@ public class Equipe {
 		membres = new ArrayList<Athlete>();
 	}
 	
+	public Discipline getDiscipline() {
+		return this.discipline;
+	}
+	
 	public void setPays(Pays pays) {
 		this.pays = pays;
+	}
+	
+	public Pays getPays() {
+		return this.pays;
 	}
 	
 	public String getNom() {
