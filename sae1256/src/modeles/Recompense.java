@@ -1,6 +1,11 @@
 package modeles;
 
-public class Recompense {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Recompense implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
 	private Equipe equipe;
 	private Athlete athlete;

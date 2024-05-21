@@ -1,11 +1,20 @@
 package modeles;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.*;
 
-public class Discipline {
+public class Discipline implements Serializable{
 	
 	public static ArrayList<Discipline> disciplinesList = new ArrayList<Discipline>();
-
+	private static final long serialVersionUID = 1L;
+    public static final String fileName = "discipline.dat";
+    
 	private Collection<Athlete> pratiquants;
 	private Collection<Epreuve> sesEpreuves;
 	private Collection<Equipe> lesEquipes;
@@ -32,8 +41,7 @@ public class Discipline {
 		if(unique) {
 			this.nom = nom;
 			this.description = description;
-			//Ajout de la discipline à la liste des disciplines
-			disciplinesList.add(this);
+			this.enregister();
 		}
 	}
 
@@ -89,6 +97,48 @@ public class Discipline {
 	
 	public String getNom() {
 		return nom;
+	}
+	
+	//Cette méthode permet d'enregister (serialiser) les disciplines.
+	//Les disciplines sont stocké dans une liste pour etre facilement manipulable
+	//Lorsque cette fonction est appelé sur une disciplines, elle ajoute la discipline à la 
+	//la liste et enregistre la liste sur le disque
+	public void enregister() {
+		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            disciplinesList.add(this); 
+			outputStream.writeObject(disciplinesList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	//Cette methodes est relativement similaire à enregister() à la différence
+	//qu'elle ne rajoute pas la disciplines, elle serialize uniquement pour que les 
+	//modifications soit enregistrées. 
+	public void enregisterModifications() {
+		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
+			outputStream.writeObject(disciplinesList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	//Permet de récupérer les elements qui ont été sérialisé dans un fichier. 
+	public static void recuperer() { //
+		File f = new File(fileName);
+		if(f.exists()) {
+			try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+	            ArrayList<Discipline> deserializedDisciplines = (ArrayList<Discipline>) inputStream.readObject();
+	            disciplinesList.clear();
+	            for(Discipline discipline: deserializedDisciplines ) {
+	            	disciplinesList.add(discipline);
+	            }
+	        } catch (IOException | ClassNotFoundException e) {
+	            e.printStackTrace();
+	        }
+		}else {
+			System.out.println("Impossible de récupérer les données, le fichier n'existe pas");
+		}
 	}
 
 }

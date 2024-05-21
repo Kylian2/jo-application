@@ -1,8 +1,19 @@
 package modeles;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.*;
 
-public class Pays {
+public class Pays implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+    public static ArrayList<Pays> paysList = new ArrayList<Pays>();
+    public static final String fileName = "pays.dat";
 
 	private Collection<Athlete> membres;
 	private Collection<Equipe> equipes;
@@ -22,6 +33,8 @@ public class Pays {
 		for(Discipline discipline : Discipline.disciplinesList ) {
 			ajouterEquipe(new Equipe("Equipe de "+ nom + " de " + discipline.getNom(), discipline));
 		}
+		
+		this.enregister();
 	}
 
 	/**
@@ -75,12 +88,56 @@ public class Pays {
 		membres.add(athlete);
 		athlete.setPays(this);
 		for(Equipe equipe : equipes) {
-			if (equipe.getDiscipline().getNom() == athlete.getDiscipline().getNom()) {
+			if (equipe.getDiscipline().getNom().equalsIgnoreCase(athlete.getDiscipline().getNom())) {
 				equipe.ajouterMembre(athlete);
+				this.enregisterModifications();
+				athlete.enregisterModifications();
 				return true;
 			}
 		}
 		return false;
 	}
+	
+	//Cette méthode permet d'enregister (serialiser) les athlètes.
+		//Les athletes sont stocké dans une liste pour etre facilement manipulable
+		//Lorsque cette fonction est appelé sur un athlete, elle ajoute l'athlete à la 
+		//la liste est enregistre la liste sur le disque
+		public void enregister() {
+			try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
+				paysList.add(this); 
+				outputStream.writeObject(paysList);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+		}
+		
+		//Cette methodes est relativement similaire à enregister() à la différence
+		//qu'elle ne rajoute pas l'athlete, elle serialize uniquement pour que les 
+		//modifications sont enregistrées. 
+		public void enregisterModifications() {
+			try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
+				outputStream.writeObject(paysList);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+		}
+		
+		//Permet de récupérer les elements qui ont été sérialisé dans un fichier. 
+		public static void recuperer() { //
+			File f = new File(fileName);
+			if(f.exists()) {
+				try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+		            ArrayList<Pays> deserializedPays = (ArrayList<Pays>) inputStream.readObject();
+		            paysList.clear();
+		            for(Pays pays: deserializedPays ) {
+		            	paysList.add(pays);
+		            }
+		        } catch (IOException | ClassNotFoundException e) {
+		            e.printStackTrace();
+		        }
+			}else {
+				System.out.println("Impossible de récupérer les données, le fichier n'existe pas");
+			}
+		}
 
 }

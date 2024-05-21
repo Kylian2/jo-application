@@ -1,8 +1,17 @@
 package modeles;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.*;
 
-public class Equipe {
+public class Equipe implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
 	private Pays pays;
 	private ArrayList<Athlete> membres;

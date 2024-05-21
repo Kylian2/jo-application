@@ -86,6 +86,7 @@ public class Athlete implements Serializable{
 	 */
 	public boolean setDiscipline(Discipline discipline) {
 		this.discipline = discipline;
+		this.enregisterModifications();
 		return true;
 	}
 	
@@ -147,10 +148,18 @@ public class Athlete implements Serializable{
 	
 	//Affichage console
 	public void afficherAttribut() {
-		System.out.println(nom + " " + prenom + " :");
+		System.out.println("\n"+nom + " " + prenom + " :");
 		System.out.println(dateNaissance);
-		System.out.println("Pays : " + pays.getNom());
-		System.out.println("Discipline : " + discipline.getNom());
+		if(pays != null) {
+			System.out.println("Pays : " + pays.getNom());
+		}else {
+			System.out.println("Pays : " + "Non defini");
+		}
+		if(discipline != null) {
+			System.out.println("Discipline : " + discipline.getNom());
+		}else {
+			System.out.println("Discipline : " + "Non definie");
+		}
 		System.out.println("Poids : " + poids);
 		System.out.println("Taille : " + taille);
 	}
