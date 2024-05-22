@@ -6,24 +6,48 @@ public class interfaceAjouterAthlete extends JPanel{
 
 	interfaceAjouterAthlete(){
 		// ajouterAthlete
+		JPanel top = new JPanel();
 		JLabel ajouterAthlete = new JLabel("Ajouter un Athlète");
-		//ajouterAthlete.setPreferredSize(new Dimension(400,50));
-		ajouterAthlete.setBackground(Color.green);
 		
 		
 		//Nom - deleg - discipline
-		JPanel top = new JPanel();
-		JPanel nomDelegDiscip = new JPanel();
-		//nomDelegDiscip.setPreferredSize(new Dimension(400,50));
-		nomDelegDiscip.setBackground(Color.black);
+		JPanel mainInfo = new JPanel();
+		
+		JPanel nomPanel = new JPanel();
+		JPanel delegPanel = new JPanel();
+		JPanel discipPanel = new JPanel();
+		
+		JLabel nom = new JLabel("Nom :");
+		JTextField nomTexte = new JTextField(12); 
+		JLabel deleg = new JLabel("Délégation :");
+		JTextField delegTexte = new JTextField(12); 
+		JLabel discip = new JLabel("Discipline :");
+		JTextField discipTexte = new JTextField(12); 
 		
 		
 		//ajout
 		top.setLayout(new GridLayout(2, 1));
+		mainInfo.setLayout(new GridLayout(1,3));
+		
+		nomPanel.add(nom);
+		nomPanel.add(nomTexte);
+		
+		delegPanel.add(deleg);
+		delegPanel.add(delegTexte);
+		
+		discipPanel.add(discip);
+		discipPanel.add(discipTexte);
+		
+		mainInfo.add(nomPanel);
+		mainInfo.add(delegPanel);
+		mainInfo.add(discipPanel);
+		
 		top.add(ajouterAthlete);
-		top.add(nomDelegDiscip);
+		top.add(mainInfo);
+		
 		add(top);
-		pack();
+		
+		ajouterAthlete.setFont(new Font("Source", Font.PLAIN, 30));
 	}
 	
 	public static void main(String[] args) {
