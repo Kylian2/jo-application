@@ -7,15 +7,23 @@ public class interfaceAjouterAthlete extends JPanel{
 	interfaceAjouterAthlete(){
 		// ajouterAthlete
 		JLabel ajouterAthlete = new JLabel("Ajouter un Athlète");
+		//ajouterAthlete.setPreferredSize(new Dimension(400,50));
+		ajouterAthlete.setBackground(Color.green);
+		
 		
 		//Nom - deleg - discipline
-		JLabel nomDelegDiscip = new JLabel();
-		nomDelegDiscip.setPreferredSize(new Dimension(400,50));
+		JPanel top = new JPanel();
+		JPanel nomDelegDiscip = new JPanel();
+		//nomDelegDiscip.setPreferredSize(new Dimension(400,50));
+		nomDelegDiscip.setBackground(Color.black);
 		
 		
 		//ajout
-		add(ajouterAthlete);
-		add(nomDelegDiscip);
+		top.setLayout(new GridLayout(2, 1));
+		top.add(ajouterAthlete);
+		top.add(nomDelegDiscip);
+		add(top);
+		pack();
 	}
 	
 	public static void main(String[] args) {
