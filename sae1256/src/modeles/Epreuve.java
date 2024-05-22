@@ -5,8 +5,8 @@ import java.util.*;
 public class Epreuve {
 
 	private Classement classement;
-	private Collection<Session> sesSessions;
-	private Collection<Athlete> lesAthletes;
+	private ArrayList<Session> sessions;
+	private ArrayList<Athlete> athletes;
 	private Discipline discipline;
 	private int numero;
 	private String nom;
@@ -23,8 +23,14 @@ public class Epreuve {
 	 * @param discipline
 	 */
 	Epreuve(String nom, String description, boolean individuelle, String unite, Discipline discipline) {
-		// TODO - implement Epreuve.Epreuve
-		throw new UnsupportedOperationException();
+		this.nom = nom;
+		this.description = description;
+		this.individuelle = individuelle;
+		this.unite = unite;
+		
+		this.discipline = null;
+		this.sessions = new ArrayList<Session>();
+		this.athletes = new ArrayList<Athlete>();
 	}
 
 	/**
