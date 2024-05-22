@@ -23,7 +23,7 @@ public class interfaceAjouterAthlete extends JPanel{
 		top.add(ajouterAthlete);
 		top.add(nomDelegDiscip);
 		add(top);
-		pack();
+		//pack();
 	}
 	
 	public static void main(String[] args) {

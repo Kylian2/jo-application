@@ -1,13 +1,14 @@
 package modeles;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Session {
 
-	private Collection<Athlete> sesAthlètes;
+	private ArrayList<Athlete> participants;
 	private Lieu lieu;
 	private Epreuve epreuve;
-	private String date;
+	private LocalDate date;
 	private String heure;
 	private int duree;
 
@@ -17,9 +18,14 @@ public class Session {
 	 * @param heure
 	 * @param lieu
 	 */
-	Session(String date, String heure, Lieu lieu) {
-		// TODO - implement Session.Session
-		throw new UnsupportedOperationException();
+	Session(LocalDate date, String heure, int duree, Lieu lieu) {
+		this.date = date;
+		this.heure = heure;
+		this.lieu = lieu;
+		this.duree = duree;
+		
+		this.epreuve = null;
+		participants = new ArrayList<Athlete>();
 	}
 
 	/**
