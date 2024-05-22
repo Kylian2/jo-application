@@ -47,6 +47,7 @@ public class interfaceAjouterAthlete extends JPanel{
 		
 		add(top);
 		
+		
 		ajouterAthlete.setFont(new Font("Source", Font.PLAIN, 30));
 
 	}
