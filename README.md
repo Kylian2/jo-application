@@ -149,7 +149,7 @@ git checkout main
 git pull origin main
 ```
 
-*Dans le cas où vous n'avez pas supprimer la branche de travail, il faudra la mettre à jour également en fusionnant avec la branche principale :*
+*Dans le cas où vous n'avez pas supprimé la branche de travail, il faudra la mettre à jour également en fusionnant avec la branche principale :*
 
 ```
 git checkout <nom_de_la_branche>
