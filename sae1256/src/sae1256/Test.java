@@ -1,6 +1,7 @@
 package sae1256;
 
 import java.io.EOFException;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -23,19 +24,20 @@ public class Test {
 		Pays.recuperer();
 		Discipline.recuperer();
 		
-        System.out.println("\nAthlètes récupérés : ");
+        System.out.println("\n------Athlètes récupérés : ");
         for(Athlete athlete : Athlete.athletesList) {
         	athlete.afficherAttribut();
         }
         
-        System.out.println("\nPays récupérés : ");
+        System.out.println("\n------Pays récupérés : ");
         for(Pays pays : Pays.paysList) {
         	System.out.println(pays.getNom());
         }
         
-        System.out.println("\nDisciplines récupérés : ");
+        System.out.println("\n------Disciplines récupérés : ");
         for(Discipline discipline : Discipline.disciplinesList) {
         	System.out.println(discipline.getNom());
-        }        
+        	discipline.afficherEpreuves();
+        }         
 	}
 }

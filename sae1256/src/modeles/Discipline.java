@@ -15,9 +15,9 @@ public class Discipline implements Serializable{
 	private static final long serialVersionUID = 1L;
     public static final String fileName = "discipline.dat";
     
-	private Collection<Athlete> pratiquants;
-	private Collection<Epreuve> sesEpreuves;
-	private Collection<Equipe> lesEquipes;
+	private ArrayList<Athlete> pratiquants;
+	private ArrayList<Epreuve> epreuves;
+	private ArrayList<Equipe> equipes;
 	private int numero;
 	private String description;
 	private String nom;
@@ -41,8 +41,12 @@ public class Discipline implements Serializable{
 		if(unique) {
 			this.nom = nom;
 			this.description = description;
+			this.epreuves = new ArrayList<Epreuve>();
+			this.equipes = new ArrayList<Equipe>();
+			this.pratiquants = new ArrayList<Athlete>();
 			this.enregister();
 		}
+		
 	}
 
 	/**
@@ -50,8 +54,10 @@ public class Discipline implements Serializable{
 	 * @param epreuve
 	 */
 	public boolean ajouterEpreuve(Epreuve epreuve) {
-		// TODO - implement Discipline.ajouterEpreuve
-		throw new UnsupportedOperationException();
+		epreuves.add(epreuve);
+		epreuve.setDiscipline(this);
+		this.enregisterModifications();
+		return true;
 	}
 
 	/**
@@ -139,6 +145,21 @@ public class Discipline implements Serializable{
 		}else {
 			System.out.println("Impossible de récupérer les données, le fichier n'existe pas");
 		}
+	}
+	
+	public void afficherEpreuves() {
+		System.out.println("Voici les disciplines de " + this.nom + " : ");
+		if(epreuves != null && epreuves.size() > 0) {
+			for(Epreuve epreuve: epreuves) {
+				System.out.println("- "+epreuve.getNom());
+			}
+		}else {
+			System.out.println("aucune epreuve");
+		}
+	}
+	
+	public ArrayList<Epreuve> getEpreuves() {
+		return epreuves;
 	}
 
 }

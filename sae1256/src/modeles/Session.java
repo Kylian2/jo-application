@@ -32,9 +32,12 @@ public class Session {
 	 * 
 	 * @param athlete
 	 */
-	public void ajouterAthlete(Athlete athlete) {
-		// TODO - implement Session.ajouterAthlete
-		throw new UnsupportedOperationException();
+	public boolean ajouterAthlete(Athlete athlete) {
+		participants.add(athlete);
+		if(epreuve != null) {
+			this.epreuve.getDiscipline().enregisterModifications();
+		}
+		return true;
 	}
 
 	/**
@@ -47,7 +50,11 @@ public class Session {
 	}
 
 	public void afficher() {
-		// TODO - implement Session.afficher
+		System.out.println("Epreuve : " +this.epreuve.getNom());
+		System.out.println("Discipline : " +this.epreuve.getDiscipline().getNom());
+		System.out.println("Date : " +this.date);
+		System.out.println("Heure : " +this.heure);
+		System.out.println("Duree : " + this.duree);
 		throw new UnsupportedOperationException();
 	}
 
