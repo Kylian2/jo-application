@@ -1,8 +1,23 @@
 package modeles;
 
-import java.util.*;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 
-public class Epreuve {
+
+
+public class Epreuve implements Serializable{
+	
+    private static final long serialVersionUID = 1L;
+    
+	//Unite de mesure
+	public final static String METRE = "m";
+	public final static String MINUTES = "min";
+	public final static String SECONDE = "s";
+	public final static String GRAMME = "g";
+	public static final String HEURE = "h";
+	public static final String POINT = "point(s)";
 
 	private Classement classement;
 	private ArrayList<Session> sessions;
@@ -22,7 +37,7 @@ public class Epreuve {
 	 * @param unite
 	 * @param discipline
 	 */
-	Epreuve(String nom, String description, boolean individuelle, String unite, Discipline discipline) {
+	public Epreuve(String nom, String description, boolean individuelle, String unite) {
 		this.nom = nom;
 		this.description = description;
 		this.individuelle = individuelle;
@@ -38,8 +53,17 @@ public class Epreuve {
 	 * @param session
 	 */
 	public boolean ajouterSession(Session session) {
-		// TODO - implement Epreuve.ajouterSession
-		throw new UnsupportedOperationException();
+		this.sessions.add(session);
+		session.setEpreuve(this);
+		this.ordonnerSessions();
+		this.getDiscipline().enregisterModifications();
+		return true;
+	}
+	
+	public boolean setDiscipline(Discipline discipline) {
+		this.discipline = discipline;
+		discipline.enregisterModifications();
+		return true;
 	}
 
 	/**
@@ -52,8 +76,11 @@ public class Epreuve {
 	}
 
 	public boolean afficher() {
-		// TODO - implement Epreuve.afficher
-		throw new UnsupportedOperationException();
+		System.out.println(nom);
+		System.out.println(description);
+		System.out.println("Est individuelle : " + individuelle);
+		System.out.println("Discipline : " + discipline.getNom());
+		return true;
 	}
 
 	public boolean afficherClassement() {
@@ -80,4 +107,26 @@ public class Epreuve {
 		throw new UnsupportedOperationException();
 	}
 
+	public Discipline getDiscipline() {
+		return discipline;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+	
+	public void setIndividuelle(boolean individuelle) {
+		this.individuelle = individuelle;
+		this.discipline.enregisterModifications();
+	}
+	
+	public void ordonnerSessions() {
+		Collections.sort(sessions);
+	}
+	
+	public void afficherSessions() {
+		for(Session session : sessions) {
+			System.out.println(session);
+		}
+	}
 }
