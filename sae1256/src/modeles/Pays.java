@@ -121,23 +121,4 @@ public class Pays implements Serializable{
 	            e.printStackTrace();
 	        }
 		}
-		
-		//Permet de récupérer les elements qui ont été sérialisé dans un fichier. 
-		public static void recuperer() { //
-			File f = new File(fileName);
-			if(f.exists()) {
-				try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
-		            ArrayList<Pays> deserializedPays = (ArrayList<Pays>) inputStream.readObject();
-		            paysList.clear();
-		            for(Pays pays: deserializedPays ) {
-		            	paysList.add(pays);
-		            }
-		        } catch (IOException | ClassNotFoundException e) {
-		            e.printStackTrace();
-		        }
-			}else {
-				System.out.println("Impossible de récupérer les données, le fichier n'existe pas");
-			}
-		}
-
 }

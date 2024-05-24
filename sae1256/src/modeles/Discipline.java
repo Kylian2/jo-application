@@ -130,24 +130,6 @@ public class Discipline implements Serializable{
         }
 	}
 	
-	//Permet de récupérer les elements qui ont été sérialisé dans un fichier. 
-	public static void recuperer() { //
-		File f = new File(fileName);
-		if(f.exists()) {
-			try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
-	            ArrayList<Discipline> deserializedDisciplines = (ArrayList<Discipline>) inputStream.readObject();
-	            disciplinesList.clear();
-	            for(Discipline discipline: deserializedDisciplines ) {
-	            	disciplinesList.add(discipline);
-	            }
-	        } catch (IOException | ClassNotFoundException e) {
-	            e.printStackTrace();
-	        }
-		}else {
-			System.out.println("Impossible de récupérer les données, le fichier n'existe pas");
-		}
-	}
-	
 	public void afficherEpreuves() {
 		System.out.println("Voici les disciplines de " + this.nom + " : ");
 		if(epreuves != null && epreuves.size() > 0) {

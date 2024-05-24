@@ -229,24 +229,6 @@ public class Athlete implements Serializable{
         }
 	}
 	
-	//Permet de récupérer les elements qui ont été sérialisé dans un fichier. 
-	public static void recuperer() { //
-		File f = new File(fileName);
-		if(f.exists()) {
-			try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
-	            ArrayList<Athlete> deserializedAthletes = (ArrayList<Athlete>) inputStream.readObject();
-	            athletesList.clear();
-	            for(Athlete athlete: deserializedAthletes ) {
-	            	athletesList.add(athlete);
-	            }
-	        } catch (IOException | ClassNotFoundException e) {
-	            e.printStackTrace();
-	        }
-		}else {
-			System.out.println("Impossible de récupérer les données, le fichier n'existe pas");
-		}
-	}
-	
 	public void setDescription(String description) {
 		this.description = description;
 		this.enregisterModifications();
