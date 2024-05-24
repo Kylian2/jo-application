@@ -45,26 +45,28 @@ public class vueModifierAthlete extends JPanel{
 
 		//définition de description - naissance - genre - poids - participation
 		JPanel mainInfo = new JPanel();
-		JPanel infoPanel = new JPanel();
-		mainInfo.setLayout(new GridLayout(2,1));
+		mainInfo.setLayout(new GridLayout(1,2));
 		JLabel desc = new JLabel("Description");
 		Border borderDescription = desc.getBorder();
 		Border marginDescription = new EmptyBorder(0,50,0,0);
 		desc.setBorder(new CompoundBorder(borderDescription, marginDescription));
 		desc.setFont(new Font("Source", Font.PLAIN, 20));
-		mainInfo.add(desc);
 
 
 		JTextField descTexte = new JTextField("Entrez un texte");
 		descTexte.setPreferredSize(new Dimension(180,150));
-		infoPanel.add(descTexte);
+
+		
+		JPanel infoAthletePanel = new JPanel();
+		infoAthletePanel.setLayout(new GridLayout(2,1));
+		
 
 
 
 		// ajout des Panel dans la fenetre
 		this.setLayout(new GridLayout(3,1));
 
-		top.setLayout(new GridLayout(2, 1));
+		top.setLayout(new GridLayout(3, 1));
 		topInfo.setLayout(new GridLayout(1,3));
 
 		nomPanel.add(nom);
@@ -81,9 +83,11 @@ public class vueModifierAthlete extends JPanel{
 
 		top.add(ajouterAthlete);
 		top.add(topInfo);
+		top.add(desc);
 		
-		mainInfo.add(infoPanel);
-
+		mainInfo.add(descTexte);
+		mainInfo.add(infoAthletePanel);
+		
 		add(top);
 		add(mainInfo);
 		top.setBorder(BorderFactory.createLineBorder(Color.red));
