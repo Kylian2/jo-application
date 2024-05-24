@@ -19,3 +19,9 @@ Reflechir à comment sont repartit les joueurs au sein d'une session.
 Pris en charge par : [Kylian] 
 
 Faire une classe principale qui stock différentes instances créés pour les récuperer lors de la création de l'application.
+
+## Interface Ajouter Athlete
+
+Pris en charge par : [Kilian] ## DONE
+
+Faire l'écran pour AjouterAthlete
