@@ -3,7 +3,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-public class vueModifierAthlete extends JPanel{
+public class vueAjouterAthlete extends JPanel{
 
 	JPanel top, topInfo, nomPanel, delegPanel, discipPanel, mainInfo, infoAthletePanel, bioPanel, anneeNaissancePanel, genrePanel,
 			poidsPanel, firstParticipation, bottomPanel, btnPanel;
@@ -11,7 +11,7 @@ public class vueModifierAthlete extends JPanel{
 	JTextField nomTexte, delegTexte, discipTexte, descTexte,anneeNaissanceTexte, genreTexte, poidsTexte, participationTexte;
 	JButton annuler, valider;
 
-	vueModifierAthlete(){
+	vueAjouterAthlete(){
 		/// définition du Panel "top" 
 		top = new JPanel();
 		ajouterAthlete = new JLabel("Ajouter un Athlète");
@@ -195,7 +195,7 @@ public class vueModifierAthlete extends JPanel{
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Creer une instance de ma classe
-		vueModifierAthlete p = new vueModifierAthlete ();
+		vueAjouterAthlete p = new vueAjouterAthlete ();
 
 		// Ajouter mon instance dans un des conteneurs de la fen?tre
 		fenetre.add(p);
