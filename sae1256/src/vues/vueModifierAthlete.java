@@ -5,14 +5,15 @@ import javax.swing.border.*;
 
 public class vueModifierAthlete extends JPanel{
 
-	JPanel top, topInfo, nomPanel, delegPanel, discipPanel, mainInfo;
-	JLabel ajouterAthlete, nom, deleg, discip;
-	JTextField nomTexte, delegTexte, discipTexte;
+	JPanel top, topInfo, nomPanel, delegPanel, discipPanel, mainInfo, infoAthletePanel, bioPanel, anneeNaissancePanel, genrePanel,
+			poidsPanel, firstParticipation;
+	JLabel ajouterAthlete, nom, deleg, discip, desc, anneeNaissance, genre, poids, participation;
+	JTextField nomTexte, delegTexte, discipTexte, descTexte,anneeNaissanceTexte, genreTexte, poidsTexte, participationTexte;
 
 	vueModifierAthlete(){
 		// définition du Panel "top" 
-		JPanel top = new JPanel();
-		JLabel ajouterAthlete = new JLabel("Ajouter un Athlète");
+		top = new JPanel();
+		ajouterAthlete = new JLabel("Ajouter un Athlète");
 		Border borderAthlete = ajouterAthlete.getBorder();
 		Border marginAthlete = new EmptyBorder(0,50,0,0);
 		ajouterAthlete.setBorder(new CompoundBorder(borderAthlete, marginAthlete));
@@ -20,22 +21,22 @@ public class vueModifierAthlete extends JPanel{
 
 
 		//definition des Label et FieldText nom - discipline - discipline
-		JPanel topInfo = new JPanel();
+		topInfo = new JPanel();
 
-		JPanel nomPanel = new JPanel();
-		JPanel delegPanel = new JPanel();
-		JPanel discipPanel = new JPanel();
+		nomPanel = new JPanel();
+		delegPanel = new JPanel();
+		discipPanel = new JPanel();
 
-		JLabel nom = new JLabel("Nom :");
-		JTextField nomTexte = new JTextField("Entrez le nom de l'athlète"); 
+		nom = new JLabel("Nom :");
+		nomTexte = new JTextField("Entrez le nom de l'athlète"); 
 		nomTexte.setPreferredSize(new Dimension(180,30));
 
-		JLabel deleg = new JLabel("Délégation :");
-		JTextField delegTexte = new JTextField("Choisir une délégation"); 
+		deleg = new JLabel("Délégation :");
+		delegTexte = new JTextField("Choisir une délégation"); 
 		delegTexte.setPreferredSize(new Dimension(180,30));
 
-		JLabel discip = new JLabel("Discipline :");
-		JTextField discipTexte = new JTextField("Choisir une discipline"); 	
+		discip = new JLabel("Discipline :");
+		discipTexte = new JTextField("Choisir une discipline"); 	
 		discipTexte.setPreferredSize(new Dimension(180,30));
 
 		nom.setFont(new Font("Source", Font.PLAIN, 20));
@@ -44,23 +45,52 @@ public class vueModifierAthlete extends JPanel{
 
 
 		//définition de description - naissance - genre - poids - participation
-		JPanel mainInfo = new JPanel();
+		mainInfo = new JPanel();
 		mainInfo.setLayout(new GridLayout(1,2));
-		JLabel desc = new JLabel("Description");
+		desc = new JLabel("Description");
 		Border borderDescription = desc.getBorder();
 		Border marginDescription = new EmptyBorder(0,50,0,0);
 		desc.setBorder(new CompoundBorder(borderDescription, marginDescription));
 		desc.setFont(new Font("Source", Font.PLAIN, 20));
 
 
-		JTextField descTexte = new JTextField("Entrez un texte");
+		descTexte = new JTextField("Entrez un texte");
 		descTexte.setPreferredSize(new Dimension(180,150));
 
 		
-		JPanel infoAthletePanel = new JPanel();
-		infoAthletePanel.setLayout(new GridLayout(2,1));
+		infoAthletePanel = new JPanel();
+		infoAthletePanel.setLayout(new GridLayout(1,2));
 		
-
+		bioPanel = new JPanel();
+		bioPanel.setLayout(new GridLayout(6,1));
+		
+		//annee de Naissance
+		anneeNaissancePanel = new JPanel();
+		anneeNaissancePanel.setLayout(new GridLayout(2,1));
+		
+		anneeNaissance = new JLabel("Année de naissance :");
+		anneeNaissanceTexte = new JTextField("Entrez une date (Format : AAAA)");
+		
+		// genre
+		genrePanel = new JPanel();
+		genrePanel.setLayout(new GridLayout(2,1));
+		
+		genre = new JLabel("Genre :");
+		genreTexte = new JTextField("Selectionnez un genre");
+		
+		// poids
+		poidsPanel = new JPanel();
+		poidsPanel.setLayout(new GridLayout(2,1));
+		
+		poids = new JLabel("Poids :");
+		poidsTexte = new JTextField("Entrez un poids");
+		
+		// participation
+		firstParticipation = new JPanel();
+		firstParticipation.setLayout(new GridLayout(6,1));
+		
+		participation = new JLabel("Première participation :");
+		participationTexte = new JTextField("Entrez une date (Format : AAAA)");
 
 
 		// ajout des Panel dans la fenetre
@@ -85,13 +115,32 @@ public class vueModifierAthlete extends JPanel{
 		top.add(topInfo);
 		top.add(desc);
 		
+		bioPanel.add(anneeNaissance);
+		bioPanel.add(anneeNaissanceTexte);
+		
+		bioPanel.add(genre);
+		bioPanel.add(genreTexte);
+		
+		bioPanel.add(poids);
+		bioPanel.add(poidsTexte);
+		
+		firstParticipation.add(participation);
+		firstParticipation.add(participationTexte);
+		
+		infoAthletePanel.add(bioPanel);
+		infoAthletePanel.add(firstParticipation);
+		
 		mainInfo.add(descTexte);
 		mainInfo.add(infoAthletePanel);
 		
 		add(top);
 		add(mainInfo);
+		
+		/*border pour debug
 		top.setBorder(BorderFactory.createLineBorder(Color.red));
 		mainInfo.setBorder(BorderFactory.createLineBorder(Color.green));
+		mainInfo.setBorder(BorderFactory.createLineBorder(Color.blue));
+		*/
 
 
 
