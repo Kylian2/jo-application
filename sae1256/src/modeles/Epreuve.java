@@ -1,7 +1,11 @@
 package modeles;
 
 import java.io.Serializable;
-import java.util.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+
+
 
 public class Epreuve implements Serializable{
 	
@@ -50,6 +54,9 @@ public class Epreuve implements Serializable{
 	 */
 	public boolean ajouterSession(Session session) {
 		this.sessions.add(session);
+		session.setEpreuve(this);
+		this.ordonnerSessions();
+		this.getDiscipline().enregisterModifications();
 		return true;
 	}
 	
@@ -112,5 +119,14 @@ public class Epreuve implements Serializable{
 		this.individuelle = individuelle;
 		this.discipline.enregisterModifications();
 	}
-
+	
+	public void ordonnerSessions() {
+		Collections.sort(sessions);
+	}
+	
+	public void afficherSessions() {
+		for(Session session : sessions) {
+			System.out.println(session);
+		}
+	}
 }

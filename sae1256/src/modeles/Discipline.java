@@ -65,8 +65,9 @@ public class Discipline implements Serializable{
 	 * @param epreuve
 	 */
 	public boolean retirerEpreuve(Epreuve epreuve) {
-		// TODO - implement Discipline.retirerEpreuve
-		throw new UnsupportedOperationException();
+		Epreuve result = epreuves.remove(epreuves.indexOf(epreuve));
+		this.enregisterModifications();
+		return result != null;
 	}
 
 	/**

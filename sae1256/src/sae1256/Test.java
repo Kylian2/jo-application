@@ -1,15 +1,5 @@
 package sae1256;
 
-import java.io.EOFException;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-
 import modeles.*;
 import modeles.Discipline;
 import modeles.Pays;
@@ -37,7 +27,10 @@ public class Test {
         System.out.println("\n------Disciplines récupérés : ");
         for(Discipline discipline : Discipline.disciplinesList) {
         	System.out.println(discipline.getNom());
-        	discipline.afficherEpreuves();
-        }         
+        	discipline.afficherEpreuves();        	
+        }
+        
+        System.out.println("Les sessions de " +  Discipline.disciplinesList.get(0).getEpreuves().get(0).getNom() + " :");
+        Discipline.disciplinesList.get(0).getEpreuves().get(0).afficherSessions();
 	}
 }
