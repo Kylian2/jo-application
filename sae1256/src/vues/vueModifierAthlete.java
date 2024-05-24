@@ -6,18 +6,19 @@ import javax.swing.border.*;
 public class vueModifierAthlete extends JPanel{
 
 	JPanel top, topInfo, nomPanel, delegPanel, discipPanel, mainInfo, infoAthletePanel, bioPanel, anneeNaissancePanel, genrePanel,
-			poidsPanel, firstParticipation;
+			poidsPanel, firstParticipation, bottomPanel, btnPanel;
 	JLabel ajouterAthlete, nom, deleg, discip, desc, anneeNaissance, genre, poids, participation;
 	JTextField nomTexte, delegTexte, discipTexte, descTexte,anneeNaissanceTexte, genreTexte, poidsTexte, participationTexte;
+	JButton annuler, valider;
 
 	vueModifierAthlete(){
-		// définition du Panel "top" 
+		/// définition du Panel "top" 
 		top = new JPanel();
 		ajouterAthlete = new JLabel("Ajouter un Athlète");
 		Border borderAthlete = ajouterAthlete.getBorder();
 		Border marginAthlete = new EmptyBorder(0,50,0,0);
 		ajouterAthlete.setBorder(new CompoundBorder(borderAthlete, marginAthlete));
-		ajouterAthlete.setFont(new Font("Source", Font.PLAIN, 30));
+
 
 
 		//definition des Label et FieldText nom - discipline - discipline
@@ -39,9 +40,7 @@ public class vueModifierAthlete extends JPanel{
 		discipTexte = new JTextField("Choisir une discipline"); 	
 		discipTexte.setPreferredSize(new Dimension(180,30));
 
-		nom.setFont(new Font("Source", Font.PLAIN, 20));
-		deleg.setFont(new Font("Source", Font.PLAIN, 20));
-		discip.setFont(new Font("Source", Font.PLAIN, 20));
+
 
 
 		//définition de description - naissance - genre - poids - participation
@@ -51,7 +50,7 @@ public class vueModifierAthlete extends JPanel{
 		Border borderDescription = desc.getBorder();
 		Border marginDescription = new EmptyBorder(0,50,0,0);
 		desc.setBorder(new CompoundBorder(borderDescription, marginDescription));
-		desc.setFont(new Font("Source", Font.PLAIN, 20));
+
 
 
 		descTexte = new JTextField("Entrez un texte");
@@ -91,8 +90,35 @@ public class vueModifierAthlete extends JPanel{
 		
 		participation = new JLabel("Première participation :");
 		participationTexte = new JTextField("Entrez une date (Format : AAAA)");
+		
+		
+		/// définition du bottom Panel
+		
+		bottomPanel = new JPanel();
+		bottomPanel.setLayout(new GridLayout(1,2));
+		
+		btnPanel = new JPanel();
+		btnPanel.setLayout(new GridLayout(5,2));
+		
+			// définition des bouton annuler - valider
+		annuler = new JButton("Annuler");
+		valider = new JButton("Valider les modification");
+		
+		
+		
+		
 
-
+		//uniformisation de la police d'écriture
+		ajouterAthlete.setFont(new Font("Source", Font.PLAIN, 30));
+		desc.setFont(new Font("Source", Font.PLAIN, 20));
+		nom.setFont(new Font("Source", Font.PLAIN, 20));
+		deleg.setFont(new Font("Source", Font.PLAIN, 20));			
+		discip.setFont(new Font("Source", Font.PLAIN, 20));
+		anneeNaissance.setFont(new Font("Source", Font.PLAIN, 15));
+		genre.setFont(new Font("Source", Font.PLAIN, 15));
+		poids.setFont(new Font("Source", Font.PLAIN, 15));
+		participation.setFont(new Font("Source", Font.PLAIN, 15));
+		
 		// ajout des Panel dans la fenetre
 		this.setLayout(new GridLayout(3,1));
 
@@ -133,8 +159,23 @@ public class vueModifierAthlete extends JPanel{
 		mainInfo.add(descTexte);
 		mainInfo.add(infoAthletePanel);
 		
+		bottomPanel.add(new JPanel()); // case vide
+		bottomPanel.add(btnPanel);
+		
+		btnPanel.add(new JPanel()); // case vide
+		btnPanel.add(new JPanel()); // case vide
+		btnPanel.add(new JPanel()); // case vide
+		btnPanel.add(new JPanel()); // case vide
+		btnPanel.add(new JPanel()); // case vide
+		btnPanel.add(new JPanel()); // case vide
+		btnPanel.add(annuler);
+		btnPanel.add(valider);
+		
+
+		
 		add(top);
 		add(mainInfo);
+		add(bottomPanel);
 		
 		/*border pour debug
 		top.setBorder(BorderFactory.createLineBorder(Color.red));
