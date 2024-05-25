@@ -24,7 +24,7 @@ public class Pays implements Serializable{
 	
 	public Pays(String code, String nom) {
 		this.code = code;
-		this.nom = nom;
+		this.nom = nom; 
 		recompenses = new Recompense();
 		
 		membres = new ArrayList<Athlete>();
