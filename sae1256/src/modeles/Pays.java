@@ -12,14 +12,15 @@ import java.util.*;
 public class Pays implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-    public static ArrayList<Pays> paysList = new ArrayList<Pays>();
-    public static final String fileName = "pays.dat";
 
 	private Collection<Athlete> membres;
 	private Collection<Equipe> equipes;
 	private Recompense recompenses;
 	private String code;
 	private String nom;
+	
+	//A implémenter : verification de l'unicité des pays. 
+    public static ArrayList<Pays> paysList = new ArrayList<Pays>();
 	
 	public Pays(String code, String nom) {
 		this.code = code;
@@ -93,28 +94,4 @@ public class Pays implements Serializable{
 		}
 		return false;
 	}
-	
-	//Cette méthode permet d'enregister (serialiser) les athlètes.
-		//Les athletes sont stocké dans une liste pour etre facilement manipulable
-		//Lorsque cette fonction est appelé sur un athlete, elle ajoute l'athlete à la 
-		//la liste est enregistre la liste sur le disque
-		public void enregister() {
-			try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
-				paysList.add(this); 
-				outputStream.writeObject(paysList);
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-		}
-		
-		//Cette methodes est relativement similaire à enregister() à la différence
-		//qu'elle ne rajoute pas l'athlete, elle serialize uniquement pour que les 
-		//modifications sont enregistrées. 
-		public void enregisterModifications() {
-			try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
-				outputStream.writeObject(paysList);
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-		}
 }

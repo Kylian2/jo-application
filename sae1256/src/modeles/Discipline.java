@@ -11,9 +11,7 @@ import java.util.*;
 
 public class Discipline implements Serializable{
 	
-	public static ArrayList<Discipline> disciplinesList = new ArrayList<Discipline>();
 	private static final long serialVersionUID = 1L;
-    public static final String fileName = "discipline.dat";
     
 	private ArrayList<Athlete> pratiquants;
 	private ArrayList<Epreuve> epreuves;
@@ -21,6 +19,9 @@ public class Discipline implements Serializable{
 	private int numero;
 	private String description;
 	private String nom;
+	
+	//permet de verifier l'unicité de la discipline
+	public static ArrayList<Discipline> disciplinesList = new ArrayList<Discipline>();
 
 	/**
 	 * 
@@ -44,6 +45,8 @@ public class Discipline implements Serializable{
 			this.epreuves = new ArrayList<Epreuve>();
 			this.equipes = new ArrayList<Equipe>();
 			this.pratiquants = new ArrayList<Athlete>();
+			
+			disciplinesList.add(this);
 		}
 		
 	}

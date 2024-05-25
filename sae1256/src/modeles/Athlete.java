@@ -13,8 +13,6 @@ import java.util.*;
 public class Athlete implements Serializable{
 	
     private static final long serialVersionUID = 1L;
-    public static ArrayList<Athlete> athletesList = new ArrayList<Athlete>();
-    public static final String fileName = "athlete.dat";
 
 	public static final char HOMME = 'H';
 	public static final char FEMME = 'F';
