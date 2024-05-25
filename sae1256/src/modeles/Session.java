@@ -49,9 +49,6 @@ public class Session implements Serializable, Comparable<Session> {
 	 */
 	public boolean ajouterAthlete(Athlete athlete) {
 		participants.add(athlete);
-		if(epreuve != null) {
-			this.epreuve.getDiscipline().enregisterModifications();
-		}
 		return true;
 	}
 
