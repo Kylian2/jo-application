@@ -33,8 +33,6 @@ public class Pays implements Serializable{
 		for(Discipline discipline : Discipline.disciplinesList ) {
 			ajouterEquipe(new Equipe("Equipe de "+ nom + " de " + discipline.getNom(), discipline));
 		}
-		
-		this.enregister();
 	}
 
 	/**
@@ -90,8 +88,6 @@ public class Pays implements Serializable{
 		for(Equipe equipe : equipes) {
 			if (equipe.getDiscipline().getNom().equalsIgnoreCase(athlete.getDiscipline().getNom())) {
 				equipe.ajouterMembre(athlete);
-				this.enregisterModifications();
-				athlete.enregisterModifications();
 				return true;
 			}
 		}

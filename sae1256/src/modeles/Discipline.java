@@ -44,7 +44,6 @@ public class Discipline implements Serializable{
 			this.epreuves = new ArrayList<Epreuve>();
 			this.equipes = new ArrayList<Equipe>();
 			this.pratiquants = new ArrayList<Athlete>();
-			this.enregister();
 		}
 		
 	}
@@ -56,7 +55,6 @@ public class Discipline implements Serializable{
 	public boolean ajouterEpreuve(Epreuve epreuve) {
 		epreuves.add(epreuve);
 		epreuve.setDiscipline(this);
-		this.enregisterModifications();
 		return true;
 	}
 
@@ -66,7 +64,6 @@ public class Discipline implements Serializable{
 	 */
 	public boolean retirerEpreuve(Epreuve epreuve) {
 		Epreuve result = epreuves.remove(epreuves.indexOf(epreuve));
-		this.enregisterModifications();
 		return result != null;
 	}
 
@@ -104,30 +101,6 @@ public class Discipline implements Serializable{
 	
 	public String getNom() {
 		return nom;
-	}
-	
-	//Cette méthode permet d'enregister (serialiser) les disciplines.
-	//Les disciplines sont stocké dans une liste pour etre facilement manipulable
-	//Lorsque cette fonction est appelé sur une disciplines, elle ajoute la discipline à la 
-	//la liste et enregistre la liste sur le disque
-	public void enregister() {
-		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
-            disciplinesList.add(this); 
-			outputStream.writeObject(disciplinesList);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
-	
-	//Cette methodes est relativement similaire à enregister() à la différence
-	//qu'elle ne rajoute pas la disciplines, elle serialize uniquement pour que les 
-	//modifications soit enregistrées. 
-	public void enregisterModifications() {
-		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
-			outputStream.writeObject(disciplinesList);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 	}
 	
 	public void afficherEpreuves() {

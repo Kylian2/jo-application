@@ -56,13 +56,11 @@ public class Epreuve implements Serializable{
 		this.sessions.add(session);
 		session.setEpreuve(this);
 		this.ordonnerSessions();
-		this.getDiscipline().enregisterModifications();
 		return true;
 	}
 	
 	public boolean setDiscipline(Discipline discipline) {
 		this.discipline = discipline;
-		discipline.enregisterModifications();
 		return true;
 	}
 
@@ -117,7 +115,6 @@ public class Epreuve implements Serializable{
 	
 	public void setIndividuelle(boolean individuelle) {
 		this.individuelle = individuelle;
-		this.discipline.enregisterModifications();
 	}
 	
 	public void ordonnerSessions() {

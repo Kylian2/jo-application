@@ -27,9 +27,9 @@ public class ApplicationJo implements Serializable{
 	
 	public void enregister() {
 		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
-			this.paysList = Pays.paysList;
-            this.athletesList = Athlete.athletesList;
-            this.disciplinesList = Discipline.disciplinesList;
+			//this.paysList = Pays.paysList;
+            //this.athletesList = Athlete.athletesList;
+            //this.disciplinesList = Discipline.disciplinesList;
             outputStream.writeObject(this);
         } catch (IOException e) {
             e.printStackTrace();
