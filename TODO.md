@@ -9,14 +9,14 @@ le remettre dans l'équipe lié à sa nouvelle discipline.
 
 ## Session & Epreuve
 
-Pris en charge par : [Kylian]
+Pris en charge par : [Kylian] ## DONE
 
 Faire les constructeurs de epreuves & session. Pouvoir ajouter une session à uneepreuve et inscrire un joueur à une epreuve.
 Reflechir à comment sont repartit les joueurs au sein d'une session. 
 
 ## Serialization
 
-Pris en charge par : [Kylian] 
+Pris en charge par : [Kylian] ## DONE
 
 Faire une classe principale qui stock différentes instances créés pour les récuperer lors de la création de l'application.
 
@@ -24,4 +24,16 @@ Faire une classe principale qui stock différentes instances créés pour les r�
 
 Pris en charge par : [Kilian] ## DONE
 
-Faire l'écran pour AjouterAthlete
+Faire l'écran pour AjouterAthlete.
+
+## Vue des délégation
+
+Pris en charge par [Kylian]
+
+Menu de navigation latéral + affichages des délégations.
+
+## Vue ajout de délégation 
+
+Pris en charge par [Matthieu]
+
+Réalisation de l'écran de création d'une délégation.
