@@ -32,8 +32,32 @@ Pris en charge par [Kylian]
 
 Menu de navigation latéral + affichages des délégations.
 
+## Vue création d'un pays
+
+Pris en charge par [Mathieu]
+
+Réalisation de l'écran de création d'un pays.
+
 ## Vue ajout de délégation 
 
-Pris en charge par [Matthieu]
+Pris en charge par [Mathieu]
 
 Réalisation de l'écran de création d'une délégation.
+
+## Vue ajout de Équipe 
+
+Pris en charge par [Kilian]
+
+Réalisation de l'écran de création d'une équipe.
+
+## Vue ajout de Session
+
+Pris en charge par []
+
+Réalisation de l'écran de création d'une Session.
+
+## Vue ajout de Épreuve
+
+Pris en charge par []
+
+Réalisation de l'écran de création d'une Épreuve.
