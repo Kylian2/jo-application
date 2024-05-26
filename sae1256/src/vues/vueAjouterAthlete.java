@@ -1,15 +1,18 @@
 package vues;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
 public class vueAjouterAthlete extends JPanel{
 
-	JPanel top, topInfo, nomPanel, delegPanel, discipPanel, mainInfo, infoAthletePanel, bioPanel, anneeNaissancePanel, genrePanel,
+	protected JPanel top, topInfo, nomPanel, delegPanel, discipPanel, mainInfo, infoAthletePanel, bioPanel, anneeNaissancePanel, genrePanel,
 			poidsPanel, firstParticipation, bottomPanel, btnPanel;
-	JLabel ajouterAthlete, nom, deleg, discip, desc, anneeNaissance, genre, poids, participation;
-	JTextField nomTexte, delegTexte, discipTexte, descTexte,anneeNaissanceTexte, genreTexte, poidsTexte, participationTexte;
-	JButton annuler, valider;
+	protected JLabel ajouterAthlete, nom, deleg, discip, desc, anneeNaissance, genre, poids, participation;
+	protected JTextField nomTexte, delegTexte, discipTexte, descTexte,anneeNaissanceTexte, genreTexte, poidsTexte, participationTexte;
+	protected JButton annuler, valider;
 
 	vueAjouterAthlete(){
 		/// définition du Panel "top" 
@@ -29,7 +32,7 @@ public class vueAjouterAthlete extends JPanel{
 		discipPanel = new JPanel();
 
 		nom = new JLabel("Nom :");
-		nomTexte = new JTextField("Entrez le nom de l'athlète"); 
+		nomTexte = new JTextField("Entrez le nom de l'athlète");
 		nomTexte.setPreferredSize(new Dimension(180,30));
 
 		deleg = new JLabel("Délégation :");
@@ -103,10 +106,7 @@ public class vueAjouterAthlete extends JPanel{
 			// définition des bouton annuler - valider
 		annuler = new JButton("Annuler");
 		valider = new JButton("Valider les modification");
-		
-		
-		
-		
+		valider.setActionCommand("Valider");
 
 		//uniformisation de la police d'écriture
 		ajouterAthlete.setFont(new Font("Source", Font.PLAIN, 30));
@@ -162,29 +162,43 @@ public class vueAjouterAthlete extends JPanel{
 		bottomPanel.add(new JPanel()); // case vide
 		bottomPanel.add(btnPanel);
 		
-		btnPanel.add(new JPanel()); // case vide
-		btnPanel.add(new JPanel()); // case vide
-		btnPanel.add(new JPanel()); // case vide
-		btnPanel.add(new JPanel()); // case vide
-		btnPanel.add(new JPanel()); // case vide
-		btnPanel.add(new JPanel()); // case vide
+		btnPanel.add(new JPanel()); 
+		btnPanel.add(new JPanel()); 
+		btnPanel.add(new JPanel()); 
+		btnPanel.add(new JPanel()); 
+		btnPanel.add(new JPanel()); 
+		btnPanel.add(new JPanel()); 
 		btnPanel.add(annuler);
 		btnPanel.add(valider);
 		
 
-		
+		// ajout des panel sur la fenetre principale
 		add(top);
 		add(mainInfo);
 		add(bottomPanel);
 		
-		/*border pour debug
-		top.setBorder(BorderFactory.createLineBorder(Color.red));
-		mainInfo.setBorder(BorderFactory.createLineBorder(Color.green));
-		mainInfo.setBorder(BorderFactory.createLineBorder(Color.blue));
-		*/
+		// ajout des ecouteurs sur les bouton
+		EcouteurImbrique ecouteur = new EcouteurImbrique();
+		annuler.addActionListener(ecouteur);
+		valider.addActionListener(ecouteur);
 
+	}
+	
+	private class EcouteurImbrique implements ActionListener {
 
-
+		public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand().equalsIgnoreCase("Annuler")){
+				//String nom, String prenom, int taille, int poids, String description, String dateNaissance, char genre
+				System.out.println("Annulation...");
+				System.out.println("#retour sur la page précédente.");
+				
+			}
+			if (e.getActionCommand().equalsIgnoreCase("Valider")) {
+				System.out.println("Athlète ajouté avec succés !");
+				System.out.println("#retour sur la page précédente.");
+			}
+			
+		}
 	}
 
 	public static void main(String[] args) {
