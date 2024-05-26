@@ -11,16 +11,17 @@ import java.util.*;
 
 public class Discipline implements Serializable{
 	
-	public static ArrayList<Discipline> disciplinesList = new ArrayList<Discipline>();
 	private static final long serialVersionUID = 1L;
-    public static final String fileName = "discipline.dat";
     
-	private Collection<Athlete> pratiquants;
-	private Collection<Epreuve> sesEpreuves;
-	private Collection<Equipe> lesEquipes;
+	private ArrayList<Athlete> pratiquants;
+	private ArrayList<Epreuve> epreuves;
+	private ArrayList<Equipe> equipes;
 	private int numero;
 	private String description;
 	private String nom;
+	
+	//permet de verifier l'unicité de la discipline
+	public static ArrayList<Discipline> disciplinesList = new ArrayList<Discipline>();
 
 	/**
 	 * 
@@ -41,8 +42,13 @@ public class Discipline implements Serializable{
 		if(unique) {
 			this.nom = nom;
 			this.description = description;
-			this.enregister();
+			this.epreuves = new ArrayList<Epreuve>();
+			this.equipes = new ArrayList<Equipe>();
+			this.pratiquants = new ArrayList<Athlete>();
+			
+			disciplinesList.add(this);
 		}
+		
 	}
 
 	/**
@@ -50,8 +56,9 @@ public class Discipline implements Serializable{
 	 * @param epreuve
 	 */
 	public boolean ajouterEpreuve(Epreuve epreuve) {
-		// TODO - implement Discipline.ajouterEpreuve
-		throw new UnsupportedOperationException();
+		epreuves.add(epreuve);
+		epreuve.setDiscipline(this);
+		return true;
 	}
 
 	/**
@@ -59,8 +66,8 @@ public class Discipline implements Serializable{
 	 * @param epreuve
 	 */
 	public boolean retirerEpreuve(Epreuve epreuve) {
-		// TODO - implement Discipline.retirerEpreuve
-		throw new UnsupportedOperationException();
+		Epreuve result = epreuves.remove(epreuves.indexOf(epreuve));
+		return result != null;
 	}
 
 	/**
@@ -99,46 +106,19 @@ public class Discipline implements Serializable{
 		return nom;
 	}
 	
-	//Cette méthode permet d'enregister (serialiser) les disciplines.
-	//Les disciplines sont stocké dans une liste pour etre facilement manipulable
-	//Lorsque cette fonction est appelé sur une disciplines, elle ajoute la discipline à la 
-	//la liste et enregistre la liste sur le disque
-	public void enregister() {
-		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
-            disciplinesList.add(this); 
-			outputStream.writeObject(disciplinesList);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
-	
-	//Cette methodes est relativement similaire à enregister() à la différence
-	//qu'elle ne rajoute pas la disciplines, elle serialize uniquement pour que les 
-	//modifications soit enregistrées. 
-	public void enregisterModifications() {
-		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
-			outputStream.writeObject(disciplinesList);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
-	
-	//Permet de récupérer les elements qui ont été sérialisé dans un fichier. 
-	public static void recuperer() { //
-		File f = new File(fileName);
-		if(f.exists()) {
-			try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
-	            ArrayList<Discipline> deserializedDisciplines = (ArrayList<Discipline>) inputStream.readObject();
-	            disciplinesList.clear();
-	            for(Discipline discipline: deserializedDisciplines ) {
-	            	disciplinesList.add(discipline);
-	            }
-	        } catch (IOException | ClassNotFoundException e) {
-	            e.printStackTrace();
-	        }
+	public void afficherEpreuves() {
+		System.out.println("Voici les disciplines de " + this.nom + " : ");
+		if(epreuves != null && epreuves.size() > 0) {
+			for(Epreuve epreuve: epreuves) {
+				System.out.println("- "+epreuve.getNom());
+			}
 		}else {
-			System.out.println("Impossible de récupérer les données, le fichier n'existe pas");
+			System.out.println("aucune epreuve");
 		}
+	}
+	
+	public ArrayList<Epreuve> getEpreuves() {
+		return epreuves;
 	}
 
 }

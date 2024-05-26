@@ -1,41 +1,37 @@
 package sae1256;
 
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+import java.time.LocalDate;
 
 import modeles.*;
-import modeles.Discipline;
-import modeles.Pays;
 
 public class Test {
 	public static void main(String[] args) {
 		System.out.println("Hello SAE 1256 - Test");
 		
-		System.out.println("\n-------- TEST SERIALISATION ---------");
+		System.out.println("\n-------- TEST SERIALISATION V2 ---------");
 
-		Athlete.recuperer();
-		Pays.recuperer();
-		Discipline.recuperer();
+		ApplicationJo applicationJo = new ApplicationJo();
 		
-        System.out.println("\nAthlètes récupérés : ");
-        for(Athlete athlete : Athlete.athletesList) {
+		applicationJo.recuperer();
+		
+		System.out.println("\n------Athlètes récupérés : ");
+        for(Athlete athlete : applicationJo.athletesList) {
         	athlete.afficherAttribut();
         }
         
-        System.out.println("\nPays récupérés : ");
-        for(Pays pays : Pays.paysList) {
+        System.out.println("\n------Pays récupérés : ");
+        for(Pays pays : applicationJo.paysList) {
         	System.out.println(pays.getNom());
         }
         
-        System.out.println("\nDisciplines récupérés : ");
-        for(Discipline discipline : Discipline.disciplinesList) {
+        System.out.println("\n------Disciplines récupérés : ");
+        for(Discipline discipline : applicationJo.disciplinesList) {
         	System.out.println(discipline.getNom());
-        }        
+        	discipline.afficherEpreuves();  
+        }
+        
+        applicationJo.enregister();
+        
 	}
 }
+
