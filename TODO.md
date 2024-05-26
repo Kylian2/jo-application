@@ -32,8 +32,14 @@ Pris en charge par [Kylian]
 
 Menu de navigation latéral + affichages des délégations.
 
+## Vue création d'un pays
+
+Pris en charge par [Mathieu]
+
+Réalisation de l'écran de création d'un pays.
+
 ## Vue ajout de délégation 
 
-Pris en charge par [Matthieu]
+Pris en charge par [Mathieu]
 
 Réalisation de l'écran de création d'une délégation.
