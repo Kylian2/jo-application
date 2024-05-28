@@ -29,7 +29,7 @@ public class Equipe implements Serializable{
 	Equipe(String nom, Discipline discipline) {
 		this.nom = nom; 
 		this.discipline = discipline;
-		recompenses = new Recompense();
+		recompenses = new Recompense(this);
 		membres = new ArrayList<Athlete>();
 	}
 	

@@ -25,7 +25,7 @@ public class Pays implements Serializable{
 	public Pays(String code, String nom) {
 		this.code = code;
 		this.nom = nom; 
-		recompenses = new Recompense();
+		recompenses = new Recompense(this);
 		
 		membres = new ArrayList<Athlete>();
 		equipes = new ArrayList<Equipe>();
@@ -94,4 +94,41 @@ public class Pays implements Serializable{
 		}
 		return false;
 	}
+	
+	public void ajouterOr() {
+		recompenses.ajouterOr();
+	}
+
+	public void ajouterArgent() {
+		recompenses.ajouterArgent();
+	}
+
+	public void ajouterBronze() {
+		recompenses.ajouterBronze();
+	}
+
+	public void retirerOr() {
+		recompenses.retirerOr();
+	}
+
+	public void retirerArgent() {
+		recompenses.retirerArgent();
+	}
+
+	public void retirerBronze() {
+		recompenses.retirerArgent();
+	}
+
+	public int getOr() {
+		return recompenses.getOr();
+	}
+
+	public int getArgent() {
+		return recompenses.getArgent();
+	}
+
+	public int getBronze() {
+		return recompenses.getBronze();
+	}
+	
 }
