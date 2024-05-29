@@ -240,5 +240,13 @@ public class Athlete implements Serializable{
 	public int getBronze() {
 		return recompenses.getBronze();
 	}
+	
+	public String getNom() {
+		return nom;
+	}
+	
+	public String getPrenom() {
+		return prenom;
+	}
 
 }

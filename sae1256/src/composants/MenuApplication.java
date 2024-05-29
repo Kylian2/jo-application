@@ -21,11 +21,16 @@ public class MenuApplication extends JPanel {
     private static final int BUTTON_WIDTH = 200;
     private static final int BUTTON_HEIGHT = 50;
     
+    public JPanel vueConteneur;
+    
     public VueListePays vuePays; 
+    public VueListeAthlete vueAthlete;
 	
-    public MenuApplication(VueListePays vuePays) {
+    public MenuApplication(JPanel vueConteneur, VueListePays vuePays, VueListeAthlete vueAthlete) {
+    	this.vueConteneur = vueConteneur;
     	
     	this.vuePays = vuePays;
+    	this.vueAthlete = vueAthlete;
     	
         // Panneau principal
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -44,12 +49,33 @@ public class MenuApplication extends JPanel {
         
         // Boutons du menu
         JButton athletesButton = createMenuButton("Athlètes", Couleur.BLEU_JO);
+        athletesButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Masquer les autres
+				vueConteneur.remove(vuePays);
+				//Afficher le panel correspondant
+				vueConteneur.add(vueAthlete);
+				
+				// Rafraîchir le conteneur
+                vueConteneur.revalidate();
+                vueConteneur.repaint();
+			}
+        });
         JButton paysButton = createMenuButton("Délégations", Couleur.JAUNE_JO);
         paysButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				vuePays.afficher();	
+				//Masquer les autres
+				vueConteneur.remove(vueAthlete);
+				//Afficher le panel correspondant
+				vueConteneur.add(vuePays, BorderLayout.CENTER);
+				
+				// Rafraîchir le conteneur
+                vueConteneur.revalidate();
+                vueConteneur.repaint();
 			}
         });
         JButton resultsButton = createMenuButton("Résultats", Couleur.VERT_JO);
@@ -80,4 +106,5 @@ public class MenuApplication extends JPanel {
         
         return button;
     }
+    
 }
