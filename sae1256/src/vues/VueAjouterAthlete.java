@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.*;
 
-public class vueAjouterAthlete extends JPanel{
+public class VueAjouterAthlete extends JPanel{
 
 	protected JPanel top, topInfo, nomPanel, delegPanel, discipPanel, mainInfo, infoAthletePanel, bioPanel, anneeNaissancePanel, genrePanel,
 			poidsPanel, firstParticipation, bottomPanel, btnPanel;
@@ -14,7 +14,7 @@ public class vueAjouterAthlete extends JPanel{
 	protected JTextField nomTexte, delegTexte, discipTexte, descTexte,anneeNaissanceTexte, genreTexte, poidsTexte, participationTexte;
 	protected JButton annuler, valider;
 
-	vueAjouterAthlete(){
+	VueAjouterAthlete(){
 		/// définition du Panel "top" 
 		top = new JPanel();
 		ajouterAthlete = new JLabel("Ajouter un Athlète");
@@ -209,7 +209,7 @@ public class vueAjouterAthlete extends JPanel{
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Creer une instance de ma classe
-		vueAjouterAthlete p = new vueAjouterAthlete ();
+		VueAjouterAthlete p = new VueAjouterAthlete ();
 
 		// Ajouter mon instance dans un des conteneurs de la fen?tre
 		fenetre.add(p);
