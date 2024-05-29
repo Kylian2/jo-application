@@ -39,6 +39,8 @@ public class vueAjouterEquipe extends JPanel {
 		athleteTexte = new JTextField("Choisir un athlète");
 		
 		ajouterAthlete = new JButton("Ajouter");
+		ajouterAthlete.setBackground(Color.RED);
+		ajouterAthlete.setForeground(Color.WHITE);
 		
 		titreMembres = new JPanel();
 		titreMembres.setLayout(new BorderLayout());
@@ -53,10 +55,13 @@ public class vueAjouterEquipe extends JPanel {
 		bottomPanel.setLayout(new GridLayout(3,8));
 		
 		annuler = new JButton("Annuler");
+		annuler.setBackground(Color.RED);
+		annuler.setForeground(Color.WHITE);
 		valider = new JButton("Enregistrer");
+		valider.setBackground(Color.GRAY);
 		
 		// ajout des panel dans la fenetre
-		this.setLayout(new GridLayout(3,1));
+		this.setLayout(new GridLayout(3,	1));
 		
 		disciplinePanel.add(new JPanel());
 		disciplinePanel.add(new JPanel()); 	// panel vide 
@@ -96,7 +101,6 @@ public class vueAjouterEquipe extends JPanel {
 		bottomPanel.add(annuler);
 
 
-		
 		add(mainInfo);
 		add(listPanel);
 		add(bottomPanel);
