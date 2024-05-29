@@ -89,6 +89,14 @@ public class VueListePays extends JPanel {
 	    setBackground(Color.WHITE);
 	}
 	
+	public void masquer() {
+		this.setVisible(false);
+    }
+	
+	public void afficher() {
+		this.setVisible(true);
+    }
+	
 	public static void main (String[] args) {
 		System.out.println("------- Vue affichage Athletes -------");
 		
