@@ -20,7 +20,7 @@ public class VueListePays extends JPanel {
 	public VueListePays(ApplicationJo application, Dimension dimension) {
 		
 	    this.application = application;
-
+	    
 	    setLayout(new BorderLayout()); 
 	    this.setPreferredSize(dimension);
 
@@ -96,38 +96,4 @@ public class VueListePays extends JPanel {
 	public void afficher() {
 		this.setVisible(true);
     }
-	
-	public static void main (String[] args) {
-		System.out.println("------- Vue affichage Athletes -------");
-		
-		JFrame fenetre = new JFrame ();
-		fenetre.setSize(960,540);
-		fenetre.setLocationRelativeTo(null); 
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenetre.getContentPane().setBackground(Color.WHITE); // Définir le fond blanc
-		
-		//Récuperation des données (sera fait au lancement de l'application dans le main principal)
-		ApplicationJo applicationJo = new ApplicationJo();
-		applicationJo.recuperer();
-		
-		JPanel mainPanel = new JPanel();
-        mainPanel.setBackground(Color.WHITE);
-        mainPanel.setLayout(new BorderLayout());
-        
-        VueListePays listePays = new VueListePays(applicationJo, new Dimension(fenetre.getWidth(), fenetre.getHeight()));
-        mainPanel.add(listePays);
-        
-        // Créer le panneau de menu
-        MenuApplication menuPanel = new MenuApplication();
-        menuPanel.setPreferredSize(new Dimension(270, fenetre.getHeight())); // Fixer la largeur du panneau de menu à 300 pixels
-        
-        // Organiser les panneaux
-        fenetre.setLayout(new BorderLayout());
-        fenetre.add(mainPanel, BorderLayout.CENTER);
-        fenetre.add(menuPanel, BorderLayout.WEST);
-		
-		// Afficher la fenetre
-		fenetre.setVisible(true);
-	}
-
 }
