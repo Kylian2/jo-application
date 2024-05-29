@@ -70,7 +70,7 @@ public class Athlete implements Serializable{
 		
 		this.discipline = null;
 		this.pays = null;
-		this.recompenses = new Recompense();
+		this.recompenses = new Recompense(this);
 		this.engagements = new ArrayList<Session>();
 		this.inscriptions = new ArrayList<Epreuve>();
 		this.sesResultats = new ArrayList<Resultat>();
@@ -157,6 +157,8 @@ public class Athlete implements Serializable{
 		}
 		System.out.println("Poids : " + poids);
 		System.out.println("Taille : " + taille);
+		System.out.println("Récompenses : " + recompenses.getOr() + "O" + recompenses.getArgent() + "A" + recompenses.getBronze() + "B");
+		
 	}
 
 	/**
@@ -201,6 +203,42 @@ public class Athlete implements Serializable{
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public void ajouterOr() {
+		recompenses.ajouterOr();
+	}
+
+	public void ajouterArgent() {
+		recompenses.ajouterArgent();
+	}
+
+	public void ajouterBronze() {
+		recompenses.ajouterBronze();
+	}
+
+	public void retirerOr() {
+		recompenses.retirerOr();
+	}
+
+	public void retirerArgent() {
+		recompenses.retirerArgent();
+	}
+
+	public void retirerBronze() {
+		recompenses.retirerArgent();
+	}
+
+	public int getOr() {
+		return recompenses.getOr();
+	}
+
+	public int getArgent() {
+		return recompenses.getArgent();
+	}
+
+	public int getBronze() {
+		return recompenses.getBronze();
 	}
 
 }
