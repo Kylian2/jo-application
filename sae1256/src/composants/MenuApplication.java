@@ -1,6 +1,7 @@
 package composants;
 
 import javax.swing.*;
+import vues.*;
 import javax.swing.border.Border;
 
 import utilitaires.Couleur;
@@ -19,8 +20,13 @@ public class MenuApplication extends JPanel {
 	// Constantes pour les dimensions
     private static final int BUTTON_WIDTH = 200;
     private static final int BUTTON_HEIGHT = 50;
+    
+    public VueListePays vuePays; 
 	
-    public MenuApplication() {
+    public MenuApplication(VueListePays vuePays) {
+    	
+    	this.vuePays = vuePays;
+    	
         // Panneau principal
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Couleur.COULEUR_FOND_JO.getColor());
@@ -38,14 +44,21 @@ public class MenuApplication extends JPanel {
         
         // Boutons du menu
         JButton athletesButton = createMenuButton("Athlètes", Couleur.BLEU_JO);
-        JButton delegationsButton = createMenuButton("Délégations", Couleur.JAUNE_JO);
+        JButton paysButton = createMenuButton("Délégations", Couleur.JAUNE_JO);
+        paysButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vuePays.afficher();	
+			}
+        });
         JButton resultsButton = createMenuButton("Résultats", Couleur.VERT_JO);
         JButton planningButton = createMenuButton("Planning", Couleur.BLEU_JO);
         JButton disciplineButton = createMenuButton("Discipline", Couleur.ROUGE_JO);
         
         // Ajouter les boutons au panneau principal
         add(athletesButton);
-        add(delegationsButton);
+        add(paysButton);
         add(resultsButton);
         add(planningButton);
         add(disciplineButton);
