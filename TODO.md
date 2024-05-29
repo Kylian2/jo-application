@@ -61,3 +61,10 @@ Réalisation de l'écran de création d'une Session.
 Pris en charge par []
 
 Réalisation de l'écran de création d'une Épreuve.
+
+## Vue Accueil
+
+Pris en charge par [Esteban]
+
+Réalisation de l'écran d'accueil.
+
