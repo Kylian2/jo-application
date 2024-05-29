@@ -61,7 +61,7 @@ public class vueAjouterEquipe extends JPanel {
 		valider.setBackground(Color.GRAY);
 		
 		// ajout des panel dans la fenetre
-		this.setLayout(new GridLayout(3,	1));
+		this.setLayout(new GridLayout(3,1));
 		
 		disciplinePanel.add(new JPanel());
 		disciplinePanel.add(new JPanel()); 	// panel vide 
