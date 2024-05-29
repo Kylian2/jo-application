@@ -14,39 +14,71 @@ public class Recompense implements Serializable{
 	private int argent;
 	private int bronze;
 
-	public void Récompense() {
-		// TODO - implement Recompense.Récompense
+	public Recompense(Athlete athlete) {
+		this.athlete = athlete;
+		this.pays = null;
+		this.equipe = null;
+		this.or = 0;
+		this.argent = 0;
+		this.bronze = 0;
 		throw new UnsupportedOperationException();
 	}
+	
+	public Recompense(Pays pays) {
+		this.pays = pays;
+		this.athlete = null;
+		this.pays = null;
+		this.or = 0;
+		this.argent = 0;
+		this.bronze = 0;
+		throw new UnsupportedOperationException();
+	}
+	
+	public Recompense(Equipe equipe) {
+		this.equipe = equipe;
+		this.pays = null;
+		this.athlete = null;
+		this.or = 0;
+		this.argent = 0;
+		this.bronze = 0;
+		throw new UnsupportedOperationException();
+	}
+	
 
 	public void ajouterOr() {
-		// TODO - implement Recompense.ajouterOr
-		throw new UnsupportedOperationException();
+		or++;
 	}
 
 	public void ajouterArgent() {
-		// TODO - implement Recompense.ajouterArgent
-		throw new UnsupportedOperationException();
+		argent++;
 	}
 
 	public void ajouterBronze() {
-		// TODO - implement Recompense.ajouterBronze
-		throw new UnsupportedOperationException();
+		bronze++;
 	}
 
 	public void retirerOr() {
-		// TODO - implement Recompense.retirerOr
-		throw new UnsupportedOperationException();
+		or--;
 	}
 
 	public void retirerArgent() {
-		// TODO - implement Recompense.retirerArgent
-		throw new UnsupportedOperationException();
+		argent--;
 	}
 
 	public void retirerBronze() {
-		// TODO - implement Recompense.retirerBronze
-		throw new UnsupportedOperationException();
+		bronze--;
+	}
+
+	public int getOr() {
+		return or;
+	}
+
+	public int getArgent() {
+		return argent;
+	}
+
+	public int getBronze() {
+		return bronze;
 	}
 
 }
