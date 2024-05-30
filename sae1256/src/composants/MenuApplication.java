@@ -25,12 +25,14 @@ public class MenuApplication extends JPanel {
     
     public VueListePays vuePays; 
     public VueListeAthlete vueAthlete;
+    public VueAccueil vueAccueil;
 	
-    public MenuApplication(JPanel vueConteneur, VueListePays vuePays, VueListeAthlete vueAthlete) {
+    public MenuApplication(JPanel vueConteneur,VueAccueil accueil, VueListePays vuePays, VueListeAthlete vueAthlete) {
     	this.vueConteneur = vueConteneur;
     	
     	this.vuePays = vuePays;
     	this.vueAthlete = vueAthlete;
+    	this.vueAccueil = accueil;
     	
         // Panneau principal
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -55,6 +57,7 @@ public class MenuApplication extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				//Masquer les autres
 				vueConteneur.remove(vuePays);
+				vueConteneur.remove(accueil);
 				//Afficher le panel correspondant
 				vueConteneur.add(vueAthlete);
 				
@@ -70,6 +73,7 @@ public class MenuApplication extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				//Masquer les autres
 				vueConteneur.remove(vueAthlete);
+				vueConteneur.remove(accueil);
 				//Afficher le panel correspondant
 				vueConteneur.add(vuePays, BorderLayout.CENTER);
 				

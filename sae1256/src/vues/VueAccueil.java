@@ -12,7 +12,9 @@ public class VueAccueil extends JPanel{
 	    public VueAccueil() {
 	    	 // Création des panels
 	        JPanel PanelText = new JPanel();
-	        JPanel PanelIMG = new JPanel();
+	        PanelText.setBackground(Color.WHITE);
+	        JPanel PanelIMG = new JPanel(new GridLayout(2, 2));
+	        PanelIMG.setBackground(Color.WHITE);
 	        JLayeredPane PanelIMG1 = new JLayeredPane();
 	        JLayeredPane PanelIMG2 = new JLayeredPane();
 	        JLayeredPane PanelIMG3 = new JLayeredPane();
@@ -58,8 +60,8 @@ public class VueAccueil extends JPanel{
 
 	        // Les layout et border sur les panels de plus haut niveau
 	        PanelText.setLayout(new FlowLayout(FlowLayout.LEFT));
-	        PanelText.setBorder(new EmptyBorder(10, 0, 20, 0));
-	        PanelIMG.setBorder(new EmptyBorder(0, 0, 0, 200));
+	        PanelText.setBorder(new EmptyBorder(10, 15, 10, 20));
+	        PanelIMG.setBorder(new EmptyBorder(0, 20, 20, 20));
 	        PanelIMG.setLayout(new GridLayout(2, 2, 15, 15));
 
 	        // On ajoute dans les panels de plus haut niveau
@@ -88,19 +90,10 @@ public class VueAccueil extends JPanel{
 
 	        // Positionnement du bouton en bas à droite
 	        imageLabel.setBounds(0, 0, LargeurImage, Longueurimage);
-	        button.setBounds(LargeurImage - Largeurbouton - 10, Longueurimage - Longueurbouton - 10, Largeurbouton, Longueurbouton); 
+	        button.setBounds(LargeurImage - Largeurbouton - 50, Longueurimage - Longueurbouton - 10, Largeurbouton, Longueurbouton); 
 
 	        // Intégration dans le layerPane
 	        layer.add(imageLabel, JLayeredPane.DEFAULT_LAYER);
 	        layer.add(button, JLayeredPane.PALETTE_LAYER);
 	    }	    
-
-    // Permet de créer la fenêtre de l'interface graphique
-    public static void main(String[] args) {
-        JFrame fenetre = new JFrame("Accueil");
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetre.setSize(960,540);
-        fenetre.add(new VueAccueil());
-        fenetre.setVisible(true);
-    }
 }
