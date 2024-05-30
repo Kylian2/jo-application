@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.EmptyBorder;
 
-public class vueAccueil extends JPanel{
+public class VueAccueil extends JPanel{
 	 	protected JPanel PanelText, PanelIMG, PanelIMG1, PanelIMG2, PanelIMG3, PanelIMG4;
 	    protected JLabel TexteAccueil;
 	    protected JLabel ImageLabel1, ImageLabel2, ImageLabel3, ImageLabel4;
 	
-	    public vueAccueil() {
+	    public VueAccueil() {
 	    	 // Création des panels
 	        JPanel PanelText = new JPanel();
 	        JPanel PanelIMG = new JPanel();
@@ -100,7 +100,7 @@ public class vueAccueil extends JPanel{
         JFrame fenetre = new JFrame("Accueil");
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre.setSize(960,540);
-        fenetre.add(new vueAccueil());
+        fenetre.add(new VueAccueil());
         fenetre.setVisible(true);
     }
 }
