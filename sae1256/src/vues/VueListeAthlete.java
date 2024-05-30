@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Insets;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -14,6 +15,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 import composants.EmplacementMedaille;
 import modeles.ApplicationJo;
@@ -43,11 +47,33 @@ public class VueListeAthlete extends JPanel {
 	    panelAthlete.setPreferredSize(dimension);
 	
 	    
+	    //Header
+        JPanel header = new JPanel(new BorderLayout());
+        header.setMaximumSize(new Dimension((int) dimension.getWidth(), 50));
+        header.setBackground(Color.WHITE);
+        
 	    //Définir le titre
 	    JLabel titre = new JLabel("Athlètes");
 	    titre.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 32));
 	    titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
-	    panelAthlete.add(titre);
+	    header.add(titre, BorderLayout.WEST);
+	    
+	    //Bouton ajouter
+	    JPanel panelBouton = new JPanel();
+	    panelBouton.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createEmptyBorder(0, 10, 10, 10), 
+                BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK) // Bordure de couleur de 2 pixels en bas
+        ));
+	    panelBouton.setBackground(Color.WHITE);
+        
+        JButton button = new JButton("Ajouter");
+        button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        button.setFocusPainted(false);
+        panelBouton.add(button);
+	    
+	    header.add(panelBouton, BorderLayout.EAST);
+	    
+	    panelAthlete.add(header);
 	    
 	    //Ajout de chacun des pays au panel 
 	    for(Athlete athlete : application.athletesList) { 
@@ -60,7 +86,7 @@ public class VueListeAthlete extends JPanel {
 	        panelSimplePays.setMaximumSize(new Dimension((int) dimension.getWidth(), 50));
 	
 	        //Ajout des infos de l'athlete
-	        JLabel nomPays = new JLabel(athlete.getNom() + ' ' + athlete.getPrenom());
+	        JLabel nomPays = new JLabel(athlete.getPays().getCode() + " - "  + athlete.getNom() + ' ' + athlete.getPrenom());
 	        panelSimplePays.add(nomPays, BorderLayout.WEST);
 	        
 	        // Création du panneau coteGauche

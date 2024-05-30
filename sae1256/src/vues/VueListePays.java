@@ -30,12 +30,32 @@ public class VueListePays extends JPanel {
         panelPays.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelPays.setPreferredSize(dimension);
 
-	    
+	    //Header
+        JPanel header = new JPanel(new BorderLayout());
+        header.setMaximumSize(new Dimension((int) dimension.getWidth(), 50));
+        header.setBackground(Color.WHITE);
+        
 	    //Définir le titre
 	    JLabel titre = new JLabel("Délégations");
 	    titre.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 32));
 	    titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
-	    panelPays.add(titre);
+	    header.add(titre, BorderLayout.WEST);
+	    
+	  //Bouton ajouter
+	    JPanel panelBouton = new JPanel();
+	    panelBouton.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createEmptyBorder(0, 10, 10, 10), 
+                BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK) // Bordure de couleur de 2 pixels en bas
+        ));
+	    panelBouton.setBackground(Color.WHITE);
+        
+        JButton button = new JButton("Ajouter");
+        button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        button.setFocusPainted(false);
+        panelBouton.add(button);
+	    
+	    header.add(panelBouton, BorderLayout.EAST);
+	    panelPays.add(header);
 	    
 	    //Ajout de chacun des pays au panel 
 	    for(Pays pays: application.paysList) { 

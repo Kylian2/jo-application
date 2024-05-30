@@ -131,4 +131,12 @@ public class Pays implements Serializable{
 		return recompenses.getBronze();
 	}
 	
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	public String getCode() {
+		return code;
+	}
+	
 }
