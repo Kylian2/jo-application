@@ -21,7 +21,6 @@ public class Recompense implements Serializable{
 		this.or = 0;
 		this.argent = 0;
 		this.bronze = 0;
-		throw new UnsupportedOperationException();
 	}
 	
 	public Recompense(Pays pays) {
@@ -31,7 +30,6 @@ public class Recompense implements Serializable{
 		this.or = 0;
 		this.argent = 0;
 		this.bronze = 0;
-		throw new UnsupportedOperationException();
 	}
 	
 	public Recompense(Equipe equipe) {
@@ -41,7 +39,6 @@ public class Recompense implements Serializable{
 		this.or = 0;
 		this.argent = 0;
 		this.bronze = 0;
-		throw new UnsupportedOperationException();
 	}
 	
 
