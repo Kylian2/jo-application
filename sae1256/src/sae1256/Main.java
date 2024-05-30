@@ -18,7 +18,7 @@ public class Main {
 		
 		JFrame fenetre = new JFrame ();
 		fenetre.setSize(960,540);
-		fenetre.setLocationRelativeTo(null); 
+		//fenetre.setLocationRelativeTo(null); 
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fenetre.getContentPane().setBackground(Color.WHITE); // Définir le fond blanc
 		

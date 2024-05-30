@@ -1,7 +1,11 @@
 package vues;
 import java.awt.*;
+import modeles.ApplicationJo;
+import modeles.Pays;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -11,10 +15,14 @@ public class VueAjouterAthlete extends JPanel{
 	protected JPanel top, topInfo, nomPanel, delegPanel, discipPanel, mainInfo, infoAthletePanel, bioPanel, anneeNaissancePanel, genrePanel,
 			poidsPanel, firstParticipation, bottomPanel, btnPanel;
 	protected JLabel ajouterAthlete, nom, deleg, discip, desc, anneeNaissance, genre, poids, participation;
-	protected JTextField nomTexte, delegTexte, discipTexte, descTexte,anneeNaissanceTexte, genreTexte, poidsTexte, participationTexte;
+	protected JTextField nomTexte, descTexte,anneeNaissanceTexte, genreTexte, poidsTexte, participationTexte;
 	protected JButton annuler, valider;
+	protected JComboBox delegTexte, discipTexte;
+	ArrayList<Pays> paysList;
 
 	VueAjouterAthlete(){
+		
+		
 		/// définition du Panel "top" 
 		top = new JPanel();
 		ajouterAthlete = new JLabel("Ajouter un Athlète");
@@ -36,12 +44,27 @@ public class VueAjouterAthlete extends JPanel{
 		nomTexte.setPreferredSize(new Dimension(180,30));
 
 		deleg = new JLabel("Délégation :");
-		delegTexte = new JTextField("Choisir une délégation"); 
+		delegTexte = new JComboBox();
 		delegTexte.setPreferredSize(new Dimension(180,30));
+		delegTexte.setBackground(Color.WHITE);
+		
+		delegTexte.addItem("Choisir une delegation");
+		/*inserer item dans liste
+		for(Pays pays : paysList) {
+			delegTexte.addItem(pays.getNom());
+		}
+		*/
 
 		discip = new JLabel("Discipline :");
-		discipTexte = new JTextField("Choisir une discipline"); 	
+		discipTexte = new JComboBox(); 	
+		discipTexte.setBackground(Color.WHITE);
 		discipTexte.setPreferredSize(new Dimension(180,30));
+		discipTexte.addItem("Choisir une discipline");
+		/* ajouter les discipline dans la liste
+		 for(Discipline discip : disciplinesList) {
+			discipTexte.addItem(discip.getNom());
+		}
+		 */
 
 
 
@@ -49,15 +72,19 @@ public class VueAjouterAthlete extends JPanel{
 		//définition de description - naissance - genre - poids - participation
 		mainInfo = new JPanel();
 		mainInfo.setLayout(new GridLayout(1,2));
+		JPanel descPanel = new JPanel(new BorderLayout());
+		descPanel.setBorder(new EmptyBorder(0, 20, 0, 20));
+		descPanel.setBackground(Color.WHITE);
 		desc = new JLabel("Description");
-		Border borderDescription = desc.getBorder();
-		Border marginDescription = new EmptyBorder(0,50,0,0);
-		desc.setBorder(new CompoundBorder(borderDescription, marginDescription));
+		descPanel.add(desc);
 
 
-
-		descTexte = new JTextField("Entrez un texte");
-		descTexte.setPreferredSize(new Dimension(180,150));
+		JPanel descTextePanel = new JPanel(new BorderLayout());
+        descTextePanel.setBorder(new EmptyBorder(0, 20, 0, 20)); 
+        descTexte = new JTextField("Entrez un texte");
+        descTexte.setPreferredSize(new Dimension(180, 150));
+        descTextePanel.add(descTexte, BorderLayout.CENTER);
+        descTextePanel.setBackground(Color.WHITE);
 
 		
 		infoAthletePanel = new JPanel();
@@ -120,6 +147,7 @@ public class VueAjouterAthlete extends JPanel{
 		participation.setFont(new Font("Source", Font.PLAIN, 15));
 		
 		// ajout des Panel dans la fenetre
+		setBackground(Color.WHITE);
 		this.setLayout(new GridLayout(3,1));
 
 		top.setLayout(new GridLayout(3, 1));
@@ -139,7 +167,7 @@ public class VueAjouterAthlete extends JPanel{
 
 		top.add(ajouterAthlete);
 		top.add(topInfo);
-		top.add(desc);
+		top.add(descPanel);
 		
 		bioPanel.add(anneeNaissance);
 		bioPanel.add(anneeNaissanceTexte);
@@ -156,22 +184,39 @@ public class VueAjouterAthlete extends JPanel{
 		infoAthletePanel.add(bioPanel);
 		infoAthletePanel.add(firstParticipation);
 		
-		mainInfo.add(descTexte);
+		mainInfo.add(descTextePanel);
 		mainInfo.add(infoAthletePanel);
 		
-		bottomPanel.add(new JPanel()); // case vide
+		JPanel defaut = new JPanel();
+		defaut.setBackground(Color.WHITE);
+		JPanel defaut1 = new JPanel();
+		defaut.setBackground(Color.WHITE);
+		JPanel defaut2 = new JPanel();
+		defaut.setBackground(Color.WHITE);
+		JPanel defaut3 = new JPanel();
+		defaut.setBackground(Color.WHITE);
+		JPanel defaut4 = new JPanel();
+		defaut.setBackground(Color.WHITE);
+		JPanel defaut5 = new JPanel();
+		defaut.setBackground(Color.WHITE);
+		JPanel defaut6 = new JPanel();
+		defaut.setBackground(Color.WHITE);
+		defaut.setBackground(Color.WHITE);
+		
+		bottomPanel.add(defaut); // case vide
 		bottomPanel.add(btnPanel);
 		
-		btnPanel.add(new JPanel()); 
-		btnPanel.add(new JPanel()); 
-		btnPanel.add(new JPanel()); 
-		btnPanel.add(new JPanel()); 
-		btnPanel.add(new JPanel()); 
-		btnPanel.add(new JPanel()); 
+		btnPanel.add(defaut1); 
+		btnPanel.add(defaut2); 
+		btnPanel.add(defaut3); 
+		btnPanel.add(defaut4); 
+		btnPanel.add(defaut5); 
+		btnPanel.add(defaut6); 
+		btnPanel.add(defaut6); 
 		btnPanel.add(annuler);
 		btnPanel.add(valider);
-		
-
+ 
+        
 		// ajout des panel sur la fenetre principale
 		add(top);
 		add(mainInfo);
@@ -182,6 +227,21 @@ public class VueAjouterAthlete extends JPanel{
 		annuler.addActionListener(ecouteur);
 		valider.addActionListener(ecouteur);
 
+		
+		top.setBackground(Color.WHITE); 
+		topInfo.setBackground(Color.WHITE);
+		nomPanel.setBackground(Color.WHITE);
+		delegPanel.setBackground(Color.WHITE); 
+		discipPanel.setBackground(Color.WHITE); 
+		mainInfo.setBackground(Color.WHITE); 
+		infoAthletePanel.setBackground(Color.WHITE); 
+		bioPanel.setBackground(Color.WHITE); 
+		anneeNaissancePanel.setBackground(Color.WHITE); 
+		genrePanel.setBackground(Color.WHITE);
+		poidsPanel.setBackground(Color.WHITE); 
+		firstParticipation.setBackground(Color.WHITE); 
+		bottomPanel.setBackground(Color.WHITE); 
+		btnPanel.setBackground(Color.WHITE);
 	}
 	
 	private class EcouteurImbrique implements ActionListener {
@@ -207,9 +267,11 @@ public class VueAjouterAthlete extends JPanel{
 		fenetre.setSize(960,540);
 		fenetre.setLocationRelativeTo(null); 
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 
 		// Creer une instance de ma classe
-		VueAjouterAthlete p = new VueAjouterAthlete ();
+
+		VueAjouterAthlete p = new VueAjouterAthlete();
 
 		// Ajouter mon instance dans un des conteneurs de la fen?tre
 		fenetre.add(p);

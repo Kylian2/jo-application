@@ -99,6 +99,8 @@ public class vueAjouterEquipe extends JPanel {
 		bottomPanel.add(new JPanel());
 		bottomPanel.add(valider);
 		bottomPanel.add(annuler);
+		bottomPanel.add(new JPanel());
+		bottomPanel.add(new JPanel());
 
 
 		add(mainInfo);
