@@ -32,13 +32,18 @@ public class Main {
         mainPanel.setBackground(Color.WHITE);
         mainPanel.setLayout(new BorderLayout());
         
+        //Accueil 
+        VueAccueil accueil = new VueAccueil();
+        mainPanel.add(accueil);
+        
+        //VueAthlete
+      	VueListeAthlete vueAthlete = new VueListeAthlete(applicationJo, new Dimension(fenetre.getWidth(), fenetre.getHeight()));
+        
         //VuePays
       	VueListePays vuePays = new VueListePays(applicationJo, new Dimension(fenetre.getWidth(), fenetre.getHeight()));
-      	vuePays.masquer();
-      	mainPanel.add(vuePays);
 		
 		// Menu de navigation
-        MenuApplication menu = new MenuApplication(vuePays);
+        MenuApplication menu = new MenuApplication(mainPanel,accueil, vuePays, vueAthlete);
         menu.setPreferredSize(new Dimension(270, fenetre.getHeight())); 
 		
         

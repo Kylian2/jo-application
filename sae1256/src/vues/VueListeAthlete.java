@@ -1,47 +1,64 @@
 package vues;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Insets;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 import composants.EmplacementMedaille;
-import composants.MenuApplication;
-import modeles.*;
+import modeles.ApplicationJo;
+import modeles.Athlete;
+import modeles.Pays;
 import utilitaires.Couleur;
 
-public class VueListePays extends JPanel {
-		
+public class VueListeAthlete extends JPanel {
+	
 	//Permet d'accéder aux données de l'application qui seront affichées. 
 	ApplicationJo application;
 	
 	//Panel servant à contenir les pays
-	JPanel panelPays;
-	
-	public VueListePays(ApplicationJo application, Dimension dimension) {
+	JPanel panelAthlete;
 		
+	public VueListeAthlete(ApplicationJo application, Dimension dimension) {
+			
 	    this.application = application;
 	    
 	    setLayout(new BorderLayout()); 
 	    this.setPreferredSize(dimension);
-
-	    this.panelPays = new JPanel();
-	    panelPays.setLayout(new BoxLayout(panelPays, BoxLayout.Y_AXIS));
-	    panelPays.setBackground(Color.WHITE);
-        panelPays.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        panelPays.setPreferredSize(dimension);
-
+	
+	    this.panelAthlete = new JPanel();
+	    panelAthlete.setLayout(new BoxLayout(panelAthlete, BoxLayout.Y_AXIS));
+	    panelAthlete.setBackground(Color.WHITE);
+	    panelAthlete.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+	    panelAthlete.setPreferredSize(dimension);
+	
+	    
 	    //Header
         JPanel header = new JPanel(new BorderLayout());
         header.setMaximumSize(new Dimension((int) dimension.getWidth(), 50));
         header.setBackground(Color.WHITE);
         
 	    //Définir le titre
-	    JLabel titre = new JLabel("Délégations");
+	    JLabel titre = new JLabel("Athlètes");
 	    titre.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 32));
 	    titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 	    header.add(titre, BorderLayout.WEST);
 	    
-	  //Bouton ajouter
+	    //Bouton ajouter
 	    JPanel panelBouton = new JPanel();
 	    panelBouton.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(0, 10, 10, 10), 
@@ -55,41 +72,42 @@ public class VueListePays extends JPanel {
         panelBouton.add(button);
 	    
 	    header.add(panelBouton, BorderLayout.EAST);
-	    panelPays.add(header);
+	    
+	    panelAthlete.add(header);
 	    
 	    //Ajout de chacun des pays au panel 
-	    for(Pays pays: application.paysList) { 
-
+	    for(Athlete athlete : application.athletesList) { 
+	
 	        //Création d'un panel servant à recueillir les infos du pays
 	        JPanel panelSimplePays = new JPanel();
 	        panelSimplePays.setLayout(new BorderLayout()); // Utilisation de BoxLayout horizontal
 	        panelSimplePays.setBackground(Couleur.COULEUR_FOND_JO.getColor());
 	        panelSimplePays.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 	        panelSimplePays.setMaximumSize(new Dimension((int) dimension.getWidth(), 50));
-
-	        //Ajout du nom du pays
-	        JLabel nomPays = new JLabel(pays.getNom());
+	
+	        //Ajout des infos de l'athlete
+	        JLabel nomPays = new JLabel(athlete.getPays().getCode() + " - "  + athlete.getNom() + ' ' + athlete.getPrenom());
 	        panelSimplePays.add(nomPays, BorderLayout.WEST);
 	        
 	        // Création du panneau coteGauche
 	        JPanel coteGauche = new JPanel();
 	        coteGauche.setBackground(Couleur.COULEUR_FOND_JO.getColor()); // Exemple de couleur
 	        panelSimplePays.add(coteGauche, BorderLayout.EAST);
-
+	
 	        // Utilisation de BoxLayout pour centrer le contenu verticalement
 	        coteGauche.setLayout(new BoxLayout(coteGauche, BoxLayout.X_AXIS));
-
+	
 	        // Ajout des recompenses 
 	        EmplacementMedaille medaille = new EmplacementMedaille();
-	        medaille.setValeur(0, pays.getOr());
-	        medaille.setValeur(1, pays.getArgent());
-	        medaille.setValeur(2, pays.getBronze());
-
+	        medaille.setValeur(0, athlete.getOr());
+	        medaille.setValeur(1, athlete.getArgent());
+	        medaille.setValeur(2, athlete.getBronze());
+	
 	        coteGauche.add(Box.createVerticalGlue());
 	        medaille.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrer horizontalement
 	        coteGauche.add(medaille);
 	        coteGauche.add(Box.createVerticalStrut(10));
-
+	
 	        //Création d'un bouton avec une image
 	        ImageIcon icon = new ImageIcon("img/modification.png");
 	        Image img = icon.getImage();
@@ -100,12 +118,12 @@ public class VueListePays extends JPanel {
 	        btnModification.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 	        coteGauche.add(btnModification);
 	        
-	        panelPays.add(panelSimplePays);
-	        panelPays.add(Box.createVerticalStrut(10));
+	        panelAthlete.add(panelSimplePays);
+	        panelAthlete.add(Box.createVerticalStrut(10));
 	    }
 	    
-	    add(panelPays, BorderLayout.CENTER);
-
+	    add(panelAthlete, BorderLayout.CENTER);
+	
 	    setBackground(Color.WHITE);
 	}
 	
