@@ -3,6 +3,7 @@ package vues;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import utilitaires.Couleur;
 import modeles.Athlete;
@@ -66,6 +67,7 @@ public class VueAjouterEquipe extends JPanel {
         // initialisation des composant de athletePanel
         athletePanel = new JPanel();
         athletePanel.setLayout(new GridLayout(4,4));
+		athletePanel.setBorder(new EmptyBorder(50,50,20,50)); 
         
         athlete = new JLabel(" Athlète :");
         athlete.setHorizontalAlignment(SwingConstants.RIGHT);		// aligner le texte à droite dans son Panel
@@ -91,6 +93,7 @@ public class VueAjouterEquipe extends JPanel {
         
         // initialisation des composants de membrePanel
         membrePanel = new JPanel();
+        membrePanel.setBorder(new EmptyBorder(0,0,0,50));
         
         membres = new JList<String>();
         String[] listeAthletes = new String[50];
@@ -105,6 +108,7 @@ public class VueAjouterEquipe extends JPanel {
         // initialisation des composant de boutonPanel
         boutonPanel = new JPanel();
         boutonPanel.setLayout(new GridLayout(4,4));
+        boutonPanel.setBorder(new EmptyBorder(0,0,0,50));
         
         annuler = new JButton("Annuler");
         annuler.setBackground((Couleur.COULEUR_FOND_JO).getColor());
@@ -136,7 +140,7 @@ public class VueAjouterEquipe extends JPanel {
         disciplinePanel.setBackground(Color.WHITE);
         athletePanel.setBackground(Color.WHITE);
         athleteTexte.setBackground(Color.WHITE);
-        membrePanel.setBackground(Color.BLUE);
+        membrePanel.setBackground(Color.blue);
         boutonPanel.setBackground(Color.WHITE);
 
         // uniformisation de la police d'écriture
