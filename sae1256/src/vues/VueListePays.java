@@ -4,10 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
-import composants.EmplacementMedaille;
-import composants.MenuApplication;
 import modeles.*;
-import utilitaires.Couleur;
 
 public class VueListePays extends JPanel {
 		

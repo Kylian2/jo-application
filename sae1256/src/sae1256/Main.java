@@ -7,7 +7,6 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import composants.MenuApplication;
 import modeles.*;
 import vues.*; 
 
