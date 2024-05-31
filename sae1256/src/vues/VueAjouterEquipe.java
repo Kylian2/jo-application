@@ -4,25 +4,30 @@ import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
+import utilitaires.Couleur;
+import modeles.Athlete;
 import modeles.Discipline;
 
 public class VueAjouterEquipe extends JPanel {
     protected JPanel mainPanel, titre, disciplinePanel, athletePanel, membrePanel, boutonPanel;
     protected JLabel ajouterEquipe, athlete, discipline, titreMembreLB;
-    protected JButton ajouterAthlete, annuler, valider;
-    protected JComboBox disciplineTexte;
+    protected JButton ajouterAthlete, annuler, enregistrer;
+    protected JComboBox<String> disciplineTexte, athleteTexte;
     protected JList<String> membres;
     protected ArrayList<Discipline> disciplinesList;
+    protected ArrayList<Athlete> athletesList;
 
     VueAjouterEquipe() {
         setLayout(new BorderLayout());
 
         // initialisation des panel globaux
         mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout());
+        mainPanel.setLayout(new GridLayout(3,1));
+        mainPanel.setPreferredSize(new Dimension(400,600));
         
         titre = new JPanel();
+        titre.setLayout(new GridBagLayout());
+        
         // initialisation des sous-JPanel
         disciplinePanel = new JPanel();
         disciplinePanel.setLayout(new BorderLayout());
@@ -35,7 +40,11 @@ public class VueAjouterEquipe extends JPanel {
 
         // initialisation du JLabel + JComboBox discipline
         discipline = new JLabel("Discipline :     ");
-        disciplineTexte = new JComboBox();
+        disciplineTexte = new JComboBox<String>();
+        // ajouter discipline dans la comboBox
+//        for (Discipline discipline: disciplineList) {
+//        	disciplineTexte.addItem(discipline);
+//        }
         disciplineTexte.addItem("Choisir une discipline");
 
         // ajout des composants au disciplinePanel
@@ -54,15 +63,63 @@ public class VueAjouterEquipe extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         titre.add(disciplinePanel, gbc);
         
-        // initialisation des composant de mainPanel
+        // initialisation des composant de athletePanel
         athletePanel = new JPanel();
-       
-        // JPanel choisir ahlete
+        athletePanel.setLayout(new GridLayout(4,4));
         
+        athlete = new JLabel(" Athlète :");
+        athlete.setHorizontalAlignment(SwingConstants.RIGHT);		// aligner le texte à droite dans son Panel
+        athleteTexte = new JComboBox<String>();
+        athleteTexte.addItem("Choisir un athlète");
+        ajouterAthlete = new JButton("Ajouter");
+        ajouterAthlete.setForeground(Color.white);
+        ajouterAthlete.setBackground((Couleur.ROUGE_JO).getColor());
         
+        // ajout des composant a athletePanel 
+        for (int i = 0; i < 4; i++) {			// ajout de panel vide est blanc pour placer correctement athletePanel
+            JPanel panel = new JPanel();
+            panel.setBackground(Color.WHITE);
+            athletePanel.add(panel);
+    }
+
+        athletePanel.add(athlete);
+        athletePanel.add(athleteTexte);	
+        JPanel defaut = new JPanel();
+        defaut.setBackground(Color.WHITE);
+        athletePanel.add(defaut);
+        athletePanel.add(ajouterAthlete);
+        
+        // initialisation des composants de membrePanel
         membrePanel = new JPanel();
         
+        membres = new JList<String>();
+        String[] listeAthletes = new String[50];
+//        for(int i =0; i< athletesList.len) {
+//        	listeAthletes[]
+//        }
+//        membres.setListData(athlesList);
+        
+        // ajout des composant à membre Panel
+        membrePanel.add(membres);
+        
+        // initialisation des composant de boutonPanel
         boutonPanel = new JPanel();
+        boutonPanel.setLayout(new GridLayout(4,4));
+        
+        annuler = new JButton("Annuler");
+        annuler.setBackground((Couleur.COULEUR_FOND_JO).getColor());
+        enregistrer = new JButton("Enregistrer");
+        enregistrer.setForeground(Color.white);
+        enregistrer.setBackground((Couleur.ROUGE_JO).getColor());
+        
+        // ajout des composant à boutonPanel
+        for (int i = 0; i < 4; i++) {			// ajout de panel vide est blanc pour placer correctement athletePanel
+            JPanel panel = new JPanel();
+            panel.setBackground(Color.WHITE);
+            boutonPanel.add(panel);
+    }
+        boutonPanel.add(annuler);
+        boutonPanel.add(enregistrer);
         
         // ajout des composants au mainPanel
         mainPanel.add(athletePanel, BorderLayout.NORTH);
@@ -75,11 +132,12 @@ public class VueAjouterEquipe extends JPanel {
 
         // uniformisation du fond de la fenetre en BLANC ("Color.WHITE")
         setBackground(Color.WHITE);
-//        titre.setBackground(Color.WHITE);
-//        disciplinePanel.setBackground(Color.WHITE);
-        athletePanel.setBackground(Color.RED);
+        titre.setBackground(Color.WHITE);
+        disciplinePanel.setBackground(Color.WHITE);
+        athletePanel.setBackground(Color.WHITE);
+        athleteTexte.setBackground(Color.WHITE);
         membrePanel.setBackground(Color.BLUE);
-        boutonPanel.setBackground(Color.GREEN);
+        boutonPanel.setBackground(Color.WHITE);
 
         // uniformisation de la police d'écriture
         ajouterEquipe.setFont(new Font("Source", Font.PLAIN, 30));
