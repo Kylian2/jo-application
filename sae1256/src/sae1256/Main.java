@@ -44,7 +44,8 @@ public class Main {
 		// Menu de navigation
         MenuApplication menu = new MenuApplication(mainPanel,accueil, vuePays, vueAthlete);
         menu.setPreferredSize(new Dimension(270, fenetre.getHeight())); 
-		
+	
+        applicationJo.setMainPanel(mainPanel);
         
         // Organiser les panneaux
         fenetre.setLayout(new BorderLayout());
@@ -53,7 +54,10 @@ public class Main {
         
         // Afficher la fenetre
      	fenetre.setVisible(true);
-        
+
+     	applicationJo.athletesList.get(0).setDiscipline(applicationJo.disciplinesList.get(0));
+     	applicationJo.athletesList.get(2).setDiscipline(applicationJo.disciplinesList.get(2));
+     	
 		//Sauvegarde des données
 		applicationJo.enregister();
 	}
