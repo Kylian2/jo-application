@@ -1,8 +1,6 @@
-package composants;
+package vues;
 
 import javax.swing.*;
-
-import utilitaires.Couleur;
 
 import java.awt.*;
 

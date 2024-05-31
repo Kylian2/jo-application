@@ -19,11 +19,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
-import composants.EmplacementMedaille;
 import modeles.ApplicationJo;
 import modeles.Athlete;
 import modeles.Pays;
-import utilitaires.Couleur;
 
 public class VueListeAthlete extends JPanel {
 	
