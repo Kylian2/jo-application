@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import utilitaires.Couleur;
+import vues.Couleur;
 import modeles.Athlete;
 import modeles.Discipline;
 
@@ -93,10 +93,17 @@ public class VueAjouterEquipe extends JPanel {
         
         // initialisation des composants de membrePanel
         membrePanel = new JPanel();
-        membrePanel.setBorder(new EmptyBorder(0,0,0,50));
+        membrePanel.setLayout(new GridLayout(1,1));
+        Border lineBorder = BorderFactory.createLineBorder(Color.BLACK, 1);
+        membrePanel.setBorder(lineBorder);
+
         
-        membres = new JList<String>();
         String[] listeAthletes = new String[50];
+        listeAthletes[0] = "ouii";
+        listeAthletes[1] = "adadad";
+        listeAthletes[2] = "brrrtb";
+        listeAthletes[3] = "tzrar";
+        membres = new JList<String>(listeAthletes);
 //        for(int i =0; i< athletesList.len) {
 //        	listeAthletes[]
 //        }
@@ -140,7 +147,7 @@ public class VueAjouterEquipe extends JPanel {
         disciplinePanel.setBackground(Color.WHITE);
         athletePanel.setBackground(Color.WHITE);
         athleteTexte.setBackground(Color.WHITE);
-        membrePanel.setBackground(Color.blue);
+        membrePanel.setBackground(Color.WHITE);
         boutonPanel.setBackground(Color.WHITE);
 
         // uniformisation de la police d'écriture
