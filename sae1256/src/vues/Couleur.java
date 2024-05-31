@@ -1,4 +1,4 @@
-package utilitaires;
+package vues;
 
 import java.awt.Color;
 

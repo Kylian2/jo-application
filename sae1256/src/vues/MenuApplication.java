@@ -1,10 +1,7 @@
-package composants;
+package vues;
 
 import javax.swing.*;
-import vues.*;
 import javax.swing.border.Border;
-
-import utilitaires.Couleur;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
