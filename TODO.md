@@ -46,7 +46,7 @@ Réalisation de l'écran de création d'une délégation.
 
 ## Vue ajout de Équipe 
 
-Pris en charge par [Kilian]
+Pris en charge par [Kilian] ## DONE
 
 Réalisation de l'écran de création d'une équipe.
 
@@ -58,7 +58,7 @@ Réalisation de l'écran de création d'une Session.
 
 ## Vue ajout de Épreuve
 
-Pris en charge par []
+Pris en charge par [Kilian]
 
 Réalisation de l'écran de création d'une Épreuve.
 
