@@ -1,6 +1,8 @@
 package vues;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
@@ -14,9 +16,14 @@ public class VueListePays extends JPanel {
 	//Panel servant à contenir les pays
 	JPanel panelPays;
 	
+	JPanel header;
+	
+	Dimension dimension;
+	
 	public VueListePays(ApplicationJo application, Dimension dimension) {
 		
 	    this.application = application;
+	    this.dimension = dimension;
 	    
 	    setLayout(new BorderLayout()); 
 	    this.setPreferredSize(dimension);
@@ -52,55 +59,11 @@ public class VueListePays extends JPanel {
         panelBouton.add(button);
 	    
 	    header.add(panelBouton, BorderLayout.EAST);
+	    this.header = header;
 	    panelPays.add(header);
+	    this.refresh();
 	    
 	    //Ajout de chacun des pays au panel 
-	    for(Pays pays: application.paysList) { 
-
-	        //Création d'un panel servant à recueillir les infos du pays
-	        JPanel panelSimplePays = new JPanel();
-	        panelSimplePays.setLayout(new BorderLayout()); // Utilisation de BoxLayout horizontal
-	        panelSimplePays.setBackground(Couleur.COULEUR_FOND_JO.getColor());
-	        panelSimplePays.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-	        panelSimplePays.setMaximumSize(new Dimension((int) dimension.getWidth(), 50));
-
-	        //Ajout du nom du pays
-	        JLabel nomPays = new JLabel(pays.getNom());
-	        panelSimplePays.add(nomPays, BorderLayout.WEST);
-	        
-	        // Création du panneau coteGauche
-	        JPanel coteGauche = new JPanel();
-	        coteGauche.setBackground(Couleur.COULEUR_FOND_JO.getColor()); // Exemple de couleur
-	        panelSimplePays.add(coteGauche, BorderLayout.EAST);
-
-	        // Utilisation de BoxLayout pour centrer le contenu verticalement
-	        coteGauche.setLayout(new BoxLayout(coteGauche, BoxLayout.X_AXIS));
-
-	        // Ajout des recompenses 
-	        EmplacementMedaille medaille = new EmplacementMedaille();
-	        medaille.setValeur(0, pays.getOr());
-	        medaille.setValeur(1, pays.getArgent());
-	        medaille.setValeur(2, pays.getBronze());
-
-	        coteGauche.add(Box.createVerticalGlue());
-	        medaille.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrer horizontalement
-	        coteGauche.add(medaille);
-	        coteGauche.add(Box.createVerticalStrut(10));
-
-	        //Création d'un bouton avec une image
-	        ImageIcon icon = new ImageIcon("img/modification.png");
-	        Image img = icon.getImage();
-	        Image newImg = img.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
-	        icon = new ImageIcon(newImg);
-	        JButton btnModification = new JButton(icon);
-	        btnModification.setPreferredSize(new Dimension(25, 25));
-	        btnModification.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-	        coteGauche.add(btnModification);
-	        
-	        panelPays.add(panelSimplePays);
-	        panelPays.add(Box.createVerticalStrut(10));
-	    }
-	    
 	    add(panelPays, BorderLayout.CENTER);
 
 	    setBackground(Color.WHITE);
@@ -113,4 +76,47 @@ public class VueListePays extends JPanel {
 	public void afficher() {
 		this.setVisible(true);
     }
+	
+	public void refresh() {
+		panelPays.removeAll();
+		panelPays.add(header);
+		for(Pays pays : application.paysList) { 
+			
+	        //Création d'un panel servant à recueillir les infos du pays
+	        JPanel panelSimplePays = new JPanel();
+	        panelSimplePays.setLayout(new BorderLayout()); // Utilisation de BoxLayout horizontal
+	        panelSimplePays.setBackground(Couleur.COULEUR_FOND_JO.getColor());
+	        panelSimplePays.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	        panelSimplePays.setMaximumSize(new Dimension((int) dimension.getWidth(), 50));
+	
+	        //Ajout des infos de l'athlete
+	        JLabel nomPays = new JLabel(pays.getCode() + " - "  + pays.getNom());
+	        panelSimplePays.add(nomPays, BorderLayout.WEST);
+	        
+	        // Création du panneau coteGauche
+	        JPanel coteGauche = new JPanel();
+	        coteGauche.setBackground(Couleur.COULEUR_FOND_JO.getColor()); // Exemple de couleur
+	        panelSimplePays.add(coteGauche, BorderLayout.EAST);
+	
+	        // Utilisation de BoxLayout pour centrer le contenu verticalement
+	        coteGauche.setLayout(new BoxLayout(coteGauche, BoxLayout.X_AXIS));
+	
+	        // Ajout des recompenses 
+	        EmplacementMedaille medaille = new EmplacementMedaille();
+	        medaille.setValeur(0, pays.getOr());
+	        medaille.setValeur(1, pays.getArgent());
+	        medaille.setValeur(2, pays.getBronze());
+	
+	        coteGauche.add(Box.createVerticalGlue());
+	        medaille.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrer horizontalement
+	        coteGauche.add(medaille);
+	        coteGauche.add(Box.createVerticalStrut(10));
+	        
+	        panelPays.add(panelSimplePays);
+	        panelPays.add(Box.createVerticalStrut(10));
+	    }
+		// Rafraîchir le conteneur
+		panelPays.revalidate();
+		panelPays.repaint();
+	}
 }
