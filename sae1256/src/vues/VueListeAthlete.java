@@ -37,12 +37,18 @@ public class VueListeAthlete extends JPanel {
 	JPanel panelAthlete;
 	
 	ControlleurAthlete controlleur; 
+	
+	Dimension dimension;
+	
+	JPanel header;
 		
 	public VueListeAthlete(ApplicationJo application, ControlleurAthlete controlleur, Dimension dimension) {
 			
 	    this.application = application;
 	    application.recuperer();
 	    this.controlleur = controlleur;
+	    
+	    this.dimension = dimension;
 	    
 	    setLayout(new BorderLayout()); 
 	    this.setPreferredSize(dimension);
@@ -94,11 +100,29 @@ public class VueListeAthlete extends JPanel {
 	    
 	    header.add(panelBouton, BorderLayout.EAST);
 	    
+	    this.header = header;
 	    panelAthlete.add(header);
 	    
-	    //Ajout de chacun des pays au panel 
-	    for(Athlete athlete : application.athletesList) { 
+	    add(panelAthlete, BorderLayout.CENTER);
 	
+	    setBackground(Color.WHITE);
+	    
+	    this.refresh();
+	}
+	
+	public void masquer() {
+		this.setVisible(false);
+    }
+	
+	public void afficher() {
+		this.setVisible(true);
+    }
+	
+	public void refresh() {
+		panelAthlete.removeAll();
+		panelAthlete.add(header);
+		for(Athlete athlete : application.athletesList) { 
+			
 	        //Création d'un panel servant à recueillir les infos du pays
 	        JPanel panelSimplePays = new JPanel();
 	        panelSimplePays.setLayout(new BorderLayout()); // Utilisation de BoxLayout horizontal
@@ -132,27 +156,18 @@ public class VueListeAthlete extends JPanel {
 	        panelSimplePays.addMouseListener(new MouseAdapter() {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
-	                application.mainPanel.removeAll();
-	                application.mainPanel.add(new VueAthlete(athlete));
+	            	application.mainPanel.removeAll();
+	            	application.mainPanel.add(new VueAthlete(athlete));
 	                // Rafraîchir le conteneur
-	                application.mainPanel.revalidate();
-	                application.mainPanel.repaint();
+	            	application.mainPanel.revalidate();
+	            	application.mainPanel.repaint();
 	            }
 	        });
 	        panelAthlete.add(panelSimplePays);
 	        panelAthlete.add(Box.createVerticalStrut(10));
 	    }
-	    
-	    add(panelAthlete, BorderLayout.CENTER);
-	
-	    setBackground(Color.WHITE);
+		// Rafraîchir le conteneur
+		panelAthlete.revalidate();
+		panelAthlete.repaint();
 	}
-	
-	public void masquer() {
-		this.setVisible(false);
-    }
-	
-	public void afficher() {
-		this.setVisible(true);
-    }
 }
