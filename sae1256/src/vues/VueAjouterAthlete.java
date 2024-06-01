@@ -1,6 +1,7 @@
 package vues;
 import java.awt.*;
 import modeles.ApplicationJo;
+import modeles.Discipline;
 import modeles.Pays;
 
 import java.awt.event.ActionEvent;
@@ -10,18 +11,22 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import controlleurs.ControlleurAthlete;
+
 public class VueAjouterAthlete extends JPanel{
 
 	protected JPanel top, topInfo, nomPanel, delegPanel, discipPanel, mainInfo, infoAthletePanel, bioPanel, anneeNaissancePanel, genrePanel,
 			poidsPanel, firstParticipation, bottomPanel, btnPanel;
-	protected JLabel ajouterAthlete, nom, deleg, discip, desc, anneeNaissance, genre, poids, participation;
-	protected JTextField nomTexte, descTexte,anneeNaissanceTexte, genreTexte, poidsTexte, participationTexte;
+	protected JLabel ajouterAthlete, nom, prenom, deleg, discip, desc, anneeNaissance, genre, poids, taille;
+	protected JTextField nomTexte, prenomTexte, descTexte,anneeNaissanceTexte, genreTexte, poidsTexte, tailleTexte;
 	protected JButton annuler, valider;
-	protected JComboBox delegTexte, discipTexte;
+    protected JComboBox<String> delegTexte, discipTexte;
 	ArrayList<Pays> paysList;
+	
+	protected ControlleurAthlete controlleur;
 
-	VueAjouterAthlete(){
-		
+	VueAjouterAthlete(ControlleurAthlete controlleur){
+		this.controlleur = controlleur;
 		
 		/// définition du Panel "top" 
 		top = new JPanel();
@@ -41,30 +46,33 @@ public class VueAjouterAthlete extends JPanel{
 
 		nom = new JLabel("Nom :");
 		nomTexte = new JTextField("Entrez le nom de l'athlète");
-		nomTexte.setPreferredSize(new Dimension(180,30));
+		nomTexte.setPreferredSize(new Dimension(130,30));
+		
+		prenom = new JLabel("Prénom :");
+		prenomTexte = new JTextField("Entrez le prénom de l'athlète");
+		prenomTexte.setPreferredSize(new Dimension(130,30));
 
 		deleg = new JLabel("Délégation :");
 		delegTexte = new JComboBox();
-		delegTexte.setPreferredSize(new Dimension(180,30));
+		delegTexte.setPreferredSize(new Dimension(130,30));
 		delegTexte.setBackground(Color.WHITE);
 		
 		delegTexte.addItem("Choisir une delegation");
-		/*inserer item dans liste
-		for(Pays pays : paysList) {
+		//inserer item dans liste
+		for(Pays pays : controlleur.getPays()) {
 			delegTexte.addItem(pays.getNom());
 		}
-		*/
+		
 
 		discip = new JLabel("Discipline :");
 		discipTexte = new JComboBox(); 	
 		discipTexte.setBackground(Color.WHITE);
-		discipTexte.setPreferredSize(new Dimension(180,30));
+		discipTexte.setPreferredSize(new Dimension(130,30));
 		discipTexte.addItem("Choisir une discipline");
-		/* ajouter les discipline dans la liste
-		 for(Discipline discip : disciplinesList) {
-			discipTexte.addItem(discip.getNom());
+		//inserer item dans liste
+		for(Discipline discipline : controlleur.getDiscipline()) {
+			discipTexte.addItem(discipline.getNom());
 		}
-		 */
 
 
 
@@ -97,8 +105,8 @@ public class VueAjouterAthlete extends JPanel{
 		anneeNaissancePanel = new JPanel();
 		anneeNaissancePanel.setLayout(new GridLayout(2,1));
 		
-		anneeNaissance = new JLabel("Année de naissance :");
-		anneeNaissanceTexte = new JTextField("Entrez une date (Format : AAAA)");
+		anneeNaissance = new JLabel("Date de naissance :");
+		anneeNaissanceTexte = new JTextField("Entrez une date (JJ/MM/AAAA)");
 		
 		// genre
 		genrePanel = new JPanel();
@@ -118,8 +126,8 @@ public class VueAjouterAthlete extends JPanel{
 		firstParticipation = new JPanel();
 		firstParticipation.setLayout(new GridLayout(6,1));
 		
-		participation = new JLabel("Première participation :");
-		participationTexte = new JTextField("Entrez une date (Format : AAAA)");
+		taille = new JLabel("Taille :");
+		tailleTexte = new JTextField("Entrez une taille");
 		
 		
 		/// définition du bottom Panel
@@ -130,7 +138,7 @@ public class VueAjouterAthlete extends JPanel{
 		btnPanel = new JPanel();
 		btnPanel.setLayout(new GridLayout(5,2));
 		
-			// définition des bouton annuler - valider
+		// définition des bouton annuler - valider
 		annuler = new JButton("Annuler");
 		valider = new JButton("Valider les modification");
 		valider.setActionCommand("Valider");
@@ -144,7 +152,7 @@ public class VueAjouterAthlete extends JPanel{
 		anneeNaissance.setFont(new Font("Source", Font.PLAIN, 15));
 		genre.setFont(new Font("Source", Font.PLAIN, 15));
 		poids.setFont(new Font("Source", Font.PLAIN, 15));
-		participation.setFont(new Font("Source", Font.PLAIN, 15));
+		taille.setFont(new Font("Source", Font.PLAIN, 15));
 		
 		// ajout des Panel dans la fenetre
 		setBackground(Color.WHITE);
@@ -155,6 +163,8 @@ public class VueAjouterAthlete extends JPanel{
 
 		nomPanel.add(nom);
 		nomPanel.add(nomTexte);
+		nomPanel.add(prenom);
+		nomPanel.add(prenomTexte);
 
 		delegPanel.add(deleg);
 		delegPanel.add(delegTexte);
@@ -178,8 +188,8 @@ public class VueAjouterAthlete extends JPanel{
 		bioPanel.add(poids);
 		bioPanel.add(poidsTexte);
 		
-		firstParticipation.add(participation);
-		firstParticipation.add(participationTexte);
+		firstParticipation.add(taille);
+		firstParticipation.add(tailleTexte);
 		
 		infoAthletePanel.add(bioPanel);
 		infoAthletePanel.add(firstParticipation);
@@ -248,14 +258,41 @@ public class VueAjouterAthlete extends JPanel{
 
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand().equalsIgnoreCase("Annuler")){
-				//String nom, String prenom, int taille, int poids, String description, String dateNaissance, char genre
-				System.out.println("Annulation...");
-				System.out.println("#retour sur la page précédente.");
+				
+				controlleur.retour();
 				
 			}
 			if (e.getActionCommand().equalsIgnoreCase("Valider")) {
-				System.out.println("Athlète ajouté avec succés !");
-				System.out.println("#retour sur la page précédente.");
+				String nom = nomTexte.getText();
+				String genre = genreTexte.getText();
+				String naissance = anneeNaissanceTexte.getText();
+				String poids = poidsTexte.getText();
+				String taille = tailleTexte.getText();
+				String prenom = prenomTexte.getText();
+				String description = descTexte.getText();
+				String pays = (String) delegTexte.getSelectedItem();
+				String discipline = (String) discipTexte.getSelectedItem();
+
+				System.out.println(nom);
+				System.out.println(genre);
+				System.out.println(naissance);
+				System.out.println(poids);
+				System.out.println(taille);
+				System.out.println(prenom);
+				System.out.println(description);				
+				System.out.println(pays);
+				System.out.println(discipline);
+				
+				boolean ajoute = controlleur.createAthlete(nom, prenom, taille, poids, description, naissance, genre, pays, discipline);
+
+				if(ajoute) {
+					System.out.println("L'athlete a bien été ajouté");
+					controlleur.enregister();
+					controlleur.retour();
+				}else {
+					System.out.println("Une erreur est survenue suite à l'entrée d'une valeur incorrecte");
+				}
+				
 			}
 			
 		}
@@ -270,8 +307,13 @@ public class VueAjouterAthlete extends JPanel{
 		
 
 		// Creer une instance de ma classe
+		ApplicationJo applicationJo = new ApplicationJo();
+		
+		applicationJo.recuperer();
+		
+		ControlleurAthlete controlleur = new ControlleurAthlete(applicationJo);
 
-		VueAjouterAthlete p = new VueAjouterAthlete();
+		VueAjouterAthlete p = new VueAjouterAthlete(controlleur);
 
 		// Ajouter mon instance dans un des conteneurs de la fen?tre
 		fenetre.add(p);

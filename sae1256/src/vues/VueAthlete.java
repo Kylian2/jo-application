@@ -140,7 +140,7 @@ public class VueAthlete extends JPanel {
         genre.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 16));
         JLabel poids = new JLabel("Poids : " + athlete.getPoids() + " kg", JLabel.LEFT);
         poids.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 16));
-        JLabel taille = new JLabel("Taille : " + athlete.getPoids() + " cm", JLabel.LEFT);
+        JLabel taille = new JLabel("Taille : " + athlete.getTaille() + " cm", JLabel.LEFT);
         taille.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 16));
         informationsComplementaires.add(naissance);
         informationsComplementaires.add(genre);

@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controlleurs.ControlleurAthlete;
 import modeles.*;
 import vues.*; 
 
@@ -36,8 +37,9 @@ public class Main {
         mainPanel.add(accueil);
         
         //VueAthlete
-      	VueListeAthlete vueAthlete = new VueListeAthlete(applicationJo, new Dimension(fenetre.getWidth(), fenetre.getHeight()));
-        
+        ControlleurAthlete controlleurAthlete = new ControlleurAthlete(applicationJo);
+      	VueListeAthlete vueAthlete = new VueListeAthlete(applicationJo, controlleurAthlete,  new Dimension(fenetre.getWidth(), fenetre.getHeight()));
+      	
         //VuePays
       	VueListePays vuePays = new VueListePays(applicationJo, new Dimension(fenetre.getWidth(), fenetre.getHeight()));
 		
