@@ -108,6 +108,10 @@ public class VueAthlete extends JPanel {
         medaillesPanel.add(medaillesLabel, BorderLayout.WEST);
         
         EmplacementMedaille medailles = new EmplacementMedaille();
+        //Application des valeurs aux emplacements
+        medailles.setValeur(0, athlete.getOr());
+        medailles.setValeur(1, athlete.getArgent());
+        medailles.setValeur(2, athlete.getBronze());
         medailles.setBackground(Color.WHITE);
         medaillesPanel.add(medailles, BorderLayout.EAST);
 
