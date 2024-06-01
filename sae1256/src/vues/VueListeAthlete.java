@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -105,17 +107,17 @@ public class VueListeAthlete extends JPanel {
 	        medaille.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrer horizontalement
 	        coteGauche.add(medaille);
 	        coteGauche.add(Box.createVerticalStrut(10));
-	
-	        //Création d'un bouton avec une image
-	        ImageIcon icon = new ImageIcon("img/modification.png");
-	        Image img = icon.getImage();
-	        Image newImg = img.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
-	        icon = new ImageIcon(newImg);
-	        JButton btnModification = new JButton(icon);
-	        btnModification.setPreferredSize(new Dimension(25, 25));
-	        btnModification.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-	        coteGauche.add(btnModification);
 	        
+	        panelSimplePays.addMouseListener(new MouseAdapter() {
+	            @Override
+	            public void mouseClicked(MouseEvent e) {
+	                application.mainPanel.removeAll();
+	                application.mainPanel.add(new VueAthlete(athlete));
+	                // Rafraîchir le conteneur
+	                application.mainPanel.revalidate();
+	                application.mainPanel.repaint();
+	            }
+	        });
 	        panelAthlete.add(panelSimplePays);
 	        panelAthlete.add(Box.createVerticalStrut(10));
 	    }
