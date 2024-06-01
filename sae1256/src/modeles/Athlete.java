@@ -252,4 +252,24 @@ public class Athlete implements Serializable{
 	public String getDescription() {
 		return description;
 	}
+
+	public String getAnneeNaissance() {
+		return dateNaissance;
+	}
+
+	public String getGenre() {
+		if(genre == Athlete.HOMME) {
+			return "Homme";
+		}else {
+			return "Femme";
+		}
+	}
+	
+	public int getPoids() {
+		return poids;
+	}
+	
+	public int getTaille() {
+		return taille;
+	}
 }

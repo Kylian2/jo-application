@@ -125,11 +125,31 @@ public class VueAthlete extends JPanel {
 
         add(biographie);
         
-        JPanel informationsComplementaires = new JPanel(new BorderLayout());
-        informationsComplementaires.setBackground(Color.WHITE);
-        informationsComplementaires.setPreferredSize(new Dimension(700, 150));
+        JPanel informationsComplementairesPanel = new JPanel(new GridLayout(1, 2));
+        informationsComplementairesPanel.setBackground(Color.WHITE);
+        informationsComplementairesPanel.setPreferredSize(new Dimension(700, 150));
         
-        add(informationsComplementaires, BorderLayout.SOUTH);
+        JPanel informationsComplementaires = new JPanel();
+        informationsComplementaires.setBackground(Color.WHITE);
+        informationsComplementaires.setLayout(new BoxLayout(informationsComplementaires, BoxLayout.Y_AXIS));
+        informationsComplementaires.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 10));
+
+        JLabel naissance = new JLabel("Date de naissance : " + athlete.getAnneeNaissance(), JLabel.LEFT);
+        naissance.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 16));
+        JLabel genre = new JLabel("Genre : " + athlete.getGenre(), JLabel.LEFT);
+        genre.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 16));
+        JLabel poids = new JLabel("Poids : " + athlete.getPoids() + " kg", JLabel.LEFT);
+        poids.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 16));
+        JLabel taille = new JLabel("Taille : " + athlete.getPoids() + " cm", JLabel.LEFT);
+        taille.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 16));
+        informationsComplementaires.add(naissance);
+        informationsComplementaires.add(genre);
+        informationsComplementaires.add(poids);
+        informationsComplementaires.add(taille);
+        
+        informationsComplementairesPanel.add(informationsComplementaires);
+        
+        add(informationsComplementairesPanel, BorderLayout.SOUTH);
 		
 	}
 	
