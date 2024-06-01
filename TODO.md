@@ -68,3 +68,19 @@ Pris en charge par [Esteban]
 
 Réalisation de l'écran d'accueil.
 
+## Vue Liste pays 
+
+Pris en charge par [Kylian] ## DONE
+
+## Vue Liste athlete 
+
+Pris en charge par [Kylian] ## DONE
+
+## Vue Athlete 
+
+Pris en charge par [Kylian] ## DONE
+
+## Controller Athlete
+
+Pris en charge par [Kylian] 
+
