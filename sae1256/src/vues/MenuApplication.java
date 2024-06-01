@@ -53,7 +53,8 @@ public class MenuApplication extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Masquer les autres
-				vueConteneur.removeAll();
+				vueConteneur.remove(vuePays);
+				vueConteneur.remove(accueil);
 				//Afficher le panel correspondant
 				vueConteneur.add(vueAthlete);
 				
@@ -68,7 +69,8 @@ public class MenuApplication extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Masquer les autres
-				vueConteneur.removeAll();
+				vueConteneur.remove(vueAthlete);
+				vueConteneur.remove(accueil);
 				//Afficher le panel correspondant
 				vueConteneur.add(vuePays, BorderLayout.CENTER);
 				

@@ -1,21 +1,8 @@
 package vues;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Image;
+import java.awt.*;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.border.LineBorder;
+import javax.swing.*;
 
 import modeles.*;
 
@@ -25,8 +12,6 @@ public class VueAthlete extends JPanel {
 	
 	VueAthlete(Athlete athlete){
 		this.athlete = athlete;
-		
-		setLayout(new BorderLayout());
 		
 		//Header
         JPanel header = new JPanel(new BorderLayout());
@@ -190,5 +175,6 @@ public class VueAthlete extends JPanel {
         
 		//Sauvegarde des données
 		applicationJo.enregister();
+
 	}
 }
