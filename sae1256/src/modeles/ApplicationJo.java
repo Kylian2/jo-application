@@ -9,8 +9,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
-
 public class ApplicationJo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -19,18 +17,12 @@ public class ApplicationJo implements Serializable{
 	public ArrayList<Discipline> disciplinesList;
 	public ArrayList<Athlete> athletesList;
 	
-	public JPanel mainPanel;
-	
 	public static final String fileName = "application-jo.dat";
 	
 	public ApplicationJo(){
 		paysList = new ArrayList<Pays>();
 		disciplinesList = new ArrayList<Discipline>();
 		athletesList = new ArrayList<Athlete>();
-	}
-	
-	public void setMainPanel(JPanel panel) {
-		this.mainPanel = panel;
 	}
 	
 	public void enregister() {

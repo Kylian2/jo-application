@@ -38,7 +38,7 @@ public class VueListePays extends JPanel {
 	    titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 	    header.add(titre, BorderLayout.WEST);
 	    
-	    //Bouton ajouter
+	  //Bouton ajouter
 	    JPanel panelBouton = new JPanel();
 	    panelBouton.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(0, 10, 10, 10), 

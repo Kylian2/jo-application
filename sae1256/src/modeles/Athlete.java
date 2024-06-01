@@ -248,8 +248,4 @@ public class Athlete implements Serializable{
 	public String getPrenom() {
 		return prenom;
 	}
-	
-	public String getDescription() {
-		return description;
-	}
 }
