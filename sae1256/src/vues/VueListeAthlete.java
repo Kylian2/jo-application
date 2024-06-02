@@ -104,7 +104,12 @@ public class VueListeAthlete extends JPanel {
 	    panelAthlete.add(header);
 	    
 	    add(panelAthlete, BorderLayout.CENTER);
-	
+	    
+	    // changer la couleur de fond du bouton
+        button.setBackground(Color.GRAY);
+        // changer la couleur de la police du bouton
+        button.setForeground(Color.WHITE);
+        // changer la couleur du fond de la fenêtre
 	    setBackground(Color.WHITE);
 	    
 	    this.refresh();

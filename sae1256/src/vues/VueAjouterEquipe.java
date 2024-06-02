@@ -118,9 +118,10 @@ public class VueAjouterEquipe extends JPanel {
         boutonPanel.setBorder(new EmptyBorder(0,0,0,50));
         
         annuler = new JButton("Annuler");
-        annuler.setBackground((Couleur.COULEUR_FOND_JO).getColor());
+        annuler.setForeground(Color.WHITE);
+        annuler.setBackground(Color.GRAY);
         enregistrer = new JButton("Enregistrer");
-        enregistrer.setForeground(Color.white);
+        enregistrer.setForeground(Color.WHITE);
         enregistrer.setBackground((Couleur.ROUGE_JO).getColor());
         
         // ajout des composant à boutonPanel

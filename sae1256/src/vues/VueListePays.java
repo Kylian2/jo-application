@@ -34,18 +34,18 @@ public class VueListePays extends JPanel {
         panelPays.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelPays.setPreferredSize(dimension);
 
-	    //Header
+	    // Header
         JPanel header = new JPanel(new BorderLayout());
         header.setMaximumSize(new Dimension((int) dimension.getWidth(), 50));
         header.setBackground(Color.WHITE);
         
-	    //Définir le titre
+	    // Définir le titre
 	    JLabel titre = new JLabel("Délégations");
 	    titre.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 32));
 	    titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 	    header.add(titre, BorderLayout.WEST);
 	    
-	  //Bouton ajouter
+	    // Bouton ajouter
 	    JPanel panelBouton = new JPanel();
 	    panelBouton.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(0, 10, 10, 10), 
@@ -66,6 +66,11 @@ public class VueListePays extends JPanel {
 	    //Ajout de chacun des pays au panel 
 	    add(panelPays, BorderLayout.CENTER);
 
+	    // changer la couleur de fond du bouton
+        button.setBackground(Color.GRAY);
+        // changer la couleur de la police du bouton
+        button.setForeground(Color.WHITE);
+        // changer la couleur du fond de la fenêtre
 	    setBackground(Color.WHITE);
 	}
 	
