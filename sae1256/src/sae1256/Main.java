@@ -56,6 +56,8 @@ public class Main {
         // Afficher la fenetre
      	fenetre.setVisible(true);
      	
+     	
+     	
 		//Sauvegarde des données
 		applicationJo.enregister();
 	}

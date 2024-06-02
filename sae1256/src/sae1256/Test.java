@@ -14,6 +14,10 @@ public class Test {
 		
 		applicationJo.recuperer();
 		
+		System.out.println(applicationJo.paysList.size());
+		System.out.println(applicationJo.disciplinesList.size());
+		System.out.println(applicationJo.athletesList.size());
+		
 		System.out.println("\n------Athlètes récupérés : ");
         for(Athlete athlete : applicationJo.athletesList) {
         	athlete.afficherAttribut();
@@ -22,6 +26,10 @@ public class Test {
         System.out.println("\n------Pays récupérés : ");
         for(Pays pays : applicationJo.paysList) {
         	System.out.println(pays.getNom());
+        	System.out.println(pays.getEquipes().size());
+        	for (Equipe equipe : pays.getEquipes()) {
+        		System.out.println(equipe.getNom());
+        	}
         }
         
         System.out.println("\n------Disciplines récupérés : ");
@@ -29,6 +37,10 @@ public class Test {
         	System.out.println(discipline.getNom());
         	discipline.afficherEpreuves();  
         }
+        
+        //applicationJo.paysList.add(new Pays("DEU", "Allemagne"));
+        
+        System.out.println(applicationJo.paysList.get(4).getEquipes().size());
         
         applicationJo.enregister();
         
