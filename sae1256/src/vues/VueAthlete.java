@@ -51,6 +51,10 @@ public class VueAthlete extends JPanel {
         JButton button = new JButton("Editer");
         button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         button.setFocusPainted(false);
+	    // changer la couleur de fond du bouton
+        button.setBackground(Color.GRAY);
+        // changer la couleur de la police du bouton
+        button.setForeground(Color.WHITE);
         
         panelBouton.add(button);
 	    header.add(panelBouton, BorderLayout.EAST);
