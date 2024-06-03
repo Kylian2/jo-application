@@ -24,7 +24,7 @@ public class MenuApplication extends JPanel {
     public VueListeAthlete vueAthlete;
     public VueAccueil vueAccueil;
 	
-    public MenuApplication(JPanel vueConteneur,VueAccueil accueil, VueListePays vuePays, VueListeAthlete vueAthlete) {
+    public MenuApplication(JPanel vueConteneur,VueAccueil accueil, VueListePays vuePays, VueListeAthlete vueAthlete, VueListeDiscipline vueDiscipline) {
     	this.vueConteneur = vueConteneur;
     	
     	this.vuePays = vuePays;
@@ -80,7 +80,20 @@ public class MenuApplication extends JPanel {
         JButton resultsButton = createMenuButton("Résultats", Couleur.VERT_JO);
         JButton planningButton = createMenuButton("Planning", Couleur.BLEU_JO);
         JButton disciplineButton = createMenuButton("Discipline", Couleur.ROUGE_JO);
-        
+        disciplineButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Masquer les autres
+				vueConteneur.removeAll();
+				//Afficher le panel correspondant
+				vueConteneur.add(vueDiscipline, BorderLayout.CENTER);
+				
+				// Rafraîchir le conteneur
+                vueConteneur.revalidate();
+                vueConteneur.repaint();
+			}
+        });
         // Ajouter les boutons au panneau principal
         add(athletesButton);
         add(paysButton);
