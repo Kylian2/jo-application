@@ -1,8 +1,6 @@
 package vues;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -10,44 +8,41 @@ import javax.swing.*;
 
 import modeles.*;
 
-public class VueListePays extends JPanel {
+public class VueListeEquipePays extends JPanel {
 		
 	//Permet d'accéder aux données de l'application qui seront affichées. 
-	ApplicationJo application;
-	
+	Pays pays;
 	//Panel servant à contenir les pays
-	JPanel panelPays;
+	JPanel panelEquipes;
 	
 	JPanel header;
+
 	
-	Dimension dimension;
-	
-	public VueListePays(ApplicationJo application, Dimension dimension) {
+	public VueListeEquipePays(Pays pays) {
 		
-	    this.application = application;
-	    this.dimension = dimension;
+	    this.pays = pays;
 	    
 	    setLayout(new BorderLayout()); 
-	    this.setPreferredSize(dimension);
+	    //this.setPreferredSize(dimension);
 
-	    this.panelPays = new JPanel();
-	    panelPays.setLayout(new BoxLayout(panelPays, BoxLayout.Y_AXIS));
-	    panelPays.setBackground(Color.WHITE);
-        panelPays.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        panelPays.setPreferredSize(dimension);
+	    this.panelEquipes = new JPanel();
+	    panelEquipes.setLayout(new BoxLayout(panelEquipes, BoxLayout.Y_AXIS));
+	    panelEquipes.setBackground(Color.WHITE);
+        panelEquipes.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        //panelEquipes.setPreferredSize(dimension);
 
-	    // Header
+	    //Header
         JPanel header = new JPanel(new BorderLayout());
-        header.setMaximumSize(new Dimension((int) dimension.getWidth(), 50));
+        header.setMaximumSize(new Dimension(700, 50));
         header.setBackground(Color.WHITE);
         
-	    // Définir le titre
-	    JLabel titre = new JLabel("Délégations");
+	    //Définir le titre
+	    JLabel titre = new JLabel("Equipes");
 	    titre.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 32));
 	    titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 	    header.add(titre, BorderLayout.WEST);
 	    
-	    // Bouton ajouter
+	  //Bouton ajouter
 	    JPanel panelBouton = new JPanel();
 	    panelBouton.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(0, 10, 10, 10), 
@@ -58,22 +53,16 @@ public class VueListePays extends JPanel {
         JButton button = new JButton("Ajouter");
         button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         button.setFocusPainted(false);
-        
         panelBouton.add(button);
 	    
 	    header.add(panelBouton, BorderLayout.EAST);
 	    this.header = header;
-	    panelPays.add(header);
+	    panelEquipes.add(header);
 	    this.refresh();
 	    
 	    //Ajout de chacun des pays au panel 
-	    add(panelPays, BorderLayout.CENTER);
+	    add(panelEquipes, BorderLayout.CENTER);
 
-	    // changer la couleur de fond du bouton
-        button.setBackground(Color.GRAY);
-        // changer la couleur de la police du bouton
-        button.setForeground(Color.WHITE);
-        // changer la couleur du fond de la fenêtre
 	    setBackground(Color.WHITE);
 	}
 	
@@ -86,25 +75,26 @@ public class VueListePays extends JPanel {
     }
 	
 	public void refresh() {
-		panelPays.removeAll();
-		panelPays.add(header);
-		for(Pays pays : application.paysList) { 
+		panelEquipes.removeAll();
+		panelEquipes.add(header);
+		for(Equipe equipe : pays.getEquipes()) { 
 			
 	        //Création d'un panel servant à recueillir les infos du pays
-	        JPanel panelSimplePays = new JPanel();
-	        panelSimplePays.setLayout(new BorderLayout()); // Utilisation de BoxLayout horizontal
-	        panelSimplePays.setBackground(Couleur.COULEUR_FOND_JO.getColor());
-	        panelSimplePays.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-	        panelSimplePays.setMaximumSize(new Dimension((int) dimension.getWidth(), 50));
+	        JPanel panelSimpleEquipe = new JPanel();
+	        panelSimpleEquipe.setLayout(new BorderLayout()); // Utilisation de BoxLayout horizontal
+	        panelSimpleEquipe.setBackground(Couleur.COULEUR_FOND_JO.getColor());
+	        panelSimpleEquipe.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	        panelSimpleEquipe.setMaximumSize(new Dimension(700, 50));
 	
 	        //Ajout des infos de l'athlete
-	        JLabel nomPays = new JLabel(pays.getCode() + " - "  + pays.getNom());
-	        panelSimplePays.add(nomPays, BorderLayout.WEST);
+	        JLabel nomEquipe = new JLabel(equipe.getPays().getCode() + " - "  + equipe.getNom());
+
+	        panelSimpleEquipe.add(nomEquipe, BorderLayout.WEST);
 	        
 	        // Création du panneau coteGauche
 	        JPanel coteGauche = new JPanel();
 	        coteGauche.setBackground(Couleur.COULEUR_FOND_JO.getColor()); // Exemple de couleur
-	        panelSimplePays.add(coteGauche, BorderLayout.EAST);
+	        panelSimpleEquipe.add(coteGauche, BorderLayout.EAST);
 	
 	        // Utilisation de BoxLayout pour centrer le contenu verticalement
 	        coteGauche.setLayout(new BoxLayout(coteGauche, BoxLayout.X_AXIS));
@@ -120,24 +110,11 @@ public class VueListePays extends JPanel {
 	        coteGauche.add(medaille);
 	        coteGauche.add(Box.createVerticalStrut(10));
 	        
-	        panelPays.add(panelSimplePays);
-	        panelPays.add(Box.createVerticalStrut(10));
-	        
-	        panelSimplePays.addMouseListener(new MouseAdapter() {
-
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					application.mainPanel.removeAll();
-	            	application.mainPanel.add(new VueListeEquipePays(pays));
-	                // Rafraîchir le conteneur
-	            	application.mainPanel.revalidate();
-	            	application.mainPanel.repaint();
-				}
-	        	
-	        });
+	        panelEquipes.add(panelSimpleEquipe);
+	        panelEquipes.add(Box.createVerticalStrut(10));
 	    }
 		// Rafraîchir le conteneur
-		panelPays.revalidate();
-		panelPays.repaint();
+		panelEquipes.revalidate();
+		panelEquipes.repaint();
 	}
 }
