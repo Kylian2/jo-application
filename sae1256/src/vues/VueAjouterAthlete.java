@@ -18,8 +18,9 @@ public class VueAjouterAthlete extends JPanel{
 	protected JPanel top, topInfo, nomPanel, delegPanel, discipPanel, mainInfo, infoAthletePanel, bioPanel, anneeNaissancePanel, genrePanel,
 			poidsPanel, firstParticipation, bottomPanel, btnPanel;
 	protected JLabel ajouterAthlete, nom, prenom, deleg, discip, desc, anneeNaissance, genre, poids, taille;
-	protected JTextField nomTexte, prenomTexte, descTexte,anneeNaissanceTexte, genreTexte, poidsTexte, tailleTexte;
+	protected JTextField nomTexte, prenomTexte,anneeNaissanceTexte, genreTexte, poidsTexte, tailleTexte;
 	protected JButton annuler, valider;
+	protected JTextArea descTexte;
     protected JComboBox<String> delegTexte, discipTexte;
 	ArrayList<Pays> paysList;
 	
@@ -89,7 +90,9 @@ public class VueAjouterAthlete extends JPanel{
 
 		JPanel descTextePanel = new JPanel(new BorderLayout());
         descTextePanel.setBorder(new EmptyBorder(0, 20, 0, 20)); 
-        descTexte = new JTextField("Entrez un texte");
+        descTexte = new JTextArea("Entrez un texte");
+        Border blackline = BorderFactory.createLineBorder(Color.black);
+        descTextePanel.setBorder(blackline);
         descTexte.setPreferredSize(new Dimension(180, 150));
         descTextePanel.add(descTexte, BorderLayout.CENTER);
         descTextePanel.setBackground(Color.WHITE);
@@ -153,6 +156,8 @@ public class VueAjouterAthlete extends JPanel{
 		genre.setFont(new Font("Source", Font.PLAIN, 15));
 		poids.setFont(new Font("Source", Font.PLAIN, 15));
 		taille.setFont(new Font("Source", Font.PLAIN, 15));
+		discip.setFont(new Font("Source", Font.PLAIN, 15));
+		deleg.setFont(new Font("Source", Font.PLAIN, 15));
 		
 		// changer la couleur de fond des boutons
         annuler.setBackground(Color.GRAY);
@@ -170,17 +175,20 @@ public class VueAjouterAthlete extends JPanel{
 
 		nomPanel.add(nom);
 		nomPanel.add(nomTexte);
-		nomPanel.add(prenom);
-		nomPanel.add(prenomTexte);
+		
+		JPanel nomPanel1 = new JPanel();
+		nomPanel1.add(prenom);
+		nomPanel1.add(prenomTexte);
 
-		delegPanel.add(deleg);
-		delegPanel.add(delegTexte);
-		discipPanel.add(discip);
-		discipPanel.add(discipTexte);
+//		delegPanel.add(deleg);
+//		delegPanel.add(delegTexte);
+//		discipPanel.add(discip);
+//		discipPanel.add(discipTexte);
 
 		topInfo.add(nomPanel);
-		topInfo.add(delegPanel);
-		topInfo.add(discipPanel);
+		topInfo.add(nomPanel1);
+//		topInfo.add(delegPanel);
+//		topInfo.add(discipPanel);
 
 		top.add(ajouterAthlete);
 		top.add(topInfo);
@@ -197,6 +205,11 @@ public class VueAjouterAthlete extends JPanel{
 		
 		firstParticipation.add(taille);
 		firstParticipation.add(tailleTexte);
+		firstParticipation.add(deleg);
+		firstParticipation.add(delegTexte);
+		firstParticipation.add(discip);
+		firstParticipation.add(discipTexte);
+			
 		
 		infoAthletePanel.add(bioPanel);
 		infoAthletePanel.add(firstParticipation);
@@ -207,18 +220,17 @@ public class VueAjouterAthlete extends JPanel{
 		JPanel defaut = new JPanel();
 		defaut.setBackground(Color.WHITE);
 		JPanel defaut1 = new JPanel();
-		defaut.setBackground(Color.WHITE);
+		defaut1.setBackground(Color.WHITE);
 		JPanel defaut2 = new JPanel();
-		defaut.setBackground(Color.WHITE);
+		defaut2.setBackground(Color.WHITE);
 		JPanel defaut3 = new JPanel();
-		defaut.setBackground(Color.WHITE);
+		defaut3.setBackground(Color.WHITE);
 		JPanel defaut4 = new JPanel();
-		defaut.setBackground(Color.WHITE);
+		defaut4.setBackground(Color.WHITE);
 		JPanel defaut5 = new JPanel();
-		defaut.setBackground(Color.WHITE);
+		defaut5.setBackground(Color.WHITE);
 		JPanel defaut6 = new JPanel();
-		defaut.setBackground(Color.WHITE);
-		defaut.setBackground(Color.WHITE);
+		defaut6.setBackground(Color.WHITE);
 		
 		bottomPanel.add(defaut); // case vide
 		bottomPanel.add(btnPanel);
@@ -248,6 +260,7 @@ public class VueAjouterAthlete extends JPanel{
 		top.setBackground(Color.WHITE); 
 		topInfo.setBackground(Color.WHITE);
 		nomPanel.setBackground(Color.WHITE);
+		nomPanel1.setBackground(Color.WHITE);
 		delegPanel.setBackground(Color.WHITE); 
 		discipPanel.setBackground(Color.WHITE); 
 		mainInfo.setBackground(Color.WHITE); 
