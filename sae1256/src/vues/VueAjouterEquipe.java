@@ -1,139 +1,223 @@
 package vues;
-
 import java.awt.*;
-import java.util.ArrayList;
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import vues.Couleur;
-import modeles.Athlete;
+import modeles.ApplicationJo;
 import modeles.Discipline;
+import modeles.Pays;
 
-public class VueAjouterEquipe extends JPanel {
-    protected JPanel mainPanel, titre, disciplinePanel, boutonPanel, nomEquipePanel;
-    protected JLabel ajouterEquipe, discipline, nomEquipe;
-    protected JTextField nomEquipeTexte;
-    protected JButton annuler, enregistrer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.*;
+import javax.swing.border.*;
+
+import controlleurs.ControlleurAthlete;
+
+public class VueAjouterEquipe extends JPanel{
+
+	protected JPanel top, topInfo, nomPanel, delegPanel, discipPanel, mainInfo, infoAthletePanel, bioPanel, anneeNaissancePanel, genrePanel,
+			poidsPanel, firstParticipation, bottomPanel, btnPanel;
+	protected JLabel nom, discipline, ajouterEquipe;
+	protected JTextField nomTexte;
+	protected JButton annuler, valider;
     protected JComboBox<String> disciplineTexte;
-    protected ArrayList<Discipline> disciplinesList;
+	
+	protected ControlleurAthlete controlleur;
 
-    VueAjouterEquipe() {
-        setLayout(new BorderLayout());
+	VueAjouterEquipe(ControlleurAthlete controlleur){
+		this.controlleur = controlleur;
+		
+		/// définition du Panel "top" 
+		top = new JPanel();
+		ajouterEquipe = new JLabel("Ajouter une Equipe");
+		Border borderEquipe = ajouterEquipe.getBorder();
+		Border marginEquipe = new EmptyBorder(0,50,0,0);
+		ajouterEquipe.setBorder(new CompoundBorder(borderEquipe, marginEquipe));
 
-        // initialisation des panel globaux
-        mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(3,1));
-        mainPanel.setPreferredSize(new Dimension(400,600));
-        
-        titre = new JPanel();
-        titre.setLayout(new GridBagLayout());
-        
-        // initialisation des sous-JPanel
-        disciplinePanel = new JPanel();
-        disciplinePanel.setLayout(new BorderLayout());
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();  	// recupere la taille de la fenete pour placer correctement le titre
-        DisplayMode fenetreSize = gd.getDisplayMode();
 
-        // Calculer la taille en fonction de la fenêtre active
-        int taille = fenetreSize.getWidth() / 5;
-        disciplinePanel.setBorder(new EmptyBorder(20, 20, taille,0)); // ajout d'une bordure vide de 20 pixels en haut et en bas
 
-        // initialisation du JLabel + JComboBox discipline
-        discipline = new JLabel("Discipline :     ");
+		//definition des Label et FieldText nom - discipline - discipline
+		topInfo = new JPanel();
+
+		nomPanel = new JPanel();
+		discipPanel = new JPanel();
+
+		nom = new JLabel("Nom :");
+		nomTexte = new JTextField("Entrez le nom de l'équipe");
+		nomTexte.setPreferredSize(new Dimension(130,30));
+		
+		discipline = new JLabel("Discipline :     ");
         disciplineTexte = new JComboBox<String>();
-        // ajouter discipline dans la comboBox
-//        for (Discipline discipline: disciplineList) {
-//        	disciplineTexte.addItem(discipline);
-//        }
         disciplineTexte.addItem("Choisir une discipline");
-        
-        // initialisation des composant de nomEquipePanel
-        nomEquipePanel = new JPanel();
-        nomEquipePanel.setLayout(new GridLayout(1,2));
-        nomEquipePanel.setBorder(new EmptyBorder(20, 20,150,0)); 
-        
-        nomEquipe = new JLabel("Nom d'équipe : ");
-        nomEquipeTexte = new JTextField("Entrez un nom d'équipe");
-        
-        nomEquipePanel.add(nomEquipe);
-        nomEquipePanel.add(nomEquipeTexte);
 
-        // ajout des composants au disciplinePanel
-        disciplinePanel.add(discipline, BorderLayout.WEST);
-        disciplinePanel.add(disciplineTexte, BorderLayout.CENTER);
+		//définition de description - naissance - genre - poids - participation
+		mainInfo = new JPanel();
+		
+		/// définition du bottom Panel
+		
+		bottomPanel = new JPanel();
+		bottomPanel.setLayout(new GridLayout(1,2));
+		
+		btnPanel = new JPanel();
+		btnPanel.setLayout(new GridLayout(5,2));
+		
+		// définition des bouton annuler - valider
+		annuler = new JButton("Annuler");
+		valider = new JButton("Valider les modification");
+		valider.setActionCommand("Valider");
 
-        // titre de la fenetre : "Ajouter une Equipe"
-        ajouterEquipe = new JLabel("  Ajouter une Equipe");
-
-        // GridBagConstraints composants
-        titre.add(ajouterEquipe);
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        titre.add(disciplinePanel, gbc);
-        titre.add(nomEquipePanel,gbc);
-        
-        // initialisation des composant de boutonPanel
-        boutonPanel = new JPanel();
-        boutonPanel.setLayout(new GridLayout(4,4));
-        boutonPanel.setBorder(new EmptyBorder(0,0,0,50));
-        
-        annuler = new JButton("Annuler");
-        annuler.setForeground(Color.WHITE);
+		//uniformisation de la police d'écriture
+		nom.setFont(new Font("Source", Font.PLAIN, 20));
+		discipline.setFont(new Font("Source", Font.PLAIN, 20));
+		
+		// changer la couleur de fond des boutons
         annuler.setBackground(Color.GRAY);
-        enregistrer = new JButton("Enregistrer");
-        enregistrer.setForeground(Color.WHITE);
-        enregistrer.setBackground((Couleur.ROUGE_JO).getColor());
+        valider.setBackground(Couleur.ROUGE_JO.getColor());
+        // changer la couleur de la police des boutons
+        annuler.setForeground(Color.WHITE);
+        valider.setForeground(Color.WHITE);
         
-        // ajout des composant à boutonPanel
-        for (int i = 0; i < 4; i++) {			// ajout de panel vide est blanc pour placer correctement athletePanel
-            JPanel panel = new JPanel();
-            panel.setBackground(Color.WHITE);
-            boutonPanel.add(panel);
-    }
-        boutonPanel.add(annuler);
-        boutonPanel.add(enregistrer);
-        
-        // ajout des composants au mainPanel
+		// ajout des Panel dans la fenetre
+		setBackground(Color.WHITE);
+		this.setLayout(new GridLayout(3,1));
+
+		top.setLayout(new GridLayout(3, 1));
+		topInfo.setLayout(new GridLayout(1,3));
+
+		nomPanel.add(nom);
+		nomPanel.add(nomTexte);
+		
+		JPanel nomPanel1 = new JPanel();
+		nomPanel1.add(discipline);
+		nomPanel1.add(disciplineTexte);
+
+		topInfo.add(nomPanel);
+		topInfo.add(nomPanel1);
+		
+		top.add(topInfo);
+		
 		JPanel defaut = new JPanel();
-		defaut.setBackground(Color.WHITE);		// création de panel vide blanc pour combler
+		defaut.setBackground(Color.WHITE);
 		JPanel defaut1 = new JPanel();
 		defaut1.setBackground(Color.WHITE);
+		JPanel defaut2 = new JPanel();
+		defaut2.setBackground(Color.WHITE);
+		JPanel defaut3 = new JPanel();
+		defaut3.setBackground(Color.WHITE);
+		JPanel defaut4 = new JPanel();
+		defaut4.setBackground(Color.WHITE);
+		JPanel defaut5 = new JPanel();
+		defaut5.setBackground(Color.WHITE);
+		JPanel defaut6 = new JPanel();
+		defaut6.setBackground(Color.WHITE);
 		
-        mainPanel.add(defaut, BorderLayout.NORTH);
-        mainPanel.add(defaut1, BorderLayout.CENTER);
-        mainPanel.add(boutonPanel, BorderLayout.SOUTH);
+		bottomPanel.add(defaut); // case vide
+		bottomPanel.add(btnPanel);
+		
+		btnPanel.add(defaut1); 
+		btnPanel.add(defaut2); 
+		btnPanel.add(defaut3); 
+		btnPanel.add(defaut4); 
+		btnPanel.add(defaut5); 
+		btnPanel.add(defaut6); 
+		btnPanel.add(defaut6); 
+		btnPanel.add(annuler);
+		btnPanel.add(valider);
+ 
+        
+		// ajout des panel sur la fenetre principale
+		add(top);
+		add(mainInfo);
+		add(bottomPanel);
+		
+		// ajout des ecouteurs sur les bouton
+//		EcouteurImbrique ecouteur = new EcouteurImbrique();
+//		annuler.addActionListener(ecouteur);
+//		valider.addActionListener(ecouteur);
 
-        // ajout des JPANEL principaux à la fenetre
-        add(mainPanel, BorderLayout.EAST);
-        add(titre, BorderLayout.WEST);
+		
+//		top.setBackground(Color.WHITE); 
+//		topInfo.setBackground(Color.WHITE);
+//		nomPanel.setBackground(Color.WHITE);
+//		nomPanel1.setBackground(Color.WHITE);
+//		delegPanel.setBackground(Color.WHITE); 
+//		discipPanel.setBackground(Color.WHITE); 
+//		mainInfo.setBackground(Color.WHITE); 
+//		infoAthletePanel.setBackground(Color.WHITE); 
+//		bioPanel.setBackground(Color.WHITE); 
+//		anneeNaissancePanel.setBackground(Color.WHITE); 
+//		genrePanel.setBackground(Color.WHITE);
+//		poidsPanel.setBackground(Color.WHITE); 
+//		firstParticipation.setBackground(Color.WHITE); 
+//		bottomPanel.setBackground(Color.WHITE); 
+//		btnPanel.setBackground(Color.WHITE);
+	}
+	
+//	private class EcouteurImbrique implements ActionListener {
+//
+//		public void actionPerformed(ActionEvent e) {
+//			if (e.getActionCommand().equalsIgnoreCase("Annuler")){
+//				
+//				controlleur.retour();
+//				
+//			}
+//			if (e.getActionCommand().equalsIgnoreCase("Valider")) {
+////				String nom = nomTexte.getText();
+////				String genre = genreTexte.getText();
+////				String naissance = anneeNaissanceTexte.getText();
+////				String poids = poidsTexte.getText();
+////				String taille = tailleTexte.getText();
+////				String prenom = prenomTexte.getText();
+////				String description = descTexte.getText();
+////				String pays = (String) delegTexte.getSelectedItem();
+////				String discipline = (String) discipTexte.getSelectedItem();
+//
+//				System.out.println(nom);
+////				System.out.println(genre);
+////				System.out.println(naissance);
+////				System.out.println(poids);
+////				System.out.println(taille);
+////				System.out.println(prenom);
+////				System.out.println(description);				
+////				System.out.println(pays);
+//				System.out.println(discipline);
+//				
+////				boolean ajoute = controlleur.createAthlete(nom, prenom, taille, poids, description, naissance, genre, pays, discipline);
+//
+//				if(ajoute) {
+//					System.out.println("L'athlete a bien été ajouté");
+//					controlleur.enregister();
+//					controlleur.retour();
+//				}else {
+//					System.out.println("Une erreur est survenue suite à l'entrée d'une valeur incorrecte");
+//				}
+//				
+//			}
+//			
+//		}
+//	}
 
-        // uniformisation du fond de la fenetre en BLANC ("Color.WHITE")
-        setBackground(Color.WHITE);
-        titre.setBackground(Color.WHITE);
-        disciplinePanel.setBackground(Color.WHITE);
-        boutonPanel.setBackground(Color.WHITE);
+	public static void main(String[] args) {
+		// Creer une fenetre
+		JFrame fenetre = new JFrame ();
+		fenetre.setSize(960,540);
+		fenetre.setLocationRelativeTo(null); 
+		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 
-        // uniformisation de la police d'écriture
-        ajouterEquipe.setFont(new Font("Source", Font.PLAIN, 30));
-    }
+		// Creer une instance de ma classe
+		ApplicationJo applicationJo = new ApplicationJo();
+		
+		applicationJo.recuperer();
+		
+		ControlleurAthlete controlleur = new ControlleurAthlete(applicationJo);
 
-    public static void main(String[] args) {
-        // Creer une fenetre
-        JFrame fenetre = new JFrame();
-        fenetre.setSize(960, 540);
-        fenetre.setLocationRelativeTo(null);
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		VueAjouterEquipe p = new VueAjouterEquipe(controlleur);
 
-        // Creer une instance de ma classe
-        VueAjouterEquipe p = new VueAjouterEquipe();
+		// Ajouter mon instance dans un des conteneurs de la fen?tre
+		fenetre.add(p);
 
-        // Ajouter mon instance dans un des conteneurs de la fenêtre
-        fenetre.add(p);
-
-        // Afficher la fenetre
-        fenetre.setVisible(true);
-    }
+		// Afficher la fenetre
+		fenetre.setVisible(true);
+	}
 }
