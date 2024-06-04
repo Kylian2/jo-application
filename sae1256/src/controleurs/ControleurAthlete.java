@@ -1,4 +1,4 @@
-package controlleurs;
+package controleurs;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -8,12 +8,12 @@ import javax.swing.JPanel;
 import modeles.*;
 import vues.VueListeAthlete;
 
-public class ControlleurAthlete {
+public class ControleurAthlete {
 
 	public ApplicationJo application; 
 	public JPanel lastPanel;
 	
-	public ControlleurAthlete(ApplicationJo application) {
+	public ControleurAthlete(ApplicationJo application) {
 		this.application = application;
 	}
 	
@@ -21,7 +21,7 @@ public class ControlleurAthlete {
 		
 		char genreFormatte;
 		int indexPays = this.getPaysIndex(nomPays);
-		int indexDiscipline = this.getDisciplineIndex(nomDiscipline);
+		int indexDiscipline = this.getDisciplineIndex(nomDiscipline, nomPays);
 		
 		if(genre.equalsIgnoreCase("Homme")) {
 			genreFormatte = 'H';
@@ -53,12 +53,11 @@ public class ControlleurAthlete {
 		}
 		
 		Athlete newAthlete = new Athlete(nom, prenom, Integer.parseInt(taille), Integer.parseInt(poids), description, dateNaissance, genreFormatte); 
-		newAthlete.setPays(application.paysList.get(indexPays));
 		newAthlete.setDiscipline(application.disciplinesList.get(indexDiscipline));
+		application.paysList.get(indexPays).ajouterAthlete(newAthlete);
 		application.athletesList.add(newAthlete);
-		for (Athlete athlete : application.athletesList) {
-			System.out.println(athlete.getNom());
-		}
+		this.application.enregister();
+		this.application.recuperer();
 		return true;
 	}
 
@@ -81,15 +80,20 @@ public class ControlleurAthlete {
 		return index;
 	}
 	
-	public int getDisciplineIndex(String nom) {
-		int index = -1;
-		for (int i = 0; i < application.disciplinesList.size(); i++) {
-			if(application.disciplinesList.get(i).getNom().equalsIgnoreCase(nom)) {
-				index = i;
-				continue;
+	public int getDisciplineIndex(String nom, String pays) {
+		int indexPays = this.getPaysIndex(pays);
+		
+		if(indexPays >=0) {
+			int index = -1;
+			for (int i = 0; i < application.paysList.get(indexPays).getEquipes().size(); i++) {
+				if(application.paysList.get(indexPays).getEquipes().get(i).getDiscipline().getNom().equalsIgnoreCase(nom)) {
+					index = i;
+					return index;
+				}
 			}
+			return -1;
 		}
-		return index;
+		return -1;
 	}
 	
 	public void setLastPanel(JPanel panel) {

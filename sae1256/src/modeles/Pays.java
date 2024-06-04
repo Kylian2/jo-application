@@ -89,6 +89,7 @@ public class Pays implements Serializable{
 		for(Equipe equipe : equipes) {
 			if (equipe.getDiscipline().getNom().equalsIgnoreCase(athlete.getDiscipline().getNom())) {
 				equipe.ajouterMembre(athlete);
+				athlete.setEquipe(equipe);
 				return true;
 			}
 		}

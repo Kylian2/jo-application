@@ -103,5 +103,9 @@ public class Equipe implements Serializable{
 		// TODO - implement Equipe.detruire
 		throw new UnsupportedOperationException();
 	}
+	
+	public ArrayList<Athlete> getMembres() {
+		return membres;
+	}
 
 }
