@@ -39,9 +39,7 @@ public class Test {
         }
         
         //applicationJo.paysList.add(new Pays("DEU", "Allemagne"));
-        
-        System.out.println(applicationJo.paysList.get(4).getEquipes().size());
-        
+               
         applicationJo.enregister();
         
 	}

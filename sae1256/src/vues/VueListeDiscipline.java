@@ -137,8 +137,7 @@ public class VueListeDiscipline extends JPanel {
      */
     public void refresh() {
         panelDisciplineConteneur.removeAll();
-        Color lastColor = null;
-        Color newColor = null;
+        int couleurCount = 0;
         for (Discipline discipline : application.disciplinesList) { 
             
             // Création d'un panel servant à recueillir les infos du pays
@@ -152,25 +151,19 @@ public class VueListeDiscipline extends JPanel {
             panelSimpleDiscipline.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    System.out.println("Click");
-                    // Rafraîchir le conteneur
+                    
+                	application.mainPanel.removeAll();
+                	application.mainPanel.add(new ListeEpreuve(application, dimension, discipline));
+                	
                     application.mainPanel.revalidate();
                     application.mainPanel.repaint();
                 }
             });
             // Définition du fond du conteneur 
             Color[] colors = {Couleur.BLEU_JO.getColor(), Couleur.JAUNE_JO.getColor(), Couleur.ROUGE_JO.getColor(), Couleur.VERT_JO.getColor()};
-            Random random = new Random();
             
-            for (int i = 0; i < 10; i++) { // Boucle pour effectuer le tirage alatoire de la couleur
-                do {
-                    newColor = colors[random.nextInt(colors.length)];
-                } while (newColor.equals(lastColor));
-                
-                lastColor = newColor;
-            }
-            
-            panelSimpleDiscipline.setBackground(newColor);
+            panelSimpleDiscipline.setBackground(colors[couleurCount%colors.length]);
+            couleurCount++;
             panelDisciplineConteneur.add(panelSimpleDiscipline);
         }
         
