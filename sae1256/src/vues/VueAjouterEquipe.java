@@ -153,7 +153,9 @@ public class VueAjouterEquipe extends JPanel{
 				boolean ajoute = controleur.ajouterEquipe(nom, discipline);
 				
 				if(ajoute) {
+					controleur.enregistrer();
 					controleur.retour();
+					
 				}else {
 					System.out.println("Une erreur est survenue suite à l'entrée d'une valeur incorrecte");
 				}

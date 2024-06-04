@@ -56,6 +56,15 @@ public class ControleurEquipe {
 		
 		if(disciplineIndex >= 0) {
 			this.pays.ajouterEquipe(new Equipe(nom, application.disciplinesList.get(disciplineIndex)));
+			//Je ne comprends tout à fait pourquoi mais il semble que les deux liste ne soit pas les memes
+            for (Pays pays2 : this.application.paysList) {
+            	if(pays2.getNom().equalsIgnoreCase(pays.getNom())) {
+            		System.out.println("---------------------------OK");
+            		pays2.setEquipes(pays.getEquipes());
+            	}
+            }
+			this.application.enregister();
+			this.application.recuperer();
 			return true;
 		}
 		else {
@@ -75,39 +84,45 @@ public void retour() {
 		
 	}
 
-public boolean supprimerEquipe(Equipe equipe) {
-    System.out.println("Nombre d'équipes avant suppression : " + pays.getEquipes().size());
-    
-    for (int i = 0; i < pays.getEquipes().size(); i++) {
-        Equipe equipeCourante = pays.getEquipes().get(i);
-        
-        System.out.println(equipeCourante.getDiscipline().getNom() + " - " + equipe.getDiscipline().getNom());
-        
-        if (equipeCourante.getDiscipline().getNom().equalsIgnoreCase(equipe.getDiscipline().getNom())) {
-            System.out.println("Equipe trouvée : " + equipeCourante.getDiscipline().getNom());
-            
-            // Définir l'équipe des athlètes à null
-            for (Athlete athlete : equipeCourante.getMembres()) {
-                athlete.setEquipe(null);
-                System.out.println("Mise à jour de l'athlète : " + athlete.getNom());
-            }
-            
-            // Retirer l'équipe de la liste
-            Equipe equipeSupprimee = pays.getEquipes().remove(i);
-            System.out.println("Equipe supprimée : " + equipeSupprimee.getNom());
-            System.out.println("Nombre d'équipes après suppression : " + pays.getEquipes().size());
-            this.application.enregister();
-            this.application.recuperer();
-            return equipeSupprimee != null;
-        }
-    }
-    
-    System.out.println("Equipe non trouvée");
-    return false;
-}
+	public boolean supprimerEquipe(Equipe equipe) {
+	    System.out.println("Nombre d'équipes avant suppression : " + pays.getEquipes().size());
+	    
+	    for (int i = 0; i < pays.getEquipes().size(); i++) {
+	        Equipe equipeCourante = pays.getEquipes().get(i);
+	        
+	        System.out.println(equipeCourante.getDiscipline().getNom() + " - " + equipe.getDiscipline().getNom());
+	        
+	        if (equipeCourante.getDiscipline().getNom().equalsIgnoreCase(equipe.getDiscipline().getNom())) {
+	            System.out.println("Equipe trouvée : " + equipeCourante.getDiscipline().getNom());
+	            
+	            // Définir l'équipe des athlètes à null
+	            for (Athlete athlete : equipeCourante.getMembres()) {
+	                athlete.setEquipe(null);
+	                System.out.println("Mise à jour de l'athlète : " + athlete.getNom());
+	            }
+	            
+	            // Retirer l'équipe de la liste
+	            Equipe equipeSupprimee = pays.getEquipes().remove(i);
+	            System.out.println("Equipe supprimée : " + equipeSupprimee.getNom());
+	            System.out.println("Nombre d'équipes après suppression : " + pays.getEquipes().size());
+	            //Je ne comprends tout à fait pourquoi mais il semble que les deux liste ne soit pas les memes
+	            for (Pays pays2 : this.application.paysList) {
+	            	if(pays2.getNom().equalsIgnoreCase(pays.getNom())) {
+	            		System.out.println("---------------------------OK");
+	            		pays2.setEquipes(pays.getEquipes());
+	            	}
+	            }
+	            this.application.enregister();
+	            this.application.recuperer();
+	            return equipeSupprimee != null;
+	        }
+	    }
+	    
+	    System.out.println("Equipe non trouvée");
+	    return false;
+	}
 
-private Object typeof(Equipe remove) {
-	// TODO Auto-generated method stub
-	return null;
-}
+	public void enregistrer() {
+		application.enregister();
+	}
 }

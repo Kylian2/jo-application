@@ -87,14 +87,14 @@ public class VueListeAthleteEquipe extends JPanel {
 				controleur.setPays(equipe.getPays());
 				if(controleur.supprimerEquipe(equipe)) {
 					controleur.application.mainPanel.removeAll();
-					controleur.application.mainPanel.add(new VueListePays(controleur.application, new Dimension(700, 700)));
+					controleur.application.mainPanel.add(new VueListeEquipePays(equipe.getPays(), controleur));
+					controleur.enregistrer();
 
 					// Rafraîchir le conteneur
 	                controleur.application.mainPanel.revalidate();
 	                controleur.application.mainPanel.repaint();
 				}
 			}
-        	
         });
         panelBouton.add(button);
 	    

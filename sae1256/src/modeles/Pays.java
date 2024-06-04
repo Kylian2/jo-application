@@ -143,5 +143,9 @@ public class Pays implements Serializable{
 	public ArrayList<Equipe> getEquipes(){
 		return equipes;
 	}
+
+	public void setEquipes(ArrayList<Equipe> equipes) {
+		this.equipes = equipes;
+	}
 	
 }

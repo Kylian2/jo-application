@@ -292,16 +292,6 @@ public class VueAjouterAthlete extends JPanel{
 				String description = descTexte.getText();
 				String pays = (String) delegTexte.getSelectedItem();
 				String discipline = (String) discipTexte.getSelectedItem();
-
-				System.out.println(nom);
-				System.out.println(genre);
-				System.out.println(naissance);
-				System.out.println(poids);
-				System.out.println(taille);
-				System.out.println(prenom);
-				System.out.println(description);				
-				System.out.println(pays);
-				System.out.println(discipline);
 				
 				boolean ajoute = controleur.createAthlete(nom, prenom, taille, poids, description, naissance, genre, pays, discipline);
 
