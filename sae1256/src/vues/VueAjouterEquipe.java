@@ -10,13 +10,12 @@ import modeles.Athlete;
 import modeles.Discipline;
 
 public class VueAjouterEquipe extends JPanel {
-    protected JPanel mainPanel, titre, disciplinePanel, athletePanel, membrePanel, boutonPanel;
-    protected JLabel ajouterEquipe, athlete, discipline, titreMembreLB;
-    protected JButton ajouterAthlete, annuler, enregistrer;
-    protected JComboBox<String> disciplineTexte, athleteTexte;
-    protected JList<String> membres;
+    protected JPanel mainPanel, titre, disciplinePanel, boutonPanel, nomEquipePanel;
+    protected JLabel ajouterEquipe, discipline, nomEquipe;
+    protected JTextField nomEquipeTexte;
+    protected JButton annuler, enregistrer;
+    protected JComboBox<String> disciplineTexte;
     protected ArrayList<Discipline> disciplinesList;
-    protected ArrayList<Athlete> athletesList;
 
     VueAjouterEquipe() {
         setLayout(new BorderLayout());
@@ -47,6 +46,17 @@ public class VueAjouterEquipe extends JPanel {
 //        	disciplineTexte.addItem(discipline);
 //        }
         disciplineTexte.addItem("Choisir une discipline");
+        
+        // initialisation des composant de nomEquipePanel
+        nomEquipePanel = new JPanel();
+        nomEquipePanel.setLayout(new GridLayout(1,2));
+        nomEquipePanel.setBorder(new EmptyBorder(20, 20,150,0)); 
+        
+        nomEquipe = new JLabel("Nom d'équipe : ");
+        nomEquipeTexte = new JTextField("Entrez un nom d'équipe");
+        
+        nomEquipePanel.add(nomEquipe);
+        nomEquipePanel.add(nomEquipeTexte);
 
         // ajout des composants au disciplinePanel
         disciplinePanel.add(discipline, BorderLayout.WEST);
@@ -63,54 +73,7 @@ public class VueAjouterEquipe extends JPanel {
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         titre.add(disciplinePanel, gbc);
-        
-        // initialisation des composant de athletePanel
-        athletePanel = new JPanel();
-        athletePanel.setLayout(new GridLayout(4,4));
-		athletePanel.setBorder(new EmptyBorder(50,50,20,50)); 
-        
-        athlete = new JLabel(" Athlète :");
-        athlete.setHorizontalAlignment(SwingConstants.RIGHT);		// aligner le texte à droite dans son Panel
-        athleteTexte = new JComboBox<String>();
-        athleteTexte.addItem("Choisir un athlète");
-        ajouterAthlete = new JButton("Ajouter");
-        ajouterAthlete.setForeground(Color.white);
-        ajouterAthlete.setBackground((Couleur.ROUGE_JO).getColor());
-        
-        // ajout des composant a athletePanel 
-        for (int i = 0; i < 4; i++) {			// ajout de panel vide est blanc pour placer correctement athletePanel
-            JPanel panel = new JPanel();
-            panel.setBackground(Color.WHITE);
-            athletePanel.add(panel);
-    }
-
-        athletePanel.add(athlete);
-        athletePanel.add(athleteTexte);	
-        JPanel defaut = new JPanel();
-        defaut.setBackground(Color.WHITE);
-        athletePanel.add(defaut);
-        athletePanel.add(ajouterAthlete);
-        
-        // initialisation des composants de membrePanel
-        membrePanel = new JPanel();
-        membrePanel.setLayout(new GridLayout(1,1));
-        Border lineBorder = BorderFactory.createLineBorder(Color.BLACK, 1);
-        membrePanel.setBorder(lineBorder);
-
-        
-        String[] listeAthletes = new String[50];
-        listeAthletes[0] = "ouii";
-        listeAthletes[1] = "adadad";
-        listeAthletes[2] = "brrrtb";
-        listeAthletes[3] = "tzrar";
-        membres = new JList<String>(listeAthletes);
-//        for(int i =0; i< athletesList.len) {
-//        	listeAthletes[]
-//        }
-//        membres.setListData(athlesList);
-        
-        // ajout des composant à membre Panel
-        membrePanel.add(membres);
+        titre.add(nomEquipePanel,gbc);
         
         // initialisation des composant de boutonPanel
         boutonPanel = new JPanel();
@@ -134,8 +97,13 @@ public class VueAjouterEquipe extends JPanel {
         boutonPanel.add(enregistrer);
         
         // ajout des composants au mainPanel
-        mainPanel.add(athletePanel, BorderLayout.NORTH);
-        mainPanel.add(membrePanel, BorderLayout.CENTER);
+		JPanel defaut = new JPanel();
+		defaut.setBackground(Color.WHITE);		// création de panel vide blanc pour combler
+		JPanel defaut1 = new JPanel();
+		defaut1.setBackground(Color.WHITE);
+		
+        mainPanel.add(defaut, BorderLayout.NORTH);
+        mainPanel.add(defaut1, BorderLayout.CENTER);
         mainPanel.add(boutonPanel, BorderLayout.SOUTH);
 
         // ajout des JPANEL principaux à la fenetre
@@ -146,9 +114,6 @@ public class VueAjouterEquipe extends JPanel {
         setBackground(Color.WHITE);
         titre.setBackground(Color.WHITE);
         disciplinePanel.setBackground(Color.WHITE);
-        athletePanel.setBackground(Color.WHITE);
-        athleteTexte.setBackground(Color.WHITE);
-        membrePanel.setBackground(Color.WHITE);
         boutonPanel.setBackground(Color.WHITE);
 
         // uniformisation de la police d'écriture
