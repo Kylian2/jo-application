@@ -22,7 +22,7 @@ public class VueAccueil extends JPanel{
 
 	        // Créations d'autres éléments pour mettre dans les panels
 	        JButton BoutonIMG1 = new JButton("Voir les Résultats 	");
-	        BoutonIMG1.setBackground(Color.RED);
+	        BoutonIMG1.setBackground(Couleur.ROUGE_JO.getColor());
 	        BoutonIMG1.setForeground(Color.WHITE);
 
 	        JButton BoutonIMG2 = new JButton("Accéder aux équipes 	");

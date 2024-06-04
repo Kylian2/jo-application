@@ -26,7 +26,7 @@ public class Equipe implements Serializable{
 	 * @param pays
 	 * @param discipline
 	 */
-	Equipe(String nom, Discipline discipline) {
+	public Equipe(String nom, Discipline discipline) {
 		this.nom = nom; 
 		this.discipline = discipline;
 		recompenses = new Recompense(this);

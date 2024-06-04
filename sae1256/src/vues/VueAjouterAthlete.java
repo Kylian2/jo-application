@@ -154,6 +154,13 @@ public class VueAjouterAthlete extends JPanel{
 		poids.setFont(new Font("Source", Font.PLAIN, 15));
 		taille.setFont(new Font("Source", Font.PLAIN, 15));
 		
+		// changer la couleur de fond des boutons
+        annuler.setBackground(Color.GRAY);
+        valider.setBackground(Couleur.ROUGE_JO.getColor());
+        // changer la couleur de la police des boutons
+        annuler.setForeground(Color.WHITE);
+        valider.setForeground(Color.WHITE);
+        
 		// ajout des Panel dans la fenetre
 		setBackground(Color.WHITE);
 		this.setLayout(new GridLayout(3,1));

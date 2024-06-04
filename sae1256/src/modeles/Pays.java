@@ -13,8 +13,8 @@ public class Pays implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
-	private Collection<Athlete> membres;
-	private Collection<Equipe> equipes;
+	private ArrayList<Athlete> membres;
+	private ArrayList<Equipe> equipes;
 	private Recompense recompenses;
 	private String code;
 	private String nom;
@@ -137,6 +137,10 @@ public class Pays implements Serializable{
 	
 	public String getCode() {
 		return code;
+	}
+	
+	public ArrayList<Equipe> getEquipes(){
+		return equipes;
 	}
 	
 }

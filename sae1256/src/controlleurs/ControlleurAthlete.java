@@ -104,6 +104,7 @@ public class ControlleurAthlete {
 		
 		application.mainPanel.removeAll();
 		application.mainPanel.add(lastPanel);
+		((VueListeAthlete) lastPanel).refresh();
 		//application.mainPanel.add(application.vueListeAthlete);
 		// Rafraîchir le conteneur
         application.mainPanel.revalidate();
