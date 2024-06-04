@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controlleurs.ControlleurAthlete;
 import modeles.*;
 import vues.*; 
 
@@ -36,15 +37,17 @@ public class Main {
         mainPanel.add(accueil);
         
         //VueAthlete
-      	VueListeAthlete vueAthlete = new VueListeAthlete(applicationJo, new Dimension(fenetre.getWidth(), fenetre.getHeight()));
-        
+        ControlleurAthlete controlleurAthlete = new ControlleurAthlete(applicationJo);
+      	VueListeAthlete vueAthlete = new VueListeAthlete(applicationJo, controlleurAthlete,  new Dimension(fenetre.getWidth(), fenetre.getHeight()));
+      	
         //VuePays
       	VueListePays vuePays = new VueListePays(applicationJo, new Dimension(fenetre.getWidth(), fenetre.getHeight()));
 		
 		// Menu de navigation
         MenuApplication menu = new MenuApplication(mainPanel,accueil, vuePays, vueAthlete);
         menu.setPreferredSize(new Dimension(270, fenetre.getHeight())); 
-		
+	
+        applicationJo.setMainPanel(mainPanel);
         
         // Organiser les panneaux
         fenetre.setLayout(new BorderLayout());
@@ -53,7 +56,10 @@ public class Main {
         
         // Afficher la fenetre
      	fenetre.setVisible(true);
-        
+
+     	applicationJo.athletesList.get(0).setDiscipline(applicationJo.disciplinesList.get(0));
+     	applicationJo.athletesList.get(2).setDiscipline(applicationJo.disciplinesList.get(2));
+     	
 		//Sauvegarde des données
 		applicationJo.enregister();
 	}

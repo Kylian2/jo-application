@@ -7,6 +7,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -19,6 +23,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
+import controlleurs.ControlleurAthlete;
 import modeles.ApplicationJo;
 import modeles.Athlete;
 import modeles.Pays;
@@ -30,10 +35,14 @@ public class VueListeAthlete extends JPanel {
 	
 	//Panel servant à contenir les pays
 	JPanel panelAthlete;
+	
+	ControlleurAthlete controlleur; 
 		
-	public VueListeAthlete(ApplicationJo application, Dimension dimension) {
+	public VueListeAthlete(ApplicationJo application, ControlleurAthlete controlleur, Dimension dimension) {
 			
 	    this.application = application;
+	    application.recuperer();
+	    this.controlleur = controlleur;
 	    
 	    setLayout(new BorderLayout()); 
 	    this.setPreferredSize(dimension);
@@ -67,6 +76,20 @@ public class VueListeAthlete extends JPanel {
         JButton button = new JButton("Ajouter");
         button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         button.setFocusPainted(false);
+        button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				application.mainPanel.removeAll();
+				controlleur.setLastPanel(VueListeAthlete.this);
+				application.mainPanel.add(new VueAjouterAthlete(controlleur));
+
+				// Rafraîchir le conteneur
+                application.mainPanel.revalidate();
+                application.mainPanel.repaint();
+			}
+        	
+        });
         panelBouton.add(button);
 	    
 	    header.add(panelBouton, BorderLayout.EAST);
@@ -105,17 +128,17 @@ public class VueListeAthlete extends JPanel {
 	        medaille.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrer horizontalement
 	        coteGauche.add(medaille);
 	        coteGauche.add(Box.createVerticalStrut(10));
-	
-	        //Création d'un bouton avec une image
-	        ImageIcon icon = new ImageIcon("img/modification.png");
-	        Image img = icon.getImage();
-	        Image newImg = img.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
-	        icon = new ImageIcon(newImg);
-	        JButton btnModification = new JButton(icon);
-	        btnModification.setPreferredSize(new Dimension(25, 25));
-	        btnModification.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-	        coteGauche.add(btnModification);
 	        
+	        panelSimplePays.addMouseListener(new MouseAdapter() {
+	            @Override
+	            public void mouseClicked(MouseEvent e) {
+	                application.mainPanel.removeAll();
+	                application.mainPanel.add(new VueAthlete(athlete));
+	                // Rafraîchir le conteneur
+	                application.mainPanel.revalidate();
+	                application.mainPanel.repaint();
+	            }
+	        });
 	        panelAthlete.add(panelSimplePays);
 	        panelAthlete.add(Box.createVerticalStrut(10));
 	    }

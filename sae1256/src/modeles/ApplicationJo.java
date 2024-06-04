@@ -9,6 +9,10 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
+import vues.VueListeAthlete;
+
 public class ApplicationJo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -17,12 +21,25 @@ public class ApplicationJo implements Serializable{
 	public ArrayList<Discipline> disciplinesList;
 	public ArrayList<Athlete> athletesList;
 	
+	
+	//ignore lors de la serialization
+	public transient JPanel mainPanel;
+	public transient VueListeAthlete vueListeAthlete;
+	
 	public static final String fileName = "application-jo.dat";
 	
 	public ApplicationJo(){
 		paysList = new ArrayList<Pays>();
 		disciplinesList = new ArrayList<Discipline>();
 		athletesList = new ArrayList<Athlete>();
+	}
+	
+	public void setMainPanel(JPanel panel) {
+		this.mainPanel = panel;
+	}
+	
+	public void setVueListeAthlete(VueListeAthlete vueListeAthlete) {
+		this.vueListeAthlete = vueListeAthlete;
 	}
 	
 	public void enregister() {
