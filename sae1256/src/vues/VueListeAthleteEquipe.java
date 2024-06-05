@@ -126,6 +126,8 @@ public class VueListeAthleteEquipe extends JPanel {
 	public void refresh() {
 		panelAthlete.removeAll();
 		panelAthlete.add(header);
+		controleur.application.recuperer();
+		
 		for(Athlete athlete : equipe.getMembres()) { 
 			
 	        //Création d'un panel servant à recueillir les infos du pays

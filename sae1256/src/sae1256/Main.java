@@ -52,7 +52,7 @@ public class Main {
       	
       	
 		// Menu de navigation
-        MenuApplication menu = new MenuApplication(mainPanel,accueil, vuePays, vueAthlete, vueDiscipline, vueSession);
+        MenuApplication menu = new MenuApplication(applicationJo,mainPanel,accueil, vuePays, vueAthlete, vueDiscipline, vueSession);
         menu.setPreferredSize(new Dimension(270, fenetre.getHeight())); 
 	        
         // Organiser les panneaux

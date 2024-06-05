@@ -29,6 +29,9 @@ public class Test {
         	System.out.println(pays.getEquipes().size());
         	for (Equipe equipe : pays.getEquipes()) {
         		System.out.println(equipe.getNom());
+        		for (Athlete membre: equipe.getMembres()) {
+        			System.out.println(membre.getNom());
+        		}
         	}
         }
         

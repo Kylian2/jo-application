@@ -3,6 +3,8 @@ package vues;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import modeles.ApplicationJo;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,9 +25,13 @@ public class MenuApplication extends JPanel {
     public VueListePays vuePays; 
     public VueListeAthlete vueAthlete;
     public VueAccueil vueAccueil;
+    
+    ApplicationJo application;
 	
-    public MenuApplication(JPanel vueConteneur,VueAccueil accueil, VueListePays vuePays, VueListeAthlete vueAthlete, VueListeDiscipline vueDiscipline, VueApercuSession vueSession) {
+    public MenuApplication(ApplicationJo application,JPanel vueConteneur,VueAccueil accueil, VueListePays vuePays, VueListeAthlete vueAthlete, VueListeDiscipline vueDiscipline, VueApercuSession vueSession) {
     	this.vueConteneur = vueConteneur;
+    	
+    	this.application = application;
     	
     	this.vuePays = vuePays;
     	this.vueAthlete = vueAthlete;
@@ -70,7 +76,8 @@ public class MenuApplication extends JPanel {
 				//Masquer les autres
 				vueConteneur.removeAll();
 				//Afficher le panel correspondant
-				vueConteneur.add(vuePays, BorderLayout.CENTER);
+				MenuApplication.this.application.recuperer();
+				vueConteneur.add(new VueListePays(MenuApplication.this.application, new Dimension(700, 540)), BorderLayout.CENTER);
 				
 				// Rafraîchir le conteneur
                 vueConteneur.revalidate();

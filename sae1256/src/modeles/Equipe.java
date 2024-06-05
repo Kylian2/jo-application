@@ -54,7 +54,7 @@ public class Equipe implements Serializable{
 	 * @param Athlete
 	 */
 	public void ajouterMembre(Athlete membre) {
-		if(membre.getPays().getNom() == pays.getNom()) { //A voir si possibilité de faire comme en C++ pour comparer
+		if(membre.getPays().getNom().equalsIgnoreCase(pays.getNom())) { //A voir si possibilité de faire comme en C++ pour comparer
 			membres.add(membre);
 		}else {
 			throw new Error("L'athlète ne fait pas partie du pays de l'équipe");

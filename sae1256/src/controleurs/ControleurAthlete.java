@@ -21,7 +21,7 @@ public class ControleurAthlete {
 		
 		char genreFormatte;
 		int indexPays = this.getPaysIndex(nomPays);
-		int indexDiscipline = this.getDisciplineIndex(nomDiscipline, nomPays);
+		int indexDiscipline = this.getDisciplineIndex(nomDiscipline);
 		
 		if(genre.equalsIgnoreCase("Homme")) {
 			genreFormatte = 'H';
@@ -74,24 +74,20 @@ public class ControleurAthlete {
 		for (int i = 0; i < application.paysList.size(); i++) {
 			if(application.paysList.get(i).getNom().equalsIgnoreCase(nom)) {
 				index = i;
-				continue;
+				return index;
 			}
 		}
 		return index;
 	}
 	
-	public int getDisciplineIndex(String nom, String pays) {
-		int indexPays = this.getPaysIndex(pays);
+	public int getDisciplineIndex(String nom) {
 		
-		if(indexPays >=0) {
-			int index = -1;
-			for (int i = 0; i < application.paysList.get(indexPays).getEquipes().size(); i++) {
-				if(application.paysList.get(indexPays).getEquipes().get(i).getDiscipline().getNom().equalsIgnoreCase(nom)) {
-					index = i;
-					return index;
-				}
+		int index = -1;
+		for (int i = 0; i < application.disciplinesList.size(); i++) {
+			if(application.disciplinesList.get(i).getNom().equalsIgnoreCase(nom)) {
+				index = i;
+				return index;
 			}
-			return -1;
 		}
 		return -1;
 	}
