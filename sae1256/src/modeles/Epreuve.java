@@ -7,7 +7,7 @@ import java.util.Collections;
 
 
 
-public class Epreuve implements Serializable{
+public class Epreuve implements Serializable, Planning{
 	
     private static final long serialVersionUID = 1L;
     
@@ -125,5 +125,11 @@ public class Epreuve implements Serializable{
 		for(Session session : sessions) {
 			System.out.println(session);
 		}
+	}
+
+	@Override
+	public ArrayList<Session> OrdonneSession(ArrayList<Session> sessionsNonOrdonnee) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
