@@ -23,30 +23,28 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
-import controleurs.ControleurAthlete;
-import modeles.ApplicationJo;
-import modeles.Athlete;
-import modeles.Pays;
+import controleurs.ControleurEquipe;
+import modeles.*;
 
-public class VueListeAthlete extends JPanel {
+public class VueListeAthleteEquipe extends JPanel {
 	
-	//Permet d'accéder aux données de l'application qui seront affichées. 
-	ApplicationJo application;
 	
 	//Panel servant à contenir les pays
 	JPanel panelAthlete;
 	
-	ControleurAthlete controleur; 
-	
 	Dimension dimension;
 	
 	JPanel header;
+	
+	Equipe equipe;
+
+	ControleurEquipe controleur;
 		
-	public VueListeAthlete(ApplicationJo application, ControleurAthlete controleur, Dimension dimension) {
+	public VueListeAthleteEquipe(ControleurEquipe controleur, Equipe equipe) {
 			
-	    this.application = application;
-	    application.recuperer();
 	    this.controleur = controleur;
+	    controleur.application.recuperer();
+	    this.equipe = equipe;
 	    
 	    this.dimension = dimension;
 	    
@@ -62,36 +60,41 @@ public class VueListeAthlete extends JPanel {
 	    
 	    //Header
         JPanel header = new JPanel(new BorderLayout());
-        header.setMaximumSize(new Dimension((int) dimension.getWidth(), 50));
+        header.setMaximumSize(new Dimension(700, 50));
         header.setBackground(Color.WHITE);
         
 	    //Définir le titre
-	    JLabel titre = new JLabel("Athlètes");
-	    titre.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 32));
+	    JLabel titre = new JLabel("Membres de " + equipe.getNom());
+	    titre.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
 	    titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 	    header.add(titre, BorderLayout.WEST);
 	    
 	    //Bouton ajouter
 	    JPanel panelBouton = new JPanel();
+	    panelBouton.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createEmptyBorder(0, 10, 10, 10), 
+                BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK) // Bordure de couleur de 2 pixels en bas
+        ));
 	    panelBouton.setBackground(Color.WHITE);
         
-        JButton button = new JButton("Ajouter");
-        button.setPreferredSize(new Dimension(90, 35));
+        JButton button = new JButton("Supprimer l'equipe");
         button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         button.setFocusPainted(false);
         button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				application.mainPanel.removeAll();
-				controleur.setLastPanel(VueListeAthlete.this);
-				application.mainPanel.add(new VueAjouterAthlete(controleur));
+				controleur.setPays(equipe.getPays());
+				if(controleur.supprimerEquipe(equipe)) {
+					controleur.application.mainPanel.removeAll();
+					controleur.application.mainPanel.add(new VueListeEquipePays(equipe.getPays(), controleur));
+					controleur.enregistrer();
 
-				// Rafraîchir le conteneur
-                application.mainPanel.revalidate();
-                application.mainPanel.repaint();
+					// Rafraîchir le conteneur
+	                controleur.application.mainPanel.revalidate();
+	                controleur.application.mainPanel.repaint();
+				}
 			}
-        	
         });
         panelBouton.add(button);
 	    
@@ -123,23 +126,25 @@ public class VueListeAthlete extends JPanel {
 	public void refresh() {
 		panelAthlete.removeAll();
 		panelAthlete.add(header);
-		for(Athlete athlete : application.athletesList) { 
+		controleur.application.recuperer();
+		
+		for(Athlete athlete : equipe.getMembres()) { 
 			
 	        //Création d'un panel servant à recueillir les infos du pays
-	        JPanel panelSimplePays = new JPanel();
-	        panelSimplePays.setLayout(new BorderLayout()); // Utilisation de BoxLayout horizontal
-	        panelSimplePays.setBackground(Couleur.COULEUR_FOND_JO.getColor());
-	        panelSimplePays.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-	        panelSimplePays.setMaximumSize(new Dimension((int) dimension.getWidth(), 50));
+	        JPanel panelSimpleAthlete = new JPanel();
+	        panelSimpleAthlete.setLayout(new BorderLayout()); // Utilisation de BoxLayout horizontal
+	        panelSimpleAthlete.setBackground(Couleur.COULEUR_FOND_JO.getColor());
+	        panelSimpleAthlete.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	        panelSimpleAthlete.setMaximumSize(new Dimension(700, 50));
 	
 	        //Ajout des infos de l'athlete
 	        JLabel nomPays = new JLabel(athlete.getPays().getCode() + " - "  + athlete.getNom() + ' ' + athlete.getPrenom());
-	        panelSimplePays.add(nomPays, BorderLayout.WEST);
+	        panelSimpleAthlete.add(nomPays, BorderLayout.WEST);
 	        
 	        // Création du panneau coteGauche
 	        JPanel coteGauche = new JPanel();
 	        coteGauche.setBackground(Couleur.COULEUR_FOND_JO.getColor()); // Exemple de couleur
-	        panelSimplePays.add(coteGauche, BorderLayout.EAST);
+	        panelSimpleAthlete.add(coteGauche, BorderLayout.EAST);
 	
 	        // Utilisation de BoxLayout pour centrer le contenu verticalement
 	        coteGauche.setLayout(new BoxLayout(coteGauche, BoxLayout.X_AXIS));
@@ -155,18 +160,19 @@ public class VueListeAthlete extends JPanel {
 	        coteGauche.add(medaille);
 	        coteGauche.add(Box.createVerticalStrut(10));
 	        
-	        panelSimplePays.addMouseListener(new MouseAdapter() {
+	        panelSimpleAthlete.addMouseListener(new MouseAdapter() {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
-	            	application.mainPanel.removeAll();
-	            	application.mainPanel.add(new VueAthlete(athlete));
+	            	controleur.application.mainPanel.removeAll();
+	            	controleur.application.mainPanel.add(new VueAthlete(athlete));
 	                // Rafraîchir le conteneur
-	            	application.mainPanel.revalidate();
-	            	application.mainPanel.repaint();
+	            	controleur.application.mainPanel.revalidate();
+	            	controleur.application.mainPanel.repaint();
 	            }
 	        });
-	        panelAthlete.add(panelSimplePays);
+	        panelAthlete.add(panelSimpleAthlete);
 	        panelAthlete.add(Box.createVerticalStrut(10));
+	        System.out.println("Rafraichie");
 	    }
 		// Rafraîchir le conteneur
 		panelAthlete.revalidate();

@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
+import controleurs.ControleurEquipe;
 import modeles.*;
 
 public class VueListePays extends JPanel {
@@ -125,7 +126,7 @@ public class VueListePays extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					application.mainPanel.removeAll();
-	            	application.mainPanel.add(new VueListeEquipePays(pays));
+	            	application.mainPanel.add(new VueListeEquipePays(pays, new ControleurEquipe(application)));
 	                // Rafraîchir le conteneur
 	            	application.mainPanel.revalidate();
 	            	application.mainPanel.repaint();

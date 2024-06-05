@@ -17,7 +17,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import controlleurs.ControlleurAthlete;
 import modeles.*;
 
 public class ListeEpreuve extends JPanel{

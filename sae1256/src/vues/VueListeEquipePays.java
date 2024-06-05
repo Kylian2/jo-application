@@ -1,11 +1,14 @@
 package vues;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
+import controleurs.ControleurEquipe;
 import modeles.*;
 
 public class VueListeEquipePays extends JPanel {
@@ -16,11 +19,13 @@ public class VueListeEquipePays extends JPanel {
 	JPanel panelEquipes;
 	
 	JPanel header;
-
 	
-	public VueListeEquipePays(Pays pays) {
+	ControleurEquipe controleur;
+	
+	public VueListeEquipePays(Pays pays, ControleurEquipe controleur) {
 		
 	    this.pays = pays;
+	    this.controleur = controleur;
 	    
 	    setLayout(new BorderLayout()); 
 	    //this.setPreferredSize(dimension);
@@ -51,6 +56,23 @@ public class VueListeEquipePays extends JPanel {
         button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         button.setFocusPainted(false);
         panelBouton.add(button);
+        
+        button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				controleur.application.mainPanel.removeAll();
+				controleur.setLastPanel(VueListeEquipePays.this);
+				controleur.setPays(VueListeEquipePays.this.pays);
+				controleur.application.mainPanel.add(new VueAjouterEquipe(controleur));
+				
+				// Rafraîchir le conteneur
+				controleur.application.mainPanel.revalidate();
+				controleur.application.mainPanel.repaint();
+			}
+        	
+        });
 	    
 	    header.add(panelBouton, BorderLayout.EAST);
 	    this.header = header;
@@ -106,6 +128,19 @@ public class VueListeEquipePays extends JPanel {
 	        medaille.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrer horizontalement
 	        coteGauche.add(medaille);
 	        coteGauche.add(Box.createVerticalStrut(10));
+	        
+	        panelSimpleEquipe.addMouseListener(new MouseAdapter() {
+	            @Override
+	            public void mouseClicked(MouseEvent e) {
+	            	controleur.application.mainPanel.removeAll();
+	            	VueListeAthleteEquipe listeAthlete = new VueListeAthleteEquipe(controleur, equipe);
+	            	listeAthlete.refresh();
+	            	controleur.application.mainPanel.add(listeAthlete);
+	                // Rafraîchir le conteneur
+	            	controleur.application.mainPanel.revalidate();
+	            	controleur.application.mainPanel.repaint();
+	            }
+	        });
 	        
 	        panelEquipes.add(panelSimpleEquipe);
 	        panelEquipes.add(Box.createVerticalStrut(10));

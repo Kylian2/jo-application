@@ -87,8 +87,10 @@ public class Pays implements Serializable{
 		membres.add(athlete);
 		athlete.setPays(this);
 		for(Equipe equipe : equipes) {
+			System.out.println(equipe.getDiscipline().getNom() + " - " + athlete.getDiscipline().getNom());
 			if (equipe.getDiscipline().getNom().equalsIgnoreCase(athlete.getDiscipline().getNom())) {
 				equipe.ajouterMembre(athlete);
+				athlete.setEquipe(equipe);
 				return true;
 			}
 		}
@@ -141,6 +143,10 @@ public class Pays implements Serializable{
 	
 	public ArrayList<Equipe> getEquipes(){
 		return equipes;
+	}
+
+	public void setEquipes(ArrayList<Equipe> equipes) {
+		this.equipes = equipes;
 	}
 	
 }
