@@ -82,13 +82,10 @@ public class VueListeDiscipline extends JPanel {
         
         // Bouton ajouter
         JPanel panelBouton = new JPanel();
-        panelBouton.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(0, 10, 10, 10), 
-                BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK) // Bordure de couleur de 2 pixels en bas
-        ));
         panelBouton.setBackground(Color.WHITE);
         
         JButton button = new JButton("Ajouter");
+        button.setPreferredSize(new Dimension(90, 35));
         button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         button.setFocusPainted(false);
         button.addActionListener(new ActionListener() {
