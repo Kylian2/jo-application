@@ -23,7 +23,6 @@ public class Epreuve implements Serializable, Planning{
 	private ArrayList<Session> sessions;
 	private ArrayList<Athlete> athletes;
 	private Discipline discipline;
-	private int numero;
 	private String nom;
 	private String description;
 	private Boolean individuelle;
