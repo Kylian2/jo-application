@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import controleurs.ControleurAthlete;
 import controleurs.ControleurEquipe;
 
 public class VueAjouterEquipe extends JPanel{
@@ -52,10 +53,18 @@ public class VueAjouterEquipe extends JPanel{
 		defaut10.setBackground(Color.WHITE);
 		JPanel defaut11 = new JPanel();
 		defaut11.setBackground(Color.WHITE);
+		JPanel defaut12 = new JPanel();
+		defaut12.setBackground(Color.WHITE);
+		JPanel defaut13 = new JPanel();
+		defaut13.setBackground(Color.WHITE);
+		JPanel defaut14 = new JPanel();
+		defaut14.setBackground(Color.WHITE);
+		JPanel defaut15 = new JPanel();
+		defaut15.setBackground(Color.WHITE);
 		
 		//////// définition du panel titre 
 		titrePanel = new JPanel();
-		titrePanel.setLayout(new GridLayout(3,2));
+		titrePanel.setLayout(new GridLayout(3,3));
 		titrePanel.setBackground(Color.white);
 		
 		// définition des composants du panel titre
@@ -92,12 +101,19 @@ public class VueAjouterEquipe extends JPanel{
 		mainInfoPanel.add(discipline);
 		mainInfoPanel.add(disciplineTexte);
 		mainInfoPanel.add(defaut7);			// panel vide pour combler et décaller les composants suivant
+		mainInfoPanel.add(defaut8);
+		mainInfoPanel.add(defaut9);
+		mainInfoPanel.add(defaut10);
+		mainInfoPanel.add(defaut11);
+		mainInfoPanel.add(defaut12);
+		mainInfoPanel.add(defaut13);
 		mainInfoPanel.add(nomEquipe);
 		mainInfoPanel.add(nomEquipeTexte);
-		mainInfoPanel.add(defaut8);
-		mainInfoPanel.add(defaut9);			// panel vide pour combler et décaller les composants suivant
-		mainInfoPanel.add(defaut10);
-		mainInfoPanel.add(defaut11);			// panel vide pour combler et décaller les composants suivant
+		mainInfoPanel.add(defaut12);
+		mainInfoPanel.add(defaut13);
+		mainInfoPanel.add(defaut14);
+		mainInfoPanel.add(defaut15);
+			// panel vide pour combler et décaller les composants suivant
 
 		
 		// ajout des composants au panel titre
@@ -177,5 +193,4 @@ public class VueAjouterEquipe extends JPanel{
 		add(bottomPanel);
 		
 	}
-
 }
