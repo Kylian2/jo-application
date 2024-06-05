@@ -120,5 +120,9 @@ public class Discipline implements Serializable{
 	public ArrayList<Epreuve> getEpreuves() {
 		return epreuves;
 	}
+	
+	public void setEpreuves(ArrayList<Epreuve> epreuves) {
+		this.epreuves = epreuves;
+	}
 
 }
