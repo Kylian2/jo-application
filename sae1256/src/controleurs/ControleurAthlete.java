@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import modeles.*;
 import vues.VueListeAthlete;
 
-public class ControleurAthlete {
+public class ControleurAthlete implements Controleur{
 
 	public ApplicationJo application; 
 	public JPanel lastPanel;

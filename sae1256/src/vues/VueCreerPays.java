@@ -5,15 +5,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+import controleurs.ControleurPays;
+
 public class VueCreerPays extends JPanel {
 
     protected JPanel topPanel, middlePanel, bottomPanel;
     protected JLabel creerPays, nom, code;
     protected JTextField nomTexte, codeTexte;
     protected JButton annuler, valider;
+    
+    ControleurPays controleur;
 
-    VueCreerPays()
+    public VueCreerPays(ControleurPays controleur)
     {
+    	
+    	this.controleur = controleur;
+    	
         // Définir le panel du haut et le JLabel contenant le nom de la vue
         topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         topPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0)); // Crée une marge de 30 pixels à gauche
@@ -77,7 +84,7 @@ public class VueCreerPays extends JPanel {
         annuler.setBackground(Color.GRAY);
         annuler.setForeground(Color.WHITE);
         annuler.setPreferredSize(new Dimension(200, 40)); // Définir la taille préférée du bouton
-        valider = new JButton("Valider les modifications");
+        valider = new JButton("Valider");
         valider.setBackground(Color.RED);
         valider.setForeground(Color.WHITE);
         valider.setPreferredSize(new Dimension(200, 40)); // Définir la taille préférée du bouton
@@ -124,30 +131,21 @@ public class VueCreerPays extends JPanel {
 
         public void actionPerformed(ActionEvent e) {
             if (e.getActionCommand().equalsIgnoreCase("Annuler")) {
-                System.out.println("Annulation...");
-                System.out.println("#retour sur la page précédente.");
+                controleur.retour();
             }
             if (e.getActionCommand().equalsIgnoreCase("Valider")) {
-                System.out.println("Pays créé avec succès !");
-                System.out.println("#retour sur la page précédente.");
+            	String code = codeTexte.getText();
+            	String nom = nomTexte.getText();
+            	
+            	boolean creation = controleur.creerPays(code, nom);
+            	
+            	if(creation) {
+            		controleur.enregister();
+                	controleur.retour();
+            	}else {
+            		System.out.println("Une erreur est survenue");
+            	}
             }
         }
     }
-
-	public static void main(String[] args) {
-		// Créer une fenêtre
-		JFrame fenetre = new JFrame();
-		fenetre.setSize(960, 540);
-		fenetre.setLocationRelativeTo(null);
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		// Créer une instance de ma classe
-		VueCreerPays p = new VueCreerPays();
-
-		// Ajouter mon instance dans un des conteneurs de la fenêtre
-		fenetre.add(p);
-
-		// Afficher la fenêtre
-		fenetre.setVisible(true);
-	}
 }
