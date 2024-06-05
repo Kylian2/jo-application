@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import controlleurs.ControlleurAthlete;
+import controleurs.ControleurAthlete;
 
 public class VueAjouterAthlete extends JPanel{
 
@@ -24,10 +24,10 @@ public class VueAjouterAthlete extends JPanel{
     protected JComboBox<String> delegTexte, discipTexte;
 	ArrayList<Pays> paysList;
 	
-	protected ControlleurAthlete controlleur;
+	protected ControleurAthlete controleur;
 
-	VueAjouterAthlete(ControlleurAthlete controlleur){
-		this.controlleur = controlleur;
+	VueAjouterAthlete(ControleurAthlete controleur){
+		this.controleur = controleur;
 		
 		/// définition du Panel "top" 
 		top = new JPanel();
@@ -60,7 +60,7 @@ public class VueAjouterAthlete extends JPanel{
 		
 		delegTexte.addItem("Choisir une delegation");
 		//inserer item dans liste
-		for(Pays pays : controlleur.getPays()) {
+		for(Pays pays : controleur.getPays()) {
 			delegTexte.addItem(pays.getNom());
 		}
 		
@@ -71,7 +71,7 @@ public class VueAjouterAthlete extends JPanel{
 		discipTexte.setPreferredSize(new Dimension(130,30));
 		discipTexte.addItem("Choisir une discipline");
 		//inserer item dans liste
-		for(Discipline discipline : controlleur.getDiscipline()) {
+		for(Discipline discipline : controleur.getDiscipline()) {
 			discipTexte.addItem(discipline.getNom());
 		}
 
@@ -279,7 +279,7 @@ public class VueAjouterAthlete extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand().equalsIgnoreCase("Annuler")){
 				
-				controlleur.retour();
+				controleur.retour();
 				
 			}
 			if (e.getActionCommand().equalsIgnoreCase("Valider")) {
@@ -292,23 +292,13 @@ public class VueAjouterAthlete extends JPanel{
 				String description = descTexte.getText();
 				String pays = (String) delegTexte.getSelectedItem();
 				String discipline = (String) discipTexte.getSelectedItem();
-
-				System.out.println(nom);
-				System.out.println(genre);
-				System.out.println(naissance);
-				System.out.println(poids);
-				System.out.println(taille);
-				System.out.println(prenom);
-				System.out.println(description);				
-				System.out.println(pays);
-				System.out.println(discipline);
 				
-				boolean ajoute = controlleur.createAthlete(nom, prenom, taille, poids, description, naissance, genre, pays, discipline);
+				boolean ajoute = controleur.createAthlete(nom, prenom, taille, poids, description, naissance, genre, pays, discipline);
 
 				if(ajoute) {
 					System.out.println("L'athlete a bien été ajouté");
-					controlleur.enregister();
-					controlleur.retour();
+					controleur.enregister();
+					controleur.retour();
 				}else {
 					System.out.println("Une erreur est survenue suite à l'entrée d'une valeur incorrecte");
 				}
@@ -331,9 +321,9 @@ public class VueAjouterAthlete extends JPanel{
 		
 		applicationJo.recuperer();
 		
-		ControlleurAthlete controlleur = new ControlleurAthlete(applicationJo);
+		ControleurAthlete controleur = new ControleurAthlete(applicationJo);
 
-		VueAjouterAthlete p = new VueAjouterAthlete(controlleur);
+		VueAjouterAthlete p = new VueAjouterAthlete(controleur);
 
 		// Ajouter mon instance dans un des conteneurs de la fen?tre
 		fenetre.add(p);

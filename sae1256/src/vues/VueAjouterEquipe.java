@@ -1,6 +1,7 @@
 package vues;
 import java.awt.*;
 import modeles.ApplicationJo;
+import modeles.Discipline;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import controlleurs.ControlleurAthlete;
+import controleurs.ControleurEquipe;
 
 public class VueAjouterEquipe extends JPanel{
 	JPanel titrePanel, mainInfoPanel, middlePanel, bottomPanel, btnPanel;
@@ -17,9 +18,11 @@ public class VueAjouterEquipe extends JPanel{
 	JTextField nomEquipeTexte;
 	JButton annuler, valider;
 	JComboBox<String> disciplineTexte;
+	
+	ControleurEquipe controleur;
 
-
-	VueAjouterEquipe(){
+	VueAjouterEquipe(ControleurEquipe controleur){
+		this.controleur = controleur;
 		// définition du layout principal 
 		this.setLayout(new GridLayout(3,1));
 		this.setBackground(Color.white);
@@ -82,15 +85,16 @@ public class VueAjouterEquipe extends JPanel{
 		Border borderDiscipline = discipline.getBorder();
 		Border marginDiscipline= new EmptyBorder(0,50,0,0);
 		discipline.setBorder(new CompoundBorder(borderDiscipline, marginDiscipline));		// bordure invisible pour décaler titre du bord de 50px
-		
+		//inserer item dans liste
 		disciplineTexte = new JComboBox<String>();
+		for(Discipline discipline : controleur.getDisciplines()) {
+			disciplineTexte.addItem(discipline.getNom());
+		}
 		
 		// nom d'équipe
 		nomEquipe = new JLabel("Nom de l'équipe :");
 		nomEquipe.setFont(new Font("Source", Font.PLAIN, 15)); 		// taille et style de police
 		nomEquipeTexte = new JTextField("Entrez le nom de l\'équipe");
-		
-		
 		
 		// ajout des composants au panel discipline
 		mainInfoPanel.add(discipline);
@@ -154,6 +158,34 @@ public class VueAjouterEquipe extends JPanel{
 		btnPanel.add(annuler);
 		btnPanel.add(valider);
 		
+		valider.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String nom = nomEquipeTexte.getText();
+				String discipline = (String) disciplineTexte.getSelectedItem();
+				
+				boolean ajoute = controleur.ajouterEquipe(nom, discipline);
+				
+				if(ajoute) {
+					controleur.enregistrer();
+					controleur.retour();
+					
+				}else {
+					System.out.println("Une erreur est survenue suite à l'entrée d'une valeur incorrecte");
+				}
+			}
+			
+		});
+		
+		annuler.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controleur.retour();
+			}
+		});
+		
 		// ajout des panels principaux 
 		add(titrePanel);
 		add(middlePanel);
@@ -161,21 +193,4 @@ public class VueAjouterEquipe extends JPanel{
 		
 	}
 
-	public static void main(String[] args) {
-		// Creer une fenetre
-		JFrame fenetre = new JFrame ();
-		fenetre.setSize(960,540);
-		fenetre.setLocationRelativeTo(null); 
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-
-		// Creer une instance de ma classe
-		VueAjouterEquipe p = new VueAjouterEquipe();
-
-		// Ajouter mon instance dans un des conteneurs de la fen?tre
-		fenetre.add(p);
-
-		// Afficher la fenetre
-		fenetre.setVisible(true);
-	}
 }
