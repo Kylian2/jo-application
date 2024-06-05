@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import controleurs.ControleurAthlete;
 import controleurs.ControleurEquipe;
 
 public class VueAjouterEquipe extends JPanel{
@@ -192,5 +193,4 @@ public class VueAjouterEquipe extends JPanel{
 		add(bottomPanel);
 		
 	}
-
 }
