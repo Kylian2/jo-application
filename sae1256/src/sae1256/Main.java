@@ -7,7 +7,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import controlleurs.ControlleurAthlete;
+import controleurs.ControleurAthlete;
 import modeles.*;
 import vues.*; 
 
@@ -38,7 +38,7 @@ public class Main {
         mainPanel.add(accueil);
         
         //VueAthlete
-        ControlleurAthlete controlleurAthlete = new ControlleurAthlete(applicationJo);
+        ControleurAthlete controlleurAthlete = new ControleurAthlete(applicationJo);
       	VueListeAthlete vueAthlete = new VueListeAthlete(applicationJo, controlleurAthlete,  new Dimension(fenetre.getWidth(), fenetre.getHeight()));
       	
         //VuePays
@@ -52,7 +52,7 @@ public class Main {
       	
       	
 		// Menu de navigation
-        MenuApplication menu = new MenuApplication(mainPanel,accueil, vuePays, vueAthlete, vueDiscipline, vueSession);
+        MenuApplication menu = new MenuApplication(applicationJo,mainPanel,accueil, vuePays, vueAthlete, vueDiscipline, vueSession);
         menu.setPreferredSize(new Dimension(270, fenetre.getHeight())); 
 	        
         // Organiser les panneaux

@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import controlleurs.ControlleurAthlete;
+import controleurs.ControleurAthlete;
 import modeles.ApplicationJo;
 import modeles.Discipline;
 
@@ -37,7 +37,7 @@ public class VueListeDiscipline extends JPanel {
     
     JPanel panelDiscipline;
     
-    ControlleurAthlete controlleur; 
+    ControleurAthlete controlleur; 
     
     Dimension dimension;
     

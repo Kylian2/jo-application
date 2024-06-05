@@ -155,6 +155,11 @@ public class Athlete implements Serializable{
 		}else {
 			System.out.println("Discipline : " + "Non definie");
 		}
+		if(equipe != null) {
+			System.out.println("Equipe : " + equipe.getNom());
+		}else {
+			System.out.println("Equipe : " + "Non definie");
+		}
 		System.out.println("Poids : " + poids);
 		System.out.println("Taille : " + taille);
 		System.out.println("Récompenses : " + recompenses.getOr() + "O" + recompenses.getArgent() + "A" + recompenses.getBronze() + "B");
@@ -271,5 +276,17 @@ public class Athlete implements Serializable{
 	
 	public int getTaille() {
 		return taille;
+	}
+
+	public void setEquipe(Equipe equipe) {
+		this.equipe = equipe;
+	}
+
+	public Equipe getEquipe() {
+		return equipe;
+	}
+	
+	public void removeEquipe() {
+		this.equipe = null;
 	}
 }

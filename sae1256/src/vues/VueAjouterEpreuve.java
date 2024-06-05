@@ -18,6 +18,7 @@ public class VueAjouterEpreuve extends JPanel{
     protected JList<String> membres;
     protected ArrayList<Discipline> disciplinesList;
     protected ArrayList<Athlete> athletesList;
+    
 
     VueAjouterEpreuve() {
         setLayout(new BorderLayout());
