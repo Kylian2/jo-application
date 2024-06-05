@@ -117,10 +117,15 @@ public class MenuApplication extends JPanel {
         });
         // Ajouter les boutons au panneau principal
         add(athletesButton);
+        athletesButton.setBackground(Couleur.COULEUR_FOND_JO.getColor());
         add(paysButton);
+        paysButton.setBackground(Couleur.COULEUR_FOND_JO.getColor());
         add(resultsButton);
+        resultsButton.setBackground(Couleur.COULEUR_FOND_JO.getColor());
         add(planningButton);
+        planningButton.setBackground(Couleur.COULEUR_FOND_JO.getColor());
         add(disciplineButton);
+        disciplineButton.setBackground(Couleur.COULEUR_FOND_JO.getColor());
         
     }
     

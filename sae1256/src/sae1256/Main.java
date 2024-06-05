@@ -50,7 +50,6 @@ public class Main {
       	//ApercuSession 
       	VueApercuSession vueSession = new VueApercuSession(applicationJo, new Dimension(fenetre.getWidth(), fenetre.getHeight()));
       	
-      	
 		// Menu de navigation
         MenuApplication menu = new MenuApplication(applicationJo,mainPanel,accueil, vuePays, vueAthlete, vueDiscipline, vueSession);
         menu.setPreferredSize(new Dimension(270, fenetre.getHeight())); 

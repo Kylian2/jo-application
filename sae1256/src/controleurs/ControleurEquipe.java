@@ -8,7 +8,7 @@ import modeles.*;
 import vues.VueListeAthlete;
 import vues.VueListeEquipePays;
 
-public class ControleurEquipe {
+public class ControleurEquipe implements Controleur {
 	
 	public ApplicationJo application;
 	public JPanel lastPanel;
