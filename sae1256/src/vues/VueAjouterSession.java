@@ -1,18 +1,26 @@
 package vues;
-import java.awt.*;
-import modeles.ApplicationJo;
-import modeles.Athlete;
-import modeles.Discipline;
-import modeles.Pays;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
-import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JComponent;
 
 import controleurs.ControleurAthlete;
+import modeles.ApplicationJo;
 
 public class VueAjouterSession extends JPanel {
 		
@@ -130,6 +138,29 @@ public class VueAjouterSession extends JPanel {
         info.add(categoriePanel);
         info.add(Box.createHorizontalStrut(10));
         info.add(sexePanel);
+        
+        
+        //JTable pour stocker les résultats
+        JPanel tabPanel = new JPanel();
+        tabPanel.setLayout(new GridLayout(3,1));
+        DefaultTableModel modele = new DefaultTableModel();
+        JTable tableau = new JTable(modele);
+        
+        modele.addColumn("col1");
+        modele.addColumn("col2");
+        modele.addColumn("col3");
+        
+        modele.addRow(new Object[] {"1","2","3"});
+        modele.addRow(new Object[] {"4","5","6"});
+        modele.addRow(new Object[] {"7","8","9"});
+        
+        mainPanel.add(new JPanel(), BorderLayout.NORTH);
+        // ajout des compostant au mainJpane
+        JScrollPane panneau = new JScrollPane(tableau);
+        tableau.setFillsViewportHeight(true);
+        tabPanel.add(new JPanel());
+        tabPanel.add(panneau);
+        mainPanel.add(tabPanel, BorderLayout.CENTER);
         
         // définition de panel vide pour combler la mise en page
         JPanel defaut = new JPanel();
