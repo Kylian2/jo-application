@@ -5,7 +5,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -13,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controleurs.ControleurPays;
 import controleurs.ControleurSession;
 import modeles.*;
 
@@ -152,6 +157,23 @@ public class VueApercuSession extends JPanel {
         buttonPanel.setMaximumSize(new Dimension((int)dimension.getWidth(), 210));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         JButton VoirToutButton = new JButton("Voir le planning complet");
+        
+        VoirToutButton.addActionListener(new ActionListener(){
+        	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				application.mainPanel.removeAll();
+				ControleurSession controleur = new ControleurSession(application);
+				controleur.setLastPanel(VueApercuSession.this);
+				// Créer une instance de la class LocalDate et l'initialisé au 24 juillet (début JO)
+				LocalDate date = LocalDate.of(2024, 7, 24);
+				application.mainPanel.add(new VuePlanning(controleur, date));
+
+				// Rafraîchir le conteneur
+                application.mainPanel.revalidate();
+                application.mainPanel.repaint();
+			}
+        });
         VoirToutButton.setBackground(Color.RED);
         VoirToutButton.setForeground(Color.WHITE);
         buttonPanel.add(VoirToutButton, BorderLayout.EAST);

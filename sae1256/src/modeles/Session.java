@@ -136,4 +136,8 @@ public class Session implements Serializable, Comparable<Session> {
 	public String getLieu() {
 		return lieu;
 	}
+	
+	public LocalDate getDate() {
+		return date;
+	}
 }

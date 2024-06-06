@@ -112,6 +112,10 @@ public class Epreuve implements Serializable, Planning{
 		return nom;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+	
 	public void setIndividuelle(boolean individuelle) {
 		this.individuelle = individuelle;
 	}

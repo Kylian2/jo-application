@@ -69,4 +69,14 @@ public class ControleurSession implements Controleur{
 		}
 		return toutesSessionOrdonnee;
 	}
+	
+	public ArrayList<Session> getToutesSessionsDeLaDate(LocalDate date) {
+		ArrayList<Session> sessionsDeLaDate = new ArrayList<Session>();
+		for (Session session : getToutesSessionOrdonnées()) {
+			if (session.getDate().isEqual(date)){
+				sessionsDeLaDate.add(session);
+			}
+		}
+		return sessionsDeLaDate;
+	}
 }
