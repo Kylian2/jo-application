@@ -14,9 +14,7 @@ public interface Planning {
      *
      * @param epreuve l'épreuve (test ou examen) à planifier
      */
-    public ArrayList<Session> OrdonneSession(ArrayList<Session> sessionsNonOrdonnee){
-    	
-    }
+    public ArrayList<Session> OrdonneSession(ArrayList<Session> sessionsNonOrdonnee);
 
 }
 
