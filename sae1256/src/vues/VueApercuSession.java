@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -12,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controleurs.ControleurPays;
 import modeles.*;
 
 public class VueApercuSession extends JPanel {
@@ -139,12 +142,28 @@ public class VueApercuSession extends JPanel {
         JButton VoirToutButton = new JButton("Voir le planning complet");
         VoirToutButton.setBackground(Color.RED);
         VoirToutButton.setForeground(Color.WHITE);
+        // Permet au bouton de changer la page
+        VoirToutButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				application.mainPanel.removeAll();
+				ControleurPays controleur = new ControleurPays(application);
+				controleur.setLastPanel(VueApercuSession.this);
+				application.mainPanel.add(new VuePlanning(controleur));
+
+				// Rafraîchir le conteneur
+                application.mainPanel.revalidate();
+                application.mainPanel.repaint();
+			}
+        	
+        });
+        
         buttonPanel.add(VoirToutButton, BorderLayout.EAST);
         
         add(header);
         add(sessionEnCoursPanel);
         add(sessionAVenirPanel);
         add(buttonPanel);
-
 	}
 }

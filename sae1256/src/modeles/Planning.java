@@ -10,11 +10,13 @@ import java.util.ArrayList;
 public interface Planning {
 
     /**
-     * Ordonne par ordre chronologique les session pour une épreuve donnée.
+     * Ordonne par ordre chronologique les sessions pour une épreuve donnée.
      *
      * @param epreuve l'épreuve (test ou examen) à planifier
      */
-    public ArrayList<Session> OrdonneSession(ArrayList<Session> sessionsNonOrdonnee);
+    public ArrayList<Session> OrdonneSession(ArrayList<Session> sessionsNonOrdonnee){
+    	
+    }
 
 }
 

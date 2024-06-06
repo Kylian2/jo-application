@@ -103,4 +103,12 @@ public class Session implements Serializable, Comparable<Session> {
 		this.epreuve = epreuve;
 	}
 
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public String getHeure() {
+		return heure;
+	}
+
 }
