@@ -1,13 +1,19 @@
 package controleurs;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.swing.JPanel;
 
 import modeles.ApplicationJo;
+import modeles.Discipline;
+import modeles.Epreuve;
+import modeles.Session;
 import vues.ListeEpreuve;
 
 public class ControleurSession implements Controleur{
@@ -45,4 +51,20 @@ public class ControleurSession implements Controleur{
             return null;
         }
     }
+
+	public ArrayList<Session> getToutesSessionOrdonnées() {
+		ArrayList<Session> toutesSessionOrdonnee = new ArrayList<Session>();
+		for(Discipline discipline : this.application.disciplinesList) {
+			for(Epreuve epreuve : discipline.getEpreuves()) {
+				for(Session session : epreuve.getSession()) {
+					toutesSessionOrdonnee.add(session);
+				}
+			}
+		}
+		
+		for(Session session : toutesSessionOrdonnee) {
+			System.out.println(session);
+		}
+		return toutesSessionOrdonnee;
+	}
 }

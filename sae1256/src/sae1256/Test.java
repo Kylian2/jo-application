@@ -49,10 +49,10 @@ public class Test {
         LocalDate date3 = controleurSession.convertStringToLocalDate("20/07/2024");
         LocalDate date4 = controleurSession.convertStringToLocalDate("21/07/2024");
         
-        //applicationJo.disciplinesList.get(1).getEpreuves().get(0).ajouterSession(new Session(date1, "10:30", 60));
-        //applicationJo.disciplinesList.get(1).getEpreuves().get(0).ajouterSession(new Session(date3, "10:30", 60));
-        //applicationJo.disciplinesList.get(0).getEpreuves().get(0).ajouterSession(new Session(date2, "14:30", 60));
-        //applicationJo.disciplinesList.get(0).getEpreuves().get(0).ajouterSession(new Session(date4, "9:30", 120));
+        applicationJo.disciplinesList.get(1).getEpreuves().get(0).ajouterSession(new Session(date1, "10:30", 60, "Piscine George Vallerey"));
+        applicationJo.disciplinesList.get(1).getEpreuves().get(0).ajouterSession(new Session(date3, "10:30", 60, "Piscine George Vallerey"));
+        applicationJo.disciplinesList.get(0).getEpreuves().get(0).ajouterSession(new Session(date2, "14:30", 60, "Stade de France"));
+        applicationJo.disciplinesList.get(0).getEpreuves().get(0).ajouterSession(new Session(date4, "9:30", 120, "Stade de France"));
         
         System.out.println("Liste des sessions des epreuves de Natation");
         for (Epreuve epreuve : applicationJo.disciplinesList.get(1).getEpreuves()) {

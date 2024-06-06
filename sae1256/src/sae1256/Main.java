@@ -47,11 +47,8 @@ public class Main {
       	//VueDiscplines 
       	VueListeDiscipline vueDiscipline = new VueListeDiscipline(applicationJo, new Dimension(fenetre.getWidth(), fenetre.getHeight()));
       	
-      	//ApercuSession 
-      	VueApercuSession vueSession = new VueApercuSession(applicationJo, new Dimension(fenetre.getWidth(), fenetre.getHeight()));
-      	
 		// Menu de navigation
-        MenuApplication menu = new MenuApplication(applicationJo,mainPanel,accueil, vuePays, vueAthlete, vueDiscipline, vueSession);
+        MenuApplication menu = new MenuApplication(applicationJo,mainPanel,accueil, vuePays, vueAthlete, vueDiscipline);
         menu.setPreferredSize(new Dimension(270, fenetre.getHeight())); 
 	        
         // Organiser les panneaux
