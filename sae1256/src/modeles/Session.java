@@ -1,8 +1,11 @@
 package modeles;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class Session implements Serializable, Comparable<Session> {
@@ -10,7 +13,7 @@ public class Session implements Serializable, Comparable<Session> {
 	private static final long serialVersionUID = 1L;
 	
 	private ArrayList<Athlete> participants;
-	private Lieu lieu;
+	private String lieu;
 	private Epreuve epreuve;
 	private LocalDate date;
 	private String heure;
@@ -33,7 +36,7 @@ public class Session implements Serializable, Comparable<Session> {
 	 * @param heure
 	 * @param lieu
 	 */
-	Session(LocalDate date, String heure, int duree, Lieu lieu) {
+	public Session(LocalDate date, String heure, int duree, String lieu) {
 		this.date = date;
 		this.heure = heure;
 		this.lieu = lieu;
@@ -71,8 +74,19 @@ public class Session implements Serializable, Comparable<Session> {
 	}
 
 	public String calculerHeureFin() {
-		// TODO - implement Session.calculerHeureFin
-		throw new UnsupportedOperationException();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
+        try {
+            // Convertir l'heure de début en LocalTime
+            LocalTime startTime = LocalTime.parse(heure, timeFormatter);
+
+            // Calculer l'heure de fin
+            LocalTime endTime = startTime.plus(Duration.ofMinutes(duree));
+            return endTime.format(timeFormatter);
+        } catch (DateTimeParseException | NumberFormatException e) {
+            System.err.println("Erreur de parsing: " + e.getMessage());
+            return null;
+        }
 	}
 
 	public boolean detruire() {
@@ -103,12 +117,23 @@ public class Session implements Serializable, Comparable<Session> {
 		this.epreuve = epreuve;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public Epreuve getEpreuve() {
+		return epreuve;
 	}
 
-	public String getHeure() {
+	public String getHeureDebut() {
 		return heure;
 	}
 
+	public int getDuree() {
+		return duree;
+	}
+	
+	public void setLieu(String Lieu) {
+		this.lieu = lieu;
+	}
+
+	public String getLieu() {
+		return lieu;
+	}
 }

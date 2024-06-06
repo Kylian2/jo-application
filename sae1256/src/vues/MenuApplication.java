@@ -3,6 +3,7 @@ package vues;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import controleurs.ControleurSession;
 import modeles.ApplicationJo;
 
 import java.awt.*;
@@ -28,7 +29,7 @@ public class MenuApplication extends JPanel {
     
     ApplicationJo application;
 	
-    public MenuApplication(ApplicationJo application,JPanel vueConteneur,VueAccueil accueil, VueListePays vuePays, VueListeAthlete vueAthlete, VueListeDiscipline vueDiscipline, VueApercuSession vueSession) {
+    public MenuApplication(ApplicationJo application,JPanel vueConteneur,VueAccueil accueil, VueListePays vuePays, VueListeAthlete vueAthlete, VueListeDiscipline vueDiscipline) {
     	this.vueConteneur = vueConteneur;
     	
     	this.application = application;
@@ -93,7 +94,8 @@ public class MenuApplication extends JPanel {
 				//Masquer les autres
 				vueConteneur.removeAll();
 				//Afficher le panel correspondant
-				vueConteneur.add(vueSession, BorderLayout.CENTER);
+				ControleurSession controleurSession = new ControleurSession(MenuApplication.this.application);
+				vueConteneur.add(new VueApercuSession(controleurSession, new Dimension(700, 540)), BorderLayout.CENTER);
 				
 				// Rafraîchir le conteneur
                 vueConteneur.revalidate();
