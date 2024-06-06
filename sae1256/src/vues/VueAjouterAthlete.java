@@ -53,11 +53,11 @@ public class VueAjouterAthlete extends JPanel{
 
 		nom = new JLabel("Nom :");
 		nomTexte = new JTextField("Entrez le nom de l'athlète");
-		nomTexte.setPreferredSize(new Dimension(130,30));
+		nomTexte.setPreferredSize(new Dimension(150,30));
 		
 		prenom = new JLabel("Prénom :");
 		prenomTexte = new JTextField("Entrez le prénom de l'athlète");
-		prenomTexte.setPreferredSize(new Dimension(130,30));
+		prenomTexte.setPreferredSize(new Dimension(170,30));
 
 		deleg = new JLabel("Délégation :");
 		delegTexte = new JComboBox();
@@ -149,7 +149,7 @@ public class VueAjouterAthlete extends JPanel{
 		
 		// définition des bouton annuler - valider
 		annuler = new JButton("Annuler");
-		valider = new JButton("Valider les modification");
+		valider = new JButton("Valider les modifications");
 		valider.setActionCommand("Valider");
 
 		//uniformisation de la police d'écriture
