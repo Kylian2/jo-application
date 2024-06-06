@@ -41,14 +41,7 @@ public class Test {
         	System.out.println(discipline.getNom());
         	discipline.afficherEpreuves();
         }
-        
-        ControleurSession controleurSession = new ControleurSession(applicationJo);
-        
-        LocalDate date1 = controleurSession.convertStringToLocalDate("19/07/2024");
-        LocalDate date2 = controleurSession.convertStringToLocalDate("19/07/2024");
-        LocalDate date3 = controleurSession.convertStringToLocalDate("20/07/2024");
-        LocalDate date4 = controleurSession.convertStringToLocalDate("21/07/2024");
-                
+                        
         System.out.println("Liste des sessions des epreuves de Natation");
         for (Epreuve epreuve : applicationJo.disciplinesList.get(1).getEpreuves()) {
         	System.out.println(epreuve.getNom());
