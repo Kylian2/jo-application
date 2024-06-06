@@ -111,7 +111,7 @@ public class VueApercuSession extends JPanel {
         
         //Ajout de 3 cartes pour les sessions à venir 
         Color[] colors = {Couleur.BLEU_JO.getColor(), Couleur.JAUNE_JO.getColor(), Couleur.VERT_JO.getColor()};
-        for (int i = 0; i<3 && i < toutSessionOrdonnee.size(); i++) {
+        for (int i = 1; i<4 && i < toutSessionOrdonnee.size(); i++) {
         	Session sessionCourante = toutSessionOrdonnee.get(i);
         	
         	JPanel sessionAVenirCard = new JPanel(new BorderLayout());
@@ -165,7 +165,6 @@ public class VueApercuSession extends JPanel {
                 // Rafraîchir le conteneur
 				controleur.application.mainPanel.revalidate();
 				controleur.application.mainPanel.repaint();
-				
 			}
         	
         });
