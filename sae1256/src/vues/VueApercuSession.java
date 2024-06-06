@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -13,12 +15,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controleurs.ControleurEquipe;
 import controleurs.ControleurSession;
 import modeles.*;
 
 public class VueApercuSession extends JPanel {
-	
-	ApplicationJo application;
 	
 	Dimension dimension;
 	
@@ -151,10 +152,25 @@ public class VueApercuSession extends JPanel {
         buttonPanel.setBackground(Color.WHITE);
         buttonPanel.setMaximumSize(new Dimension((int)dimension.getWidth(), 210));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-        JButton VoirToutButton = new JButton("Voir le planning complet");
-        VoirToutButton.setBackground(Color.RED);
-        VoirToutButton.setForeground(Color.WHITE);
-        buttonPanel.add(VoirToutButton, BorderLayout.EAST);
+        JButton voirToutButton = new JButton("Voir le planning complet");
+        voirToutButton.setBackground(Color.RED);
+        voirToutButton.setForeground(Color.WHITE);
+        
+        voirToutButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controleur.application.mainPanel.removeAll();
+				controleur.application.mainPanel.add(new VuePlanning(controleur));
+                // Rafraîchir le conteneur
+				controleur.application.mainPanel.revalidate();
+				controleur.application.mainPanel.repaint();
+				
+			}
+        	
+        });
+        
+        buttonPanel.add(voirToutButton, BorderLayout.EAST);
         
         add(header);
         add(sessionEnCoursPanel);
