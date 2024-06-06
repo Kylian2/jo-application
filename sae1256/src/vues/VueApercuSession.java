@@ -152,6 +152,8 @@ public class VueApercuSession extends JPanel {
         buttonPanel.setMaximumSize(new Dimension((int)dimension.getWidth(), 210));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         JButton VoirToutButton = new JButton("Voir le planning complet");
+        VoirToutButton.setBackground(Color.RED);
+        VoirToutButton.setForeground(Color.WHITE);
         buttonPanel.add(VoirToutButton, BorderLayout.EAST);
         
         add(header);
