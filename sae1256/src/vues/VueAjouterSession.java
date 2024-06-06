@@ -43,6 +43,9 @@ public class VueAjouterSession extends JPanel {
 	VueAjouterSession(ControleurSession controleur){
 		this.setLayout(new BorderLayout());
 		
+		//Déclaration du moedele de table
+        DefaultTableModel modele = new DefaultTableModel();
+		
         // initialisation des panel globaux
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
@@ -95,6 +98,9 @@ public class VueAjouterSession extends JPanel {
                 if(!selectedItem.equalsIgnoreCase("Choisir une discipline")) {
                 	ArrayList<Epreuve> epreuves = controleur.getEpreuveDiscipline(selectedItem);
                 	epreuveTexte.removeAllItems();
+                	while(modele.getRowCount() != 0) {
+                		modele.removeRow(0);
+                	}
                 	for(Epreuve epreuveFromControleur : epreuves) {
                 		epreuveTexte.addItem(epreuveFromControleur.getNom());
                 	}
@@ -201,7 +207,6 @@ public class VueAjouterSession extends JPanel {
         JPanel tabPanel = new JPanel();
         tabPanel.setBackground(Color.WHITE);
         tabPanel.setLayout(new GridLayout(3,1));
-        DefaultTableModel modele = new DefaultTableModel();
         JTable tableau = new JTable(modele);
         
         ArrayList<Athlete> athletesDisponibles = new ArrayList<Athlete>();
