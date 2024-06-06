@@ -13,6 +13,11 @@ import javax.swing.border.*;
 import controleurs.ControleurAthlete;
 import controleurs.ControleurEquipe;
 
+/**
+ * Vue permettant d'ajouter une équipe
+ * @author klentz
+ */
+
 public class VueAjouterEquipe extends JPanel{
 	JPanel titrePanel, mainInfoPanel, middlePanel, bottomPanel, btnPanel;
 	JLabel titre, discipline,nomEquipe;

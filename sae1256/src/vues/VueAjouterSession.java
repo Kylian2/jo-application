@@ -23,6 +23,11 @@ import javax.swing.JComponent;
 import controleurs.ControleurAthlete;
 import modeles.ApplicationJo;
 
+/**
+ * Vue permettant d'ajouter une session
+ * @author klentz
+ */
+
 public class VueAjouterSession extends JPanel {
 		
 	
