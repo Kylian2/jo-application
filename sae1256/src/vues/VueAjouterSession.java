@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -116,6 +117,8 @@ public class VueAjouterSession extends JPanel {
         JLabel sexe = new JLabel("Sexe :     ", SwingConstants.RIGHT);
         JComboBox<String> sexeTexte = new JComboBox<String>();
         sexeTexte.addItem("Choisir un sexe");
+        sexeTexte.addItem("Homme");
+        sexeTexte.addItem("Femme");
         sexePanel.setBackground(Color.WHITE);
         sexePanel.add(sexe);
         sexePanel.add(sexeTexte);
@@ -140,23 +143,67 @@ public class VueAjouterSession extends JPanel {
         info.add(sexePanel);
         
         
+        // panel ajouter Athlete
+        // initialisation des composant de athletePanel
+        JPanel athletePanel = new JPanel();
+        athletePanel.setLayout(new GridLayout(4,4));
+		athletePanel.setBorder(BorderFactory.createEmptyBorder(0,40, 0, 40));
+        
+		JLabel athlete = new JLabel(" Athlète :");
+        athlete.setHorizontalAlignment(SwingConstants.LEFT);		// aligner le texte à droite dans son Panel
+        JComboBox<String> athleteTexte = new JComboBox<String>();
+        athleteTexte.addItem("Choisir un athlète");
+        JButton ajouterAthlete = new JButton("Ajouter");
+        ajouterAthlete.setForeground(Color.white);
+        ajouterAthlete.setBackground((Couleur.ROUGE_JO).getColor());
+        
+        // ajout des composant a athletePanel 
+//        for (int i = 0; i < 4; i++) {			// ajout de panel vide est blanc pour placer correctement athletePanel
+//            JPanel panel = new JPanel();
+//            panel.setBackground(Color.WHITE);
+//            athletePanel.add(panel);
+//    }
+
+        athletePanel.add(athlete);
+        athletePanel.add(athleteTexte);	
+        JPanel defaut4 = new JPanel();
+        defaut4.setBackground(Color.WHITE);
+        athletePanel.add(defaut4);
+        athletePanel.add(ajouterAthlete);
+        
+        mainPanel.add(athletePanel, BorderLayout.NORTH);
+        
         //JTable pour stocker les résultats
         JPanel tabPanel = new JPanel();
         tabPanel.setLayout(new GridLayout(3,1));
         DefaultTableModel modele = new DefaultTableModel();
         JTable tableau = new JTable(modele);
         
-        modele.addColumn("col1");
-        modele.addColumn("col2");
-        modele.addColumn("col3");
+        modele.addColumn("NomAthlete");
+        modele.addColumn("PrenomAthlete");
+        modele.addColumn("CodePays");
         
+        modele.addRow(new Object[] {"1","2","3"});
+        modele.addRow(new Object[] {"7","8","9"});
+        modele.addRow(new Object[] {"1","2","3"});
+        modele.addRow(new Object[] {"4","5","6"});
+        modele.addRow(new Object[] {"7","8","9"});
+        modele.addRow(new Object[] {"1","2","3"});
+        modele.addRow(new Object[] {"4","5","6"});
+        modele.addRow(new Object[] {"7","8","9"});
+        modele.addRow(new Object[] {"1","2","3"});
+        modele.addRow(new Object[] {"4","5","6"});
+        modele.addRow(new Object[] {"7","8","9"});
+        modele.addRow(new Object[] {"1","2","3"});
+        modele.addRow(new Object[] {"4","5","6"});
+        modele.addRow(new Object[] {"7","8","9"});
         modele.addRow(new Object[] {"1","2","3"});
         modele.addRow(new Object[] {"4","5","6"});
         modele.addRow(new Object[] {"7","8","9"});
         
-        mainPanel.add(new JPanel(), BorderLayout.NORTH);
         // ajout des compostant au mainJpane
         JScrollPane panneau = new JScrollPane(tableau);
+        panneau.setBorder(BorderFactory.createEmptyBorder(0,40, 0, 40));
         tableau.setFillsViewportHeight(true);
         tabPanel.add(new JPanel());
         tabPanel.add(panneau);
