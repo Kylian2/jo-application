@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import controleurs.ControleurDiscipline;
+
 /**
  * Cette classe représente la vue pour ajouter une discipline.
  * Elle hérite de JPanel.
@@ -17,15 +19,17 @@ public class VueAjouterDiscipline extends JPanel {
     protected JPanel PanelGauche, PanelTitre, PanelInfo, PanelNom, PanelNum, 
     PanelTextDescription, PanelJtextField, PanelDroite, PanelAction;
     protected JLabel Titre, Nom, Numero, Description;
-    protected JTextField NomTexte, NumeroTexte ;
-    protected JTextArea DescriptionTexte;
-    protected JButton Annuler, Valider;
+    protected JTextField nomTexte, NumeroTexte ;
+    protected JTextArea descriptionTexte;
+    protected JButton annuler, valider;
 
+    ControleurDiscipline controleur;
     /**
      * Constructeur de la classe VueAjouterDiscipline.
      */
-    VueAjouterDiscipline()
+    VueAjouterDiscipline(ControleurDiscipline controleur)
     {
+    	this.controleur = controleur;
         // Définition de la disposition du Panel VueAjouterDiscipline
         this.setLayout(new GridLayout(1,2));
         
@@ -57,40 +61,27 @@ public class VueAjouterDiscipline extends JPanel {
         // Création du nom avec son champs de texte
         JLabel Nom = new JLabel("Nom :");
         Nom.setFont(new Font("Arial", Font.PLAIN, 20));
-        JTextField NomTexte = new JTextField("Entrez le nom d'une discipline");
-        NomTexte.setPreferredSize(new Dimension(170, 30)); 
+        JTextField nomTexte = new JTextField("Entrez le nom d'une discipline");
+        nomTexte.setPreferredSize(new Dimension(170, 30)); 
         
         // Ajout des éléments dans les Panel
         PanelNom.add(Nom);
-        PanelNom.add(NomTexte);
+        PanelNom.add(nomTexte);
         PanelNom.setBackground(Color.WHITE);
         PanelNom.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 180));
         PanelInfo.add(PanelNom);
         
-        // Création du numero avec son champs de texte
-        JLabel Numero = new JLabel("Numéro :");
-        Numero.setFont(new Font("Arial", Font.PLAIN, 20));
-        JTextField NumeroTexte = new JTextField("Entrez le numero d'une discipline");
-        NumeroTexte.setPreferredSize(new Dimension(200, 30)); 
-        
-        // Ajout dans les Panel
-        PanelNum.add(Numero);
-        PanelNum.add(NumeroTexte);
-        PanelNum.setBackground(Color.WHITE);
-        PanelNum.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 120));
-        PanelInfo.add(PanelNum);
-        
         // Création de la description avec son champs de texte
         JLabel Description = new JLabel("Description :");
         Description.setFont(new Font("Arial", Font.PLAIN, 20));
-        JTextArea DescriptionTexte = new JTextArea("Entrez une description pour cette discipline");
+        JTextArea descriptionTexte = new JTextArea("Entrez une description pour cette discipline");
         Border bordureNoir = BorderFactory.createLineBorder(Color.black);
-        DescriptionTexte.setBorder(bordureNoir);
-        DescriptionTexte.setPreferredSize(new Dimension(290, 250)); 
+        descriptionTexte.setBorder(bordureNoir);
+        descriptionTexte.setPreferredSize(new Dimension(290, 250)); 
         
         // Ajout dans les Panel
         PanelTextDescription.add(Description);
-        PanelJtextField.add(DescriptionTexte);
+        PanelJtextField.add(descriptionTexte);
         PanelTextDescription.setBackground(Color.WHITE);
         PanelJtextField.setBackground(Color.WHITE);
         
@@ -123,20 +114,48 @@ public class VueAjouterDiscipline extends JPanel {
         PanelAction.setBackground(Color.WHITE);
         
         // Création des boutons avec leur style
-        JButton Annuler = new JButton("Annuler");
-        Annuler.setBackground(Color.GRAY);
-        Annuler.setForeground(Color.WHITE);
-        Annuler.setFont(new Font("Arial", Font.PLAIN, 16));
+        JButton annuler = new JButton("annuler");
+        annuler.setBackground(Color.GRAY);
+        annuler.setForeground(Color.WHITE);
+        annuler.setFont(new Font("Arial", Font.PLAIN, 16));
         
-        JButton Valider = new JButton("Valider les modifications");
-        Valider.setBackground(Color.RED);
-        Valider.setForeground(Color.WHITE);
-        Valider.setFont(new Font("Arial", Font.PLAIN, 16));
+        JButton valider = new JButton("valider les modifications");
+        valider.setBackground(Color.RED);
+        valider.setForeground(Color.WHITE);
+        valider.setFont(new Font("Arial", Font.PLAIN, 16));
         
         // Ajout dans les Panel de niveau moyen
         PanelAction.setBorder(BorderFactory.createEmptyBorder(0, 0, 25, 0));
-        PanelAction.add(Annuler);
-        PanelAction.add(Valider);
+        PanelAction.add(annuler);
+        PanelAction.add(valider);
+        
+        valider.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String nom = nomTexte.getText();
+	            String description = descriptionTexte.getText();
+
+	            boolean creation = controleur.creerDiscipline(nom, description);
+
+	            if (creation) {
+	                controleur.enregister();
+	                controleur.retour();
+	            } else {
+	                System.out.println("Une erreur est survenue");
+	            }
+			}
+            
+        });
+        
+        annuler.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controleur.retour();
+			}
+        	
+        });
         
         // Disposition des Panel dans les cellules du grid
         PanelDroite.add(PanelRemplissage2, BorderLayout.NORTH);
@@ -147,22 +166,4 @@ public class VueAjouterDiscipline extends JPanel {
         this.add(PanelGauche);
         this.add(PanelDroite);
     }
-
-    //Création de la JFrame
-  	public static void main(String[] args) {
-  			
-  		//Paramétrage de la fenêtre
-  		JFrame fenetre = new JFrame("Descriptif de la session");
-  		fenetre.setSize(960,540);
-  			
-  		//Permet de fermer la fenêtre si on appuie sur la croix en haut à gauche
-  		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  			
-  		//Création du nouveau PanelCalculatrice et ajout à le fenêtre 
-  		VueAjouterDiscipline panel = new VueAjouterDiscipline(); 
-  		fenetre.add(panel);
-  			
-  		//Rend la JFrame visible
-  		fenetre.setVisible(true);
-  	}
 }
