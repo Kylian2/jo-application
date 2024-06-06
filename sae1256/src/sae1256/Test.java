@@ -2,6 +2,7 @@ package sae1256;
 
 import java.time.LocalDate;
 
+import controleurs.ControleurSession;
 import modeles.*;
 
 public class Test {
@@ -38,11 +39,37 @@ public class Test {
         System.out.println("\n------Disciplines récupérés : ");
         for(Discipline discipline : applicationJo.disciplinesList) {
         	System.out.println(discipline.getNom());
-        	discipline.afficherEpreuves();  
+        	discipline.afficherEpreuves();
         }
         
-        //applicationJo.paysList.add(new Pays("DEU", "Allemagne"));
-               
+        ControleurSession controleurSession = new ControleurSession(applicationJo);
+        
+        LocalDate date1 = controleurSession.convertStringToLocalDate("19/07/2024");
+        LocalDate date2 = controleurSession.convertStringToLocalDate("19/07/2024");
+        LocalDate date3 = controleurSession.convertStringToLocalDate("20/07/2024");
+        LocalDate date4 = controleurSession.convertStringToLocalDate("21/07/2024");
+        
+        //applicationJo.disciplinesList.get(1).getEpreuves().get(0).ajouterSession(new Session(date1, "10:30", 60));
+        //applicationJo.disciplinesList.get(1).getEpreuves().get(0).ajouterSession(new Session(date3, "10:30", 60));
+        //applicationJo.disciplinesList.get(0).getEpreuves().get(0).ajouterSession(new Session(date2, "14:30", 60));
+        //applicationJo.disciplinesList.get(0).getEpreuves().get(0).ajouterSession(new Session(date4, "9:30", 120));
+        
+        System.out.println("Liste des sessions des epreuves de Natation");
+        for (Epreuve epreuve : applicationJo.disciplinesList.get(1).getEpreuves()) {
+        	System.out.println(epreuve.getNom());
+        	for(Session session : epreuve.getSession()) {
+        		System.out.println(session);
+        	}
+        }
+        
+        System.out.println("Liste des sessions des epreuves d'athlétisme ");
+        for (Epreuve epreuve : applicationJo.disciplinesList.get(0).getEpreuves()) {
+        	System.out.println(epreuve.getNom());
+        	for(Session session : epreuve.getSession()) {
+        		System.out.println(session);
+        	}
+        }
+        
         applicationJo.enregister();
         
 	}
