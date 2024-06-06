@@ -78,7 +78,7 @@ public class VueApercuSession extends JPanel {
         infoNiveau1.add(sessionEnCoursEpreuve, BorderLayout.SOUTH);
         
         JPanel infoNiveau2 = new JPanel(new BorderLayout());
-        infoNiveau2.setBorder(BorderFactory.createEmptyBorder(0, 150, 0, 150));
+        infoNiveau2.setBorder(BorderFactory.createEmptyBorder(0, 125, 0, 125));
         infoNiveau2.setBackground(Couleur.ROUGE_JO.getColor());
 
         String heureDebut = sessionEnCours.getHeureDebut(); 

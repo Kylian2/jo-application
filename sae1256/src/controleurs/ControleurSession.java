@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
 
 import javax.swing.JPanel;
@@ -61,6 +62,7 @@ public class ControleurSession implements Controleur{
 				}
 			}
 		}
+		Collections.sort(toutesSessionOrdonnee);
 		
 		for(Session session : toutesSessionOrdonnee) {
 			System.out.println(session);
