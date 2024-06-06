@@ -14,6 +14,11 @@ import modeles.Athlete;
 import modeles.Discipline;
 import modeles.Epreuve;
 
+/**
+ * Vue permettant d'ajouter une épreuve
+ * @author klentz
+ */
+
 public class VueAjouterEpreuve extends JPanel{
     
 	ControleurEpreuve controleur;

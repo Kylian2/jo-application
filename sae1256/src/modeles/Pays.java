@@ -82,7 +82,10 @@ public class Pays implements Serializable{
 	public String getNom() {
 		return nom;
 	}
-	
+	/**
+	 * fonction permettant d'ajouter un Athlete à un pays
+	 * @author klentz
+	 */
 	public boolean ajouterAthlete(Athlete athlete) {
 		membres.add(athlete);
 		athlete.setPays(this);

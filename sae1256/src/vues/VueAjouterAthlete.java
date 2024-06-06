@@ -1,5 +1,6 @@
 package vues;
 import java.awt.*;
+
 import modeles.ApplicationJo;
 import modeles.Discipline;
 import modeles.Pays;
@@ -12,6 +13,11 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import controleurs.ControleurAthlete;
+
+/**
+ * Vue permettant d'ajouter un athlete
+ * @author klentz
+ */
 
 public class VueAjouterAthlete extends JPanel{
 
