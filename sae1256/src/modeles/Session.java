@@ -18,17 +18,7 @@ public class Session implements Serializable, Comparable<Session> {
 	private LocalDate date;
 	private String heure;
 	private int duree;
-	
-	//Temporaire le temps de la création de lieu
-	public Session(LocalDate date, String heure, int duree) {
-		this.date = date;
-		this.heure = heure;
-		this.duree = duree;
-		
-		this.lieu = null;
-		this.epreuve = null;
-		participants = new ArrayList<Athlete>();
-	}
+	private String sexe;
 	
 	/**
 	 * 
@@ -36,14 +26,26 @@ public class Session implements Serializable, Comparable<Session> {
 	 * @param heure
 	 * @param lieu
 	 */
-	public Session(LocalDate date, String heure, int duree, String lieu) {
+	public Session(LocalDate date, String heure, int duree, String lieu, String sexe) {
 		this.date = date;
 		this.heure = heure;
 		this.lieu = lieu;
 		this.duree = duree;
+		this.sexe = sexe;
 		
 		this.epreuve = null;
 		participants = new ArrayList<Athlete>();
+	}
+	
+	public Session(LocalDate date, String heure, int duree, String lieu, String sexe, ArrayList<Athlete> participants) {
+		this.date = date;
+		this.heure = heure;
+		this.lieu = lieu;
+		this.duree = duree;
+		this.sexe = sexe;
+		
+		this.epreuve = null;
+		this.participants = participants;
 	}
 
 	/**
@@ -70,7 +72,6 @@ public class Session implements Serializable, Comparable<Session> {
 		System.out.println("Date : " +this.date);
 		System.out.println("Heure : " +this.heure);
 		System.out.println("Duree : " + this.duree);
-		throw new UnsupportedOperationException();
 	}
 
 	public String calculerHeureFin() {
@@ -135,5 +136,9 @@ public class Session implements Serializable, Comparable<Session> {
 
 	public String getLieu() {
 		return lieu;
+	}
+	
+	public ArrayList<Athlete> getParticipants(){
+		return participants;
 	}
 }

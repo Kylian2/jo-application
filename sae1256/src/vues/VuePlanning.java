@@ -2,6 +2,9 @@ package vues;
 
 import java.awt.*;
 import javax.swing.border.EmptyBorder;
+
+import controleurs.ControleurSession;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -16,11 +19,17 @@ public class VuePlanning extends JPanel {
     protected JTextField nomTexte, codeTexte;
     protected JButton precedent, suivant, ajouterSession;
 
+    ControleurSession controleur;
+    
     /**
      * Constructeur par defaut de la classe VuePlanning.
      * Initialise l'interface utilisateur avec une disposition en grille et ajoute les composants necessaires.
+     * @param controleur 
      */
-    public VuePlanning() {
+    public VuePlanning(ControleurSession controleur) {
+    	
+    	this.controleur = controleur;
+    	
         setLayout(new GridLayout(8, 1, 0, 5));
 
         // Definir le panel de la ligne n°1
@@ -213,8 +222,14 @@ public class VuePlanning extends JPanel {
          */
         public void actionPerformed(ActionEvent e) {
             if (e.getActionCommand().equalsIgnoreCase("Ajouter une session")) {
-                System.out.println("Ajouter une session...");
-                System.out.println("#va sur la page ajouter session.");
+
+				controleur.application.mainPanel.removeAll();
+				controleur.setLastPanel(VuePlanning.this);
+				controleur.application.mainPanel.add(new VueAjouterSession(controleur));
+                // Rafraîchir le conteneur
+				controleur.application.mainPanel.revalidate();
+				controleur.application.mainPanel.repaint();
+        				
             }
             if (e.getActionCommand().equalsIgnoreCase("<")) {
                 System.out.println("Jour precedent...");
@@ -225,27 +240,5 @@ public class VuePlanning extends JPanel {
                 System.out.println("#va au jour suivant.");
             }
         }
-    }
-
-    /**
-     * Methode principale pour executer l'application.
-     *
-     * @param args Arguments de ligne de commande.
-     */
-    public static void main(String[] args) {
-        // Creer une fenetre
-        JFrame fenetre = new JFrame();
-        fenetre.setTitle("Connexion");
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetre.setSize(960, 540);
-        fenetre.setLocationRelativeTo(null);
-        fenetre.setResizable(true);
-
-        // Creer une instance de VuePlanning et l'ajouter a la fenetre
-        VuePlanning vuePlanning = new VuePlanning();
-        fenetre.add(vuePlanning);
-
-        // Afficher la fenetre
-        fenetre.setVisible(true);
     }
 }
