@@ -131,4 +131,8 @@ public class Epreuve implements Serializable, Planning{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public ArrayList<Session> getSession() {
+		return sessions;
+	}
 }
