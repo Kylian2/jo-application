@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import controleurs.ControleurEquipe;
+
 public class VuePlanning extends JPanel {
 
     protected JPanel topPanel, middlePanel, bottomPanel;
@@ -14,7 +16,9 @@ public class VuePlanning extends JPanel {
     protected JTextField nomTexte, codeTexte;
     protected JButton precedent, suivant, ajouterSession;
 
-    VuePlanning()
+    protected ControleurSession controleur;
+    
+    VuePlanning(ControleurSession controleur)
     {
     	setLayout(new GridLayout(8, 1, 0, 5));
     	
