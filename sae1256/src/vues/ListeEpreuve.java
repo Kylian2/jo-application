@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controleurs.ControleurEpreuve;
 import modeles.*;
 
 public class ListeEpreuve extends JPanel{
@@ -32,6 +33,8 @@ public class ListeEpreuve extends JPanel{
 		JPanel legende;
 		
 		Discipline discipline;
+		
+		ControleurEpreuve controleur;
 			
 		public ListeEpreuve(ApplicationJo application, Dimension dimension, Discipline discipline) {
 				
@@ -40,6 +43,10 @@ public class ListeEpreuve extends JPanel{
 		    this.discipline = discipline;
 		    
 		    this.dimension = dimension;
+		    
+		    this.controleur = new ControleurEpreuve(application);
+			this.controleur.setLastPanel(ListeEpreuve.this);
+			controleur.setDiscipline(discipline);
 		    
 		    setLayout(new BorderLayout()); 
 		    this.setPreferredSize(dimension);
@@ -65,13 +72,10 @@ public class ListeEpreuve extends JPanel{
 		    
 		    //Bouton ajouter
 		    JPanel panelBouton = new JPanel();
-		    panelBouton.setBorder(BorderFactory.createCompoundBorder(
-	                BorderFactory.createEmptyBorder(0, 10, 10, 10), 
-	                BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK) // Bordure de couleur de 2 pixels en bas
-	        ));
 		    panelBouton.setBackground(Color.WHITE);
 	        
 	        JButton button = new JButton("Ajouter");
+	        button.setPreferredSize(new Dimension(90, 35));
 	        button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 	        button.setFocusPainted(false);
 	        button.addActionListener(new ActionListener() {
@@ -80,6 +84,9 @@ public class ListeEpreuve extends JPanel{
 				public void actionPerformed(ActionEvent e) {
 					
 					//ECRAN D'AJOUT D'UNE EPREUVE
+					System.out.println("Click");
+					application.mainPanel.removeAll();
+					application.mainPanel.add(new VueAjouterEpreuve(controleur, discipline));
 
 					// Rafraîchir le conteneur
 	                application.mainPanel.revalidate();
@@ -138,8 +145,8 @@ public class ListeEpreuve extends JPanel{
 		        panelSimpleEpreuve.setMaximumSize(new Dimension((int) dimension.getWidth(), 50));
 		
 		        //Ajout des infos de l'athlete
-		        JLabel nomPays = new JLabel(epreuve.getNom());
-		        panelSimpleEpreuve.add(nomPays, BorderLayout.WEST);
+		        JLabel nomEpreuve = new JLabel(epreuve.getNom());
+		        panelSimpleEpreuve.add(nomEpreuve, BorderLayout.WEST);
 		        
 		        panelSimpleEpreuve.addMouseListener(new MouseAdapter() {
 		            @Override
@@ -149,6 +156,25 @@ public class ListeEpreuve extends JPanel{
 		            	application.mainPanel.revalidate();
 		            	application.mainPanel.repaint();
 		            }
+		        });
+		        
+		        JButton supprimer = new JButton("Supprimer");
+		        panelSimpleEpreuve.add(supprimer, BorderLayout.EAST);
+		        supprimer.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						boolean suppression = controleur.supprimerEpreuve(epreuve);
+						
+						if(suppression) {
+		            		controleur.enregistrer();;
+		                	controleur.retour();
+		            	}else {
+		            		System.out.println("Une erreur est survenue");
+		            	}
+						
+					}
+		        	
 		        });
 		        
 		        Color[] colors = {Couleur.BLEU_JO.getColor(), Couleur.JAUNE_JO.getColor(), Couleur.ROUGE_JO.getColor(), Couleur.VERT_JO.getColor()};

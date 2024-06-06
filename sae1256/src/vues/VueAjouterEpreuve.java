@@ -1,18 +1,29 @@
 package vues;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+
+import controleurs.ControleurEpreuve;
 import vues.Couleur;
 import modeles.Athlete;
 import modeles.Discipline;
+import modeles.Epreuve;
 
 public class VueAjouterEpreuve extends JPanel{
     
+	ControleurEpreuve controleur;
+	Discipline discipline;
 
-    VueAjouterEpreuve() {
+    VueAjouterEpreuve(ControleurEpreuve controleur, Discipline discipline) {
+    	
+    	this.controleur = controleur;
+    	this.discipline = discipline;
+    	
     	this.setLayout(new BorderLayout());
 		
         // initialisation des panel globaux
@@ -45,14 +56,32 @@ public class VueAjouterEpreuve extends JPanel{
         nomPanel.add(nom);
         nomPanel.add(nomTexte);
         
-        JPanel sexePanel = new JPanel();
-        sexePanel.setLayout(new GridLayout(1,2));
-        JLabel sexe = new JLabel("Sexe :     ", SwingConstants.RIGHT);
-        JComboBox<String> sexeTexte = new JComboBox<String>();
-        sexeTexte.addItem("Choisir un sexe");
-        sexePanel.setBackground(Color.WHITE);
-        sexePanel.add(sexe);
-        sexePanel.add(sexeTexte);
+        JPanel unitePanel = new JPanel();
+        unitePanel.setLayout(new GridLayout(1,2));
+        JLabel unite = new JLabel("Unite :     ", SwingConstants.RIGHT);
+        JComboBox<String> uniteTexte = new JComboBox<String>();
+        uniteTexte.addItem(Epreuve.GRAMME);
+        uniteTexte.addItem(Epreuve.HEURE);
+        uniteTexte.addItem(Epreuve.METRE);
+        uniteTexte.addItem(Epreuve.MINUTES);
+        uniteTexte.addItem(Epreuve.POINT);
+        uniteTexte.addItem(Epreuve.SECONDE);
+        unitePanel.setBackground(Color.WHITE);
+        unitePanel.add(unite);
+        unitePanel.add(uniteTexte);
+        
+        //A AJOUTE
+        /*
+        JPanel individuelPanel = new JPanel();
+        individuelPanel.setLayout(new GridLayout(1,2));
+        JLabel individuel = new JLabel("Epreuve Individuelle :     ", SwingConstants.RIGHT);
+        JComboBox<String> individuelTexte = new JComboBox<String>();
+        individuelTexte.addItem("Oui");
+        individuelTexte.addItem("Nom");
+        individuelPanel.setBackground(Color.WHITE);
+        individuelPanel.add(unite);
+        individuelPanel.add(uniteTexte);
+        */
         
         // création de panel vide pour combler la mise en page
         JPanel vide = new JPanel();
@@ -76,7 +105,7 @@ public class VueAjouterEpreuve extends JPanel{
         info.add(Box.createHorizontalStrut(10));
         info.add(nomPanel);
         info.add(Box.createHorizontalStrut(10));  // créer un espace entre chaque panel
-        info.add(sexePanel);			
+        info.add(unitePanel);			
         info.add(vide);
         info.add(vide1);
         info.add(vide2);
@@ -107,6 +136,39 @@ public class VueAjouterEpreuve extends JPanel{
         // changer la couleur de la police des boutons
         annuler.setForeground(Color.WHITE);
         valider.setForeground(Color.WHITE);
+        
+        //Définitions des ecouteurs
+        
+        valider.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				String nom = nomTexte.getText();
+				String unite = (String) uniteTexte.getSelectedItem();
+				
+				System.out.println("Creation...");
+				boolean creation = controleur.ajouterEpreuve(nom, unite);
+				
+				if(creation) {
+            		controleur.enregistrer();;
+                	controleur.retour();
+            	}else {
+            		System.out.println("Une erreur est survenue");
+            	}
+			}
+        	
+        });
+        
+        annuler.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controleur.retour();
+				
+			}
+        	
+        });
        
         boutons.add(defaut);
         boutons.add(annuler);
@@ -121,21 +183,4 @@ public class VueAjouterEpreuve extends JPanel{
         add(info, BorderLayout.WEST);
         add(mainPanel, BorderLayout.CENTER);
 	}
-
-	public static void main(String[] args) {
-        // Creer une fenetre
-        JFrame fenetre = new JFrame();
-        fenetre.setSize(960, 540);
-        fenetre.setLocationRelativeTo(null);
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // Creer une instance de ma classe
-        VueAjouterEpreuve p = new VueAjouterEpreuve();
-
-        // Ajouter mon instance dans un des conteneurs de la fenêtre
-        fenetre.add(p);
-
-        // Afficher la fenetre
-        fenetre.setVisible(true);
-    }
 }

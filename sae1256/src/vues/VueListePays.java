@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 import controleurs.ControleurEquipe;
+import controleurs.ControleurPays;
 import modeles.*;
 
 public class VueListePays extends JPanel {
@@ -50,15 +51,28 @@ public class VueListePays extends JPanel {
 	    
 	    // Bouton ajouter
 	    JPanel panelBouton = new JPanel();
-	    panelBouton.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(0, 10, 10, 10), 
-                BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK) // Bordure de couleur de 2 pixels en bas
-        ));
 	    panelBouton.setBackground(Color.WHITE);
         
         JButton button = new JButton("Ajouter");
+        button.setPreferredSize(new Dimension(90, 35));
         button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         button.setFocusPainted(false);
+        
+        button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				application.mainPanel.removeAll();
+				ControleurPays controleur = new ControleurPays(application);
+				controleur.setLastPanel(VueListePays.this);
+				application.mainPanel.add(new VueCreerPays(controleur));
+
+				// Rafraîchir le conteneur
+                application.mainPanel.revalidate();
+                application.mainPanel.repaint();
+			}
+        	
+        });
         
         panelBouton.add(button);
 	    
@@ -129,7 +143,8 @@ public class VueListePays extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					application.mainPanel.removeAll();
-	            	application.mainPanel.add(new VueListeEquipePays(pays, new ControleurEquipe(application)));
+					ControleurEquipe controleur = new ControleurEquipe(application);
+	            	application.mainPanel.add(new VueListeEquipePays(pays, controleur));
 	                // Rafraîchir le conteneur
 	            	application.mainPanel.revalidate();
 	            	application.mainPanel.repaint();
