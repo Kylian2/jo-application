@@ -146,6 +146,7 @@ public class VueAjouterSession extends JPanel {
         // panel ajouter Athlete
         // initialisation des composant de athletePanel
         JPanel athletePanel = new JPanel();
+        athletePanel.setBackground(Color.WHITE);
         athletePanel.setLayout(new GridLayout(4,4));
 		athletePanel.setBorder(BorderFactory.createEmptyBorder(0,40, 0, 40));
         
@@ -175,6 +176,7 @@ public class VueAjouterSession extends JPanel {
         
         //JTable pour stocker les résultats
         JPanel tabPanel = new JPanel();
+        tabPanel.setBackground(Color.WHITE);
         tabPanel.setLayout(new GridLayout(3,1));
         DefaultTableModel modele = new DefaultTableModel();
         JTable tableau = new JTable(modele);
@@ -203,9 +205,12 @@ public class VueAjouterSession extends JPanel {
         
         // ajout des compostant au mainJpane
         JScrollPane panneau = new JScrollPane(tableau);
+        panneau.setBackground(Color.WHITE);
         panneau.setBorder(BorderFactory.createEmptyBorder(0,40, 0, 40));
         tableau.setFillsViewportHeight(true);
-        tabPanel.add(new JPanel());
+        JPanel defaut5 = new JPanel();
+        defaut5.setBackground(Color.WHITE);
+        tabPanel.add(defaut5);
         tabPanel.add(panneau);
         mainPanel.add(tabPanel, BorderLayout.CENTER);
         
