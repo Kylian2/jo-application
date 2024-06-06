@@ -16,7 +16,6 @@ public class Discipline implements Serializable{
 	private ArrayList<Athlete> pratiquants;
 	private ArrayList<Epreuve> epreuves;
 	private ArrayList<Equipe> equipes;
-	private int numero;
 	private String description;
 	private String nom;
 	
