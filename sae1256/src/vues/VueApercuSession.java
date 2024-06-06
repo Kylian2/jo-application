@@ -110,7 +110,9 @@ public class VueApercuSession extends JPanel {
         
         //Ajout de 3 cartes pour les sessions à venir 
         Color[] colors = {Couleur.BLEU_JO.getColor(), Couleur.JAUNE_JO.getColor(), Couleur.VERT_JO.getColor()};
-        for (int i = 0; i<3; i++) {
+        for (int i = 0; i<3 && i < toutSessionOrdonnee.size(); i++) {
+        	Session sessionCourante = toutSessionOrdonnee.get(i);
+        	
         	JPanel sessionAVenirCard = new JPanel(new BorderLayout());
         	sessionAVenirCard.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         	sessionAVenirCard.setBackground(colors[i%3]);
@@ -119,9 +121,9 @@ public class VueApercuSession extends JPanel {
             JPanel infoNiveau1AVenir = new JPanel(new BorderLayout());
             infoNiveau1AVenir.setBackground(colors[i%3]);
 
-            JLabel sessionAVenirDiscipline = new JLabel("Athlétisme", JLabel.CENTER);
+            JLabel sessionAVenirDiscipline = new JLabel(sessionCourante.getEpreuve().getDiscipline().getNom(), JLabel.CENTER);
             sessionAVenirDiscipline.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
-            JLabel sessionAVenirEpreuve = new JLabel("Lancer de Poids", JLabel.CENTER);
+            JLabel sessionAVenirEpreuve = new JLabel(sessionCourante.getEpreuve().getNom(), JLabel.CENTER);
             sessionAVenirEpreuve.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
             infoNiveau1AVenir.add(sessionAVenirDiscipline, BorderLayout.NORTH);
             infoNiveau1AVenir.add(sessionAVenirEpreuve, BorderLayout.SOUTH);
@@ -130,9 +132,11 @@ public class VueApercuSession extends JPanel {
             infoNiveau2AVenir.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
             infoNiveau2AVenir.setBackground(colors[i%3]);
 
-            JLabel sessionAVenirHoraire = new JLabel("9h00 - 11h30", JLabel.CENTER);
+            String heureDebutCourante = sessionCourante.getHeureDebut(); 
+            int dureeCourante = sessionCourante.getDuree(); 
+            JLabel sessionAVenirHoraire = new JLabel(heureDebutCourante +" - "+ sessionCourante.calculerHeureFin(), JLabel.CENTER);
             sessionAVenirHoraire.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
-            JLabel sessionAVenirLieu = new JLabel("Stade de Gaulle", JLabel.CENTER);
+            JLabel sessionAVenirLieu = new JLabel(sessionCourante.getLieu(), JLabel.CENTER);
             sessionAVenirLieu.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
             infoNiveau2AVenir.add(sessionAVenirHoraire, BorderLayout.NORTH);
             infoNiveau2AVenir.add(sessionAVenirLieu, BorderLayout.SOUTH);
