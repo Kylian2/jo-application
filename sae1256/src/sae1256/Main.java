@@ -13,6 +13,8 @@ import vues.*;
 
 public class Main {
 	
+	public static final Dimension DIMENSION = new Dimension(700, 540);
+	
 	public static void main (String[] args) {
 		System.out.println("Hello SAE 1256 !");
 		
@@ -34,24 +36,11 @@ public class Main {
         applicationJo.setMainPanel(mainPanel);
         
         //Accueil 
-        VueAccueil accueil = new VueAccueil();
+        VueAccueil accueil = new VueAccueil(mainPanel, applicationJo);
         mainPanel.add(accueil);
-        
-        //VueAthlete
-        ControleurAthlete controlleurAthlete = new ControleurAthlete(applicationJo);
-      	VueListeAthlete vueAthlete = new VueListeAthlete(applicationJo, controlleurAthlete,  new Dimension(fenetre.getWidth(), fenetre.getHeight()));
-      	
-        //VuePays
-      	VueListePays vuePays = new VueListePays(applicationJo, new Dimension(fenetre.getWidth(), fenetre.getHeight()));
-		
-      	//VueDiscplines 
-      	VueListeDiscipline vueDiscipline = new VueListeDiscipline(applicationJo, new Dimension(fenetre.getWidth(), fenetre.getHeight()));
-      	
-      	//ApercuSession 
-      	VueApercuSession vueSession = new VueApercuSession(applicationJo, new Dimension(fenetre.getWidth(), fenetre.getHeight()));
-      	
+              	
 		// Menu de navigation
-        MenuApplication menu = new MenuApplication(applicationJo,mainPanel,accueil, vuePays, vueAthlete, vueDiscipline, vueSession);
+        MenuApplication menu = new MenuApplication(applicationJo,mainPanel,accueil);
         menu.setPreferredSize(new Dimension(270, fenetre.getHeight())); 
 	        
         // Organiser les panneaux

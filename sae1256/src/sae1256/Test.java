@@ -2,6 +2,7 @@ package sae1256;
 
 import java.time.LocalDate;
 
+import controleurs.ControleurSession;
 import modeles.*;
 
 public class Test {
@@ -38,11 +39,25 @@ public class Test {
         System.out.println("\n------Disciplines récupérés : ");
         for(Discipline discipline : applicationJo.disciplinesList) {
         	System.out.println(discipline.getNom());
-        	discipline.afficherEpreuves();  
+        	discipline.afficherEpreuves();
+        }
+                        
+        System.out.println("Liste des sessions des epreuves de Natation");
+        for (Epreuve epreuve : applicationJo.disciplinesList.get(1).getEpreuves()) {
+        	System.out.println(epreuve.getNom());
+        	for(Session session : epreuve.getSession()) {
+        		System.out.println(session);
+        	}
         }
         
-        //applicationJo.paysList.add(new Pays("DEU", "Allemagne"));
-               
+        System.out.println("Liste des sessions des epreuves d'athlétisme ");
+        for (Epreuve epreuve : applicationJo.disciplinesList.get(0).getEpreuves()) {
+        	System.out.println(epreuve.getNom());
+        	for(Session session : epreuve.getSession()) {
+        		System.out.println(session);
+        	}
+        }
+        
         applicationJo.enregister();
         
 	}

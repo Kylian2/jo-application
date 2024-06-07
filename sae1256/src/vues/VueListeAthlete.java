@@ -24,14 +24,10 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 import controleurs.ControleurAthlete;
-import modeles.ApplicationJo;
 import modeles.Athlete;
 import modeles.Pays;
 
 public class VueListeAthlete extends JPanel {
-	
-	//Permet d'accéder aux données de l'application qui seront affichées. 
-	ApplicationJo application;
 	
 	//Panel servant à contenir les pays
 	JPanel panelAthlete;
@@ -42,11 +38,11 @@ public class VueListeAthlete extends JPanel {
 	
 	JPanel header;
 		
-	public VueListeAthlete(ApplicationJo application, ControleurAthlete controleur, Dimension dimension) {
+	public VueListeAthlete(ControleurAthlete controleur, Dimension dimension) {
 			
-	    this.application = application;
-	    application.recuperer();
 	    this.controleur = controleur;
+	    
+	    controleur.recuperer();
 	    
 	    this.dimension = dimension;
 	    
@@ -83,13 +79,13 @@ public class VueListeAthlete extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				application.mainPanel.removeAll();
+				controleur.application.mainPanel.removeAll();
 				controleur.setLastPanel(VueListeAthlete.this);
-				application.mainPanel.add(new VueAjouterAthlete(controleur));
+				controleur.application.mainPanel.add(new VueAjouterAthlete(controleur));
 
 				// Rafraîchir le conteneur
-                application.mainPanel.revalidate();
-                application.mainPanel.repaint();
+                controleur.application.mainPanel.revalidate();
+                controleur.application.mainPanel.repaint();
 			}
         	
         });
@@ -123,7 +119,7 @@ public class VueListeAthlete extends JPanel {
 	public void refresh() {
 		panelAthlete.removeAll();
 		panelAthlete.add(header);
-		for(Athlete athlete : application.athletesList) { 
+		for(Athlete athlete : controleur.application.athletesList) { 
 			
 	        //Création d'un panel servant à recueillir les infos du pays
 	        JPanel panelSimplePays = new JPanel();
@@ -158,11 +154,11 @@ public class VueListeAthlete extends JPanel {
 	        panelSimplePays.addMouseListener(new MouseAdapter() {
 	            @Override
 	            public void mouseClicked(MouseEvent e) {
-	            	application.mainPanel.removeAll();
-	            	application.mainPanel.add(new VueAthlete(athlete));
+	            	controleur.application.mainPanel.removeAll();
+	            	controleur.application.mainPanel.add(new VueAthlete(athlete));
 	                // Rafraîchir le conteneur
-	            	application.mainPanel.revalidate();
-	            	application.mainPanel.repaint();
+	            	controleur.application.mainPanel.revalidate();
+	            	controleur.application.mainPanel.repaint();
 	            }
 	        });
 	        panelAthlete.add(panelSimplePays);

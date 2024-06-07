@@ -112,6 +112,10 @@ public class Epreuve implements Serializable, Planning{
 		return nom;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+	
 	public void setIndividuelle(boolean individuelle) {
 		this.individuelle = individuelle;
 	}
@@ -130,5 +134,9 @@ public class Epreuve implements Serializable, Planning{
 	public ArrayList<Session> OrdonneSession(ArrayList<Session> sessionsNonOrdonnee) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public ArrayList<Session> getSession() {
+		return sessions;
 	}
 }

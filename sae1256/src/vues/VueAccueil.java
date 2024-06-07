@@ -2,14 +2,26 @@ package vues;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.border.EmptyBorder;
+
+import controleurs.ControleurAthlete;
+import controleurs.ControleurSession;
+import modeles.ApplicationJo;
+import sae1256.Main;
 
 public class VueAccueil extends JPanel{
 	 	protected JPanel PanelText, PanelIMG, PanelIMG1, PanelIMG2, PanelIMG3, PanelIMG4;
 	    protected JLabel TexteAccueil;
 	    protected JLabel ImageLabel1, ImageLabel2, ImageLabel3, ImageLabel4;
+	    
+	    ApplicationJo application;
 	
-	    public VueAccueil() {
+	    public VueAccueil(JPanel vueConteneur, ApplicationJo application) {
+	    	
+	    	this.application = application;
 	    	 // Création des panels
 	        JPanel PanelText = new JPanel();
 	        PanelText.setBackground(Color.WHITE);
@@ -24,19 +36,66 @@ public class VueAccueil extends JPanel{
 	        JButton BoutonIMG1 = new JButton("Voir les Résultats 	");
 	        BoutonIMG1.setBackground(Couleur.ROUGE_JO.getColor());
 	        BoutonIMG1.setForeground(Color.WHITE);
+	        
 
-	        JButton BoutonIMG2 = new JButton("Accéder aux équipes 	");
-	        BoutonIMG2.setBackground(Color.BLUE);
+	        JButton BoutonIMG2 = new JButton("Accéder aux délégations 	");
+	        BoutonIMG2.setBackground(Couleur.BLEU_JO.getColor());
 	        BoutonIMG2.setForeground(Color.WHITE);
+	        
+	        BoutonIMG2.addActionListener(new ActionListener() {
 
-	        JButton BoutonIMG3 = new JButton("Voir le planning		");
-	        BoutonIMG3.setBackground(Color.GREEN);
-	        BoutonIMG3.setForeground(Color.WHITE);
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//Masquer les autres
+					vueConteneur.removeAll();
+					vueConteneur.add(new VueListePays(application, new Dimension(700, 540)), BorderLayout.CENTER);
+					
+					// Rafraîchir le conteneur
+	                vueConteneur.revalidate();
+	                vueConteneur.repaint();
+				}
+	        	
+	        });
 
-	        JButton BoutonIMG4 = new JButton("Voir les athlètes 	");
-	        BoutonIMG4.setBackground(Color.YELLOW);
-	        BoutonIMG4.setForeground(Color.WHITE);
+	        JButton buttonPlanning = new JButton("Voir le planning		");
+	        buttonPlanning.setBackground(Couleur.VERT_JO.getColor());
+	        buttonPlanning.setForeground(Color.WHITE);
+	        
+	        buttonPlanning.addActionListener(new ActionListener() {
 
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//Masquer les autres
+					vueConteneur.removeAll();
+					//Afficher le panel correspondant
+					ControleurSession controleurSession = new ControleurSession(VueAccueil.this.application);
+					vueConteneur.add(new VueApercuSession(controleurSession, Main.DIMENSION), BorderLayout.CENTER);
+					
+					// Rafraîchir le conteneur
+	                vueConteneur.revalidate();
+	                vueConteneur.repaint();
+				}
+	        });
+
+	        JButton buttonAthlete = new JButton("Voir les athlètes 	");
+	        buttonAthlete.setBackground(Couleur.JAUNE_JO.getColor());
+	        buttonAthlete.setForeground(Color.WHITE);
+
+	        buttonAthlete.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//Masquer les autres
+					vueConteneur.removeAll();
+					//Afficher le panel correspondant
+					ControleurAthlete controleur = new ControleurAthlete(application);
+					vueConteneur.add(new VueListeAthlete(controleur, Main.DIMENSION), BorderLayout.CENTER);
+					
+					// Rafraîchir le conteneur
+	                vueConteneur.revalidate();
+	                vueConteneur.repaint();
+				}
+	        });
 	        JLabel TexteAccueil = new JLabel("Salut Louis !");
 	        TexteAccueil.setFont(new Font("Arial", Font.PLAIN, 32));
 
@@ -55,8 +114,8 @@ public class VueAccueil extends JPanel{
 	        // Configuration des panels avec JLayeredPane
 	        configurationDesLayeredPane(PanelIMG1, ImageLabel1, BoutonIMG1);
 	        configurationDesLayeredPane(PanelIMG2, ImageLabel2, BoutonIMG2);
-	        configurationDesLayeredPane(PanelIMG3, ImageLabel3, BoutonIMG3);
-	        configurationDesLayeredPane(PanelIMG4, ImageLabel4, BoutonIMG4);
+	        configurationDesLayeredPane(PanelIMG3, ImageLabel3, buttonPlanning);
+	        configurationDesLayeredPane(PanelIMG4, ImageLabel4, buttonAthlete);
 
 	        // Les layout et border sur les panels de plus haut niveau
 	        PanelText.setLayout(new FlowLayout(FlowLayout.LEFT));

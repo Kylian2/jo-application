@@ -1,8 +1,11 @@
 package modeles;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class Session implements Serializable, Comparable<Session> {
@@ -10,22 +13,12 @@ public class Session implements Serializable, Comparable<Session> {
 	private static final long serialVersionUID = 1L;
 	
 	private ArrayList<Athlete> participants;
-	private Lieu lieu;
+	private String lieu;
 	private Epreuve epreuve;
 	private LocalDate date;
 	private String heure;
 	private int duree;
-	
-	//Temporaire le temps de la création de lieu
-	public Session(LocalDate date, String heure, int duree) {
-		this.date = date;
-		this.heure = heure;
-		this.duree = duree;
-		
-		this.lieu = null;
-		this.epreuve = null;
-		participants = new ArrayList<Athlete>();
-	}
+	private String sexe;
 	
 	/**
 	 * 
@@ -33,14 +26,26 @@ public class Session implements Serializable, Comparable<Session> {
 	 * @param heure
 	 * @param lieu
 	 */
-	Session(LocalDate date, String heure, int duree, Lieu lieu) {
+	public Session(LocalDate date, String heure, int duree, String lieu, String sexe) {
 		this.date = date;
 		this.heure = heure;
 		this.lieu = lieu;
 		this.duree = duree;
+		this.sexe = sexe;
 		
 		this.epreuve = null;
 		participants = new ArrayList<Athlete>();
+	}
+	
+	public Session(LocalDate date, String heure, int duree, String lieu, String sexe, ArrayList<Athlete> participants) {
+		this.date = date;
+		this.heure = heure;
+		this.lieu = lieu;
+		this.duree = duree;
+		this.sexe = sexe;
+		
+		this.epreuve = null;
+		this.participants = participants;
 	}
 
 	/**
@@ -67,12 +72,22 @@ public class Session implements Serializable, Comparable<Session> {
 		System.out.println("Date : " +this.date);
 		System.out.println("Heure : " +this.heure);
 		System.out.println("Duree : " + this.duree);
-		throw new UnsupportedOperationException();
 	}
 
 	public String calculerHeureFin() {
-		// TODO - implement Session.calculerHeureFin
-		throw new UnsupportedOperationException();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
+        try {
+            // Convertir l'heure de début en LocalTime
+            LocalTime startTime = LocalTime.parse(heure, timeFormatter);
+
+            // Calculer l'heure de fin
+            LocalTime endTime = startTime.plus(Duration.ofMinutes(duree));
+            return endTime.format(timeFormatter);
+        } catch (DateTimeParseException | NumberFormatException e) {
+            System.err.println("Erreur de parsing: " + e.getMessage() + heure);
+            return null;
+        }
 	}
 
 	public boolean detruire() {
@@ -103,4 +118,31 @@ public class Session implements Serializable, Comparable<Session> {
 		this.epreuve = epreuve;
 	}
 
+	public Epreuve getEpreuve() {
+		return epreuve;
+	}
+
+	public String getHeureDebut() {
+		return heure;
+	}
+
+	public int getDuree() {
+		return duree;
+	}
+	
+	public void setLieu(String lieu) {
+		this.lieu = lieu;
+	}
+
+	public String getLieu() {
+		return lieu;
+	}
+	
+	public LocalDate getDate() {
+		return date;
+	}
+	
+	public ArrayList<Athlete> getParticipants(){
+		return participants;
+	}
 }
