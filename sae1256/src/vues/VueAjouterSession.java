@@ -300,6 +300,13 @@ public class VueAjouterSession extends JPanel {
 				ArrayList<Athlete> athleteParticipants = athletesAjoutes;
 				boolean creation = controleur.ajouterSession(date, debut, duree, lieu, sexe, discipline, epreuve, athleteParticipants);
 				
+				if(creation) {
+					controleur.enregister();
+					controleur.retour();
+				}else {
+					
+				}
+				
 			}
         	
         });
