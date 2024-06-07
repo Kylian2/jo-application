@@ -111,5 +111,9 @@ public class ControleurAthlete implements Controleur{
         application.mainPanel.repaint();
 		
 	}
+
+	public void recuperer() {
+		application.recuperer();
+	}
 	
 }
