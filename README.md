@@ -2,11 +2,58 @@
 
 ## Présentation
 
+Voici la réalisation de notre équipe pour le projet SAE1256, réalisé à l'IUT d'Orsay en 2024. Le projet consistait à développer une application de gestion des Jeux Olympiques en Java.
+Ce projet était commun à plusieurs matières : DOO (Développement Orienté Objet), IHM (Interaction Homme-Machine) et GPI (Gestion de Projet Informatique). Ceci est le rendu DOO.
+
 ## Membres de l'équipe
+
+- **Kylian Richard** as Kylian2
+- **Kilian Lentz** as Kili1n
+- **Guiborat--Bost** Mathieu as mguiborat
+- **Rodriguez Esteban** as Laren21
 
 ## Conventions et règles 
 
 ### 1. Normalisation 
+
+#### Les Couleurs 
+
+### Couleurs Utilisées dans le Projet
+
+Ce projet utilise une palette de couleurs spécifique, chacune étant définie par des valeurs RGB. Ces couleurs sont utilisées pour différents éléments de l'interface utilisateur afin de garantir une expérience visuelle cohérente et attrayante. Les couleurs sont issues de la Charte Graphique des Jeux Olympiques et Paralympiques de Paris 2024.
+Voici les différentes couleurs et leurs représentations :
+
+**BLEU_JO**
+   - Code RGB : (2, 120, 208)
+   - ![BLEU_JO](https://via.placeholder.com/50x50/0278D0/FFFFFF?text=+)
+
+**JAUNE_JO**
+   - Code RGB : (254, 202, 78)
+   - ![JAUNE_JO](https://via.placeholder.com/50x50/FECA4E/FFFFFF?text=+)
+
+**VERT_JO**
+   - Code RGB : (74, 163, 89)
+   - ![VERT_JO](https://via.placeholder.com/50x50/4AA359/FFFFFF?text=+)
+
+**ROUGE_JO**
+   - Code RGB : (220, 62, 66)
+   - ![ROUGE_JO](https://via.placeholder.com/50x50/DC3E42/FFFFFF?text=+)
+
+**COULEUR_FOND_JO**
+   - Code RGB : (229, 229, 229)
+   - ![COULEUR_FOND_JO](https://via.placeholder.com/50x50/E5E5E5/FFFFFF?text=+)
+
+**OR**
+   - Code RGB : (252, 200, 97)
+   - ![OR](https://via.placeholder.com/50x50/FCC861/FFFFFF?text=+)
+
+**ARGENT**
+   - Code RGB : (215, 213, 213)
+   - ![ARGENT](https://via.placeholder.com/50x50/D7D5D5/FFFFFF?text=+)
+
+**BRONZE**
+   - Code RGB : (220, 179, 134)
+   - ![BRONZE](https://via.placeholder.com/50x50/DCB386/FFFFFF?text=+)
 
 ### 2. Convention de commit 
 
