@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -161,7 +162,9 @@ public class VueApercuSession extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controleur.application.mainPanel.removeAll();
-				controleur.application.mainPanel.add(new VuePlanning(controleur));
+				// Créer une instance de la class LocalDate et l'initialiser au 24 juillet (début des JO)
+				LocalDate date = LocalDate.of(2024, 7, 24);
+				controleur.application.mainPanel.add(new VuePlanning(controleur, date));
                 // Rafraîchir le conteneur
 				controleur.application.mainPanel.revalidate();
 				controleur.application.mainPanel.repaint();

@@ -50,7 +50,7 @@ public class ControleurSession implements Controleur{
 	
 
     public static LocalDate convertStringToLocalDate(String dateString) {
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         try {
             return LocalDate.parse(dateString, formatter);
         } catch (DateTimeParseException e) {
@@ -158,5 +158,15 @@ public class ControleurSession implements Controleur{
 	
 	public void enregister() {
 		application.enregister();
+	}
+	
+	public ArrayList<Session> getToutesSessionsDeLaDate(LocalDate date) {
+		ArrayList<Session> sessionsDeLaDate = new ArrayList<Session>();
+		for (Session session : getToutesSessionOrdonnées()) {
+			if (session.getDate().isEqual(date)){
+				sessionsDeLaDate.add(session);
+			}
+		}
+		return sessionsDeLaDate;
 	}
 }
