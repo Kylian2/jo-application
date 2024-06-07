@@ -21,7 +21,7 @@ import vues.*;
 public class Main {
 	
 	/**
-	 * Dimension par défaut de la fenêtre principale de l'application.
+	 * Dimension par défaut du conteneur de vue de l'application.
 	 */
 	public static final Dimension DIMENSION = new Dimension(700, 540);
 	
