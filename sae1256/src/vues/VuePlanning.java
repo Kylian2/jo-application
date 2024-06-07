@@ -346,7 +346,7 @@ public class VuePlanning extends JPanel {
 
 			}
 			if (e.getActionCommand().equalsIgnoreCase("<")) {
-				if (date.isAfter(LocalDate.of(2024, 7, 10))){
+				if (date.isAfter(LocalDate.of(2024, 7, 24))){
 					controleur.application.mainPanel.removeAll();
 					controleur.setLastPanel(VuePlanning.this);
 					controleur.application.mainPanel.add(new VuePlanning(controleur, date.minusDays(1)));
