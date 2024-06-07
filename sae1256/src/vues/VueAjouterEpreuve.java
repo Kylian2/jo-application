@@ -65,6 +65,7 @@ public class VueAjouterEpreuve extends JPanel{
         unitePanel.setLayout(new GridLayout(1,2));
         JLabel unite = new JLabel("Unite :     ", SwingConstants.RIGHT);
         JComboBox<String> uniteTexte = new JComboBox<String>();
+        uniteTexte.setBackground(Color.WHITE);
         uniteTexte.addItem(Epreuve.GRAMME);
         uniteTexte.addItem(Epreuve.HEURE);
         uniteTexte.addItem(Epreuve.METRE);
