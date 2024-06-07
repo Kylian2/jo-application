@@ -16,8 +16,8 @@ import controleurs.ControleurDiscipline;
 public class VueAjouterDiscipline extends JPanel {
 
     // Déclaration des composants graphiques
-    protected JPanel PanelGauche, PanelTitre, PanelInfo, PanelNom, PanelNum, 
-    PanelTextDescription, PanelJtextField, PanelDroite, PanelAction;
+    protected JPanel PanelGauche, PanelTitre, PanelInfo, PanelNom, 
+    PanelTextDescription, PanelJtextField, PanelDroite, PanelAction, PanelCentre;
     protected JLabel Titre, Nom, Numero, Description;
     protected JTextField nomTexte, NumeroTexte ;
     protected JTextArea descriptionTexte;
@@ -30,23 +30,24 @@ public class VueAjouterDiscipline extends JPanel {
     VueAjouterDiscipline(ControleurDiscipline controleur)
     {
     	this.controleur = controleur;
-        // Définition de la disposition du Panel VueAjouterDiscipline
-        this.setLayout(new GridLayout(1,2));
-        
+    	this.setLayout(new BorderLayout());
+    	JPanel PanelCentre = new JPanel(new GridLayout(1,2));
+    	
         // Premier Panel de haut niveau sur la gauche de l'écran
         JPanel PanelGauche = new JPanel(new BorderLayout());
         
         // Création du Panel pour le titre
-        JPanel PanelTitre = new JPanel(new BorderLayout());
+        JPanel PanelTitre = new JPanel();
         PanelTitre.setBackground(Color.WHITE);
         
         // Création du titre de la vue
         JLabel Titre = new JLabel("Créer une discipline");
         Titre.setFont(new Font(Titre.getFont().getName(), Font.BOLD, 32));
-        PanelTitre.setBorder(BorderFactory.createEmptyBorder(0, 60, 40, 0));
+        PanelTitre.setBorder(BorderFactory.createEmptyBorder(0, 0, 40, 250));
         
         // Ajout du titre dans son Panel
-        PanelTitre.add(Titre, BorderLayout.WEST);
+        PanelTitre.add(Titre);
+        this.add(PanelTitre, BorderLayout.NORTH);
         
         // Mise en place du panel d'information
         JPanel PanelInfo = new JPanel();
@@ -54,7 +55,6 @@ public class VueAjouterDiscipline extends JPanel {
         
         // Création des Panel de bas niveau qui feront partie des Panel de PanelInfo
         JPanel PanelNom = new JPanel();
-        JPanel PanelNum = new JPanel();
         JPanel PanelTextDescription = new JPanel();
         JPanel PanelJtextField = new JPanel();
         
@@ -67,9 +67,9 @@ public class VueAjouterDiscipline extends JPanel {
         // Ajout des éléments dans les Panel
         PanelNom.add(Nom);
         PanelNom.add(nomTexte);
+        PanelNom.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 60));
         PanelNom.setBackground(Color.WHITE);
-        PanelNom.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 180));
-        PanelInfo.add(PanelNom);
+        PanelInfo.add(PanelNom, BorderLayout.NORTH);
         
         // Création de la description avec son champs de texte
         JLabel Description = new JLabel("Description :");
@@ -86,21 +86,21 @@ public class VueAjouterDiscipline extends JPanel {
         PanelJtextField.setBackground(Color.WHITE);
         
         // Ajout de bordure manuellement pour déclaler les éléments vers la gauche
-        PanelTextDescription.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 300));
-        PanelJtextField.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 115));
+        PanelTextDescription.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 180));
         
         // Ajout des panel de bas niveau vers les Panel de haut niveau
-        PanelInfo.add(PanelTextDescription);
-        PanelInfo.add(PanelJtextField);
+        PanelInfo.add(PanelTextDescription, BorderLayout.CENTER);
+        PanelInfo.add(PanelJtextField, BorderLayout.SOUTH);
         
         // Création de Panel de remplissage pour permettre le coloriage du fonds
         JPanel PanelRemplissage1 = new JPanel();
         PanelRemplissage1.setBackground(Color.WHITE);
         
         // Disposition des Panel dans les cellules du grid
-        PanelGauche.add(PanelTitre, BorderLayout.NORTH);
+        //PanelGauche.add(PanelTitre, BorderLayout.NORTH);
         PanelGauche.add(PanelInfo, BorderLayout.CENTER);
         PanelGauche.add(PanelRemplissage1, BorderLayout.SOUTH);
+        PanelCentre.add(PanelGauche);
         
         // Création du Panel de droite
         PanelDroite = new JPanel(new BorderLayout());
@@ -117,17 +117,28 @@ public class VueAjouterDiscipline extends JPanel {
         JButton annuler = new JButton("annuler");
         annuler.setBackground(Color.GRAY);
         annuler.setForeground(Color.WHITE);
-        annuler.setFont(new Font("Arial", Font.PLAIN, 16));
+        annuler.setFont(new Font("Arial", Font.PLAIN, 12));
         
         JButton valider = new JButton("valider les modifications");
         valider.setBackground(Color.RED);
         valider.setForeground(Color.WHITE);
-        valider.setFont(new Font("Arial", Font.PLAIN, 16));
+        valider.setFont(new Font("Arial", Font.PLAIN, 12));
         
         // Ajout dans les Panel de niveau moyen
-        PanelAction.setBorder(BorderFactory.createEmptyBorder(0, 0, 25, 0));
         PanelAction.add(annuler);
         PanelAction.add(valider);
+        PanelAction.setBorder(BorderFactory.createEmptyBorder(0, 0, 60, 0));
+        
+        // Disposition des Panel dans les cellules du grid
+        PanelDroite.add(PanelRemplissage2, BorderLayout.NORTH);
+        PanelDroite.add(PanelRemplissage3, BorderLayout.CENTER);
+        PanelDroite.add(PanelAction, BorderLayout.SOUTH);
+  
+        //Ajout dans le Panel global
+        PanelCentre.add(PanelGauche);
+        PanelCentre.add(PanelDroite);
+        
+        this.add(PanelCentre, BorderLayout.CENTER);
         
         valider.addActionListener(new ActionListener() {
 
@@ -156,14 +167,5 @@ public class VueAjouterDiscipline extends JPanel {
 			}
         	
         });
-        
-        // Disposition des Panel dans les cellules du grid
-        PanelDroite.add(PanelRemplissage2, BorderLayout.NORTH);
-        PanelDroite.add(PanelAction, BorderLayout.SOUTH);
-        PanelDroite.add(PanelRemplissage3, BorderLayout.CENTER);
-  
-        //Ajout dans le Panel global
-        this.add(PanelGauche);
-        this.add(PanelDroite);
     }
 }
