@@ -11,7 +11,12 @@ import javax.swing.*;
 import controleurs.ControleurEquipe;
 import controleurs.ControleurPays;
 import modeles.*;
-
+/**
+ * Cette classe représente une vue pour afficher la liste des délégations.
+ * Elle étend JPanel et contient des fonctionnalités pour rafraîchir la liste.
+ * 
+ * @author kylianrichard
+ */
 public class VueListePays extends JPanel {
 		
 	//Permet d'accéder aux données de l'application qui seront affichées. 
@@ -24,6 +29,14 @@ public class VueListePays extends JPanel {
 	
 	Dimension dimension;
 	
+	/**
+     * Constructeur de la classe VueListePays.
+     * 
+     * @param application L'instance de l'application qui contient les données.
+     * @param dimension La dimension de cette vue.
+     * 
+     * @author kylianrichard
+     */
 	public VueListePays(ApplicationJo application, Dimension dimension) {
 		
 	    this.application = application;
@@ -92,13 +105,10 @@ public class VueListePays extends JPanel {
 	    setBackground(Color.WHITE);
 	}
 	
-	public void masquer() {
-		this.setVisible(false);
-    }
-	
-	public void afficher() {
-		this.setVisible(true);
-    }
+	/**
+     * Rafraîchit la liste des equipes et les affiche.
+     * @author kylianrichard
+     */
 	
 	public void refresh() {
 		panelPays.removeAll();

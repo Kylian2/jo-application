@@ -22,15 +22,31 @@ import modeles.Session;
 import vues.ListeEpreuve;
 import vues.VuePlanning;
 
+/**
+ * Controleur pour la gestion des sessions.
+ * Cette classe contient les methodes pour ajouter, vérifier et manipuler des sessions.
+ * 
+ * @author kylianrichard
+ */
 public class ControleurSession implements Controleur{
 	
 	JPanel lastPanel;
 	public ApplicationJo application; 
 	
+	/**
+     * Constructeur du controleur de session.
+     * 
+     * @param application L'application principale
+     * @author kylianrichard
+     */
 	public ControleurSession(ApplicationJo application) {
 		this.application = application;
 	}
 
+	/**
+     * Retourne au panneau précédent.
+     * @author kylianrichard
+     */
 	public void retour() {
 		
 		if(lastPanel instanceof VuePlanning) {
@@ -45,11 +61,23 @@ public class ControleurSession implements Controleur{
 		
 	}
 	
+	/**
+     * Définit le dernier panneau utilisé.
+     * 
+     * @param panel Le panneau à définir comme dernier panneau
+     * @author kylianrichard
+     */
 	public void setLastPanel(JPanel panel) {
 		this.lastPanel = panel;
 	}
 	
-
+	/**
+     * Convertit une chaîne de caractères en objet LocalDate.
+     * 
+     * @param dateString La chaîne de caractères représentant la date
+     * @return LocalDate représentant la date
+     * @author kylianrichard
+     */
     public static LocalDate convertStringToLocalDate(String dateString) {
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         try {
@@ -59,7 +87,12 @@ public class ControleurSession implements Controleur{
             return null;
         }
     }
-
+    
+    /**
+     * Recupere les sessions de toutes les epreuves de toutes les disciplines
+     * 
+     * @author kylianrichard
+     */
 	public ArrayList<Session> getToutesSessionOrdonnées() {
 		ArrayList<Session> toutesSessionOrdonnee = new ArrayList<Session>();
 		for(Discipline discipline : this.application.disciplinesList) {
@@ -74,6 +107,11 @@ public class ControleurSession implements Controleur{
 		return toutesSessionOrdonnee;
 	}
 	
+	/**
+     * Recupere les sessions de toutes les epreuves de toutes les disciplines
+     * 
+     * @author kylianrichard
+     */
 	public ArrayList<Epreuve> getEpreuveDiscipline(String nom){
 		for(Discipline discipline : application.disciplinesList) {
 			if(discipline.getNom().equalsIgnoreCase(nom)) {
@@ -83,7 +121,14 @@ public class ControleurSession implements Controleur{
 		return new ArrayList<Epreuve>(); 
 	}
 	
-
+	/**
+     * Vérifie et corrige le format de l'heure.
+     * 
+     * @param heure L'heure à vérifier et corriger
+     * @return L'heure corrigée si le format est valide, sinon null
+     * 
+     * @author kylianrichard
+     */
 	public String verifierEtCorrigerFormatHeure(String heure) {
 	    // Expression régulière pour vérifier le format HH:mm ou H:mm
 	    Pattern pattern = Pattern.compile("^(\\d{2}):[0-5][0-9]$");
@@ -101,6 +146,21 @@ public class ControleurSession implements Controleur{
 	    return null;
 	}
 	
+	/**
+     * Ajoute une nouvelle session.
+     * 
+     * @param date La date de la session
+     * @param heure L'heure de la session
+     * @param duree La durée de la session
+     * @param lieu Le lieu de la session
+     * @param sexe Le sexe de la session
+     * @param discipline La discipline de la session
+     * @param epreuve L'épreuve de la session
+     * @param athleteParticipants Les athlètes participants à la session
+     * @return true si la session a été ajoutée avec succès, false sinon
+     * 
+     * @author kylianrichard
+     */
 	public boolean ajouterSession(String date, String heure, String duree, String lieu, String sexe, String discipline, String epreuve, ArrayList<Athlete> athleteParticipants) {
 		
 		boolean dureeValide = true;
@@ -157,6 +217,15 @@ public class ControleurSession implements Controleur{
 		return false; 
 	}
 	
+	/**
+     * Obtient une épreuve spécifique en fonction de son nom et de sa discipline.
+     * 
+     * @param epreuveNom Le nom de l'épreuve
+     * @param discipline La discipline de l'épreuve
+     * @return L'épreuve correspondante s'il existe, sinon null
+     * 
+     * @author kylianrichard
+     */
 	public Epreuve getEpreuve(String epreuveNom, String discipline) {
 		int disciplineIndex = getDisciplineIndex(discipline);
 		
@@ -181,10 +250,20 @@ public class ControleurSession implements Controleur{
 		return -1;
 	}
 	
+	/**
+     * Enregistre les données de l'application.
+     */
 	public void enregister() {
 		application.enregister();
 	}
 	
+	/**
+     * Recupere les sessions de toutes les epreuves de toutes les disciplines en fonction d'une date
+     * 
+     * @param date la date pour laquelle il faut recuperer les epreuves
+     * 
+     * @author mathieu_GUIBORAT--BOST
+     */
 	public ArrayList<Session> getToutesSessionsDeLaDate(LocalDate date) {
 		ArrayList<Session> sessionsDeLaDate = new ArrayList<Session>();
 		for (Session session : getToutesSessionOrdonnées()) {

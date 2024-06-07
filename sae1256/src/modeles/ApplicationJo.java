@@ -12,7 +12,20 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import vues.VueListeAthlete;
-
+/**
+ * Cette classe représente l'application pour les Jeux Olympiques.
+ * Elle gère les listes de pays, disciplines et athlètes, ainsi que la sérialisation
+ * des données de l'application.
+ * 
+ * @author kylianrichard
+ * 
+ * @param paysList Liste des pays participant aux Jeux Olympiques.
+ * @param disciplinesList Liste des disciplines sportives des Jeux Olympiques.
+ * @param athletesList Liste des athlètes participant aux Jeux Olympiques.
+ * @param mainPanel Le panneau principal de l'interface graphique de l'application.
+ * @param vueListeAthlete La vue affichant la liste des athlètes dans l'interface graphique.
+ * @param fileName Le nom du fichier de sauvegarde des données de l'application.
+ */
 public class ApplicationJo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -28,20 +41,37 @@ public class ApplicationJo implements Serializable{
 	
 	public static final String fileName = "application-jo.dat";
 	
+	/**
+     * Constructeur par défaut de l'application pour les Jeux Olympiques.
+     * Initialise les listes de pays, disciplines et athlètes.
+     */
 	public ApplicationJo(){
 		paysList = new ArrayList<Pays>();
 		disciplinesList = new ArrayList<Discipline>();
 		athletesList = new ArrayList<Athlete>();
 	}
 	
+	/**
+     * Définit le panneau principal de l'interface graphique de l'application.
+     * 
+     * @param panel Le panneau principal à définir.
+     */
 	public void setMainPanel(JPanel panel) {
 		this.mainPanel = panel;
 	}
 	
+	/**
+     * Définit la vue affichant la liste des athlètes dans l'interface graphique de l'application.
+     * 
+     * @param vueListeAthlete La vue à définir pour afficher la liste des athlètes.
+     */
 	public void setVueListeAthlete(VueListeAthlete vueListeAthlete) {
 		this.vueListeAthlete = vueListeAthlete;
 	}
 	
+	/**
+     * Enregistre les données de l'application dans un fichier.
+     */
 	public void enregister() {
 		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
 			//this.paysList = Pays.paysList;
@@ -53,6 +83,9 @@ public class ApplicationJo implements Serializable{
         }
 	}
 	
+	/**
+     * Récupère les données sérialisées depuis un fichier et les charge dans l'application.
+     */
 	//Permet de récupérer les elements qui ont été sérialisé dans un fichier. 
 	public void recuperer() { //
 		File f = new File(fileName);

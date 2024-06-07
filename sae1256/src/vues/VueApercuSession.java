@@ -21,13 +21,22 @@ import javax.swing.JPanel;
 import controleurs.ControleurEquipe;
 import controleurs.ControleurSession;
 import modeles.*;
-
+/**
+ * VueApercuSession affiche un aperçus des sessions.
+ * 
+ * @author kylianrichard
+ */
 public class VueApercuSession extends JPanel {
 	
 	Dimension dimension;
 	
 	ControleurSession controleur;
-
+	/**
+	 * Contructeur de la classe VueApercuSession
+	 * 
+	 * @param controleur Le controleur qui permet de gerer les sessions.
+	 * @param dimension Les dimensions de la vue.
+	 */
 	public VueApercuSession(ControleurSession controleur, Dimension dimension){
 		this.controleur = controleur;
 		this.dimension = dimension;
@@ -58,7 +67,7 @@ public class VueApercuSession extends JPanel {
         sessionEnCoursPanel.setMaximumSize(new Dimension((int)dimension.getWidth(), 170));
         
         JLabel sessionEnCoursTitre = new JLabel("Session en cours");
-        
+        //Création de la carte session en cours
         if(toutSessionOrdonnee.size() >=1) {
         	Session sessionEnCours = toutSessionOrdonnee.get(0);
             

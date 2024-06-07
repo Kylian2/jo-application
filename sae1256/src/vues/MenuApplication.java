@@ -15,10 +15,20 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-//TODO : 
-// - Gerer les actions à l'appui sur les boutons
-// - ajouter l'affichage du profil de l'utilisateur si implémentation
-
+/**
+ * Cette classe représente le menu principal de l'application des Jeux Olympiques.
+ * Elle permet à l'utilisateur de naviguer entre les différentes fonctionnalités de l'application.
+ * 
+ * TODO : 
+ * - Gérer les actions à l'appui sur les boutons
+ * - Ajouter l'affichage du profil de l'utilisateur si implémentation
+ * 
+ * @author kylianrichard
+ * 
+ * @param vueConteneur Le conteneur principal de l'interface graphique où les vues seront affichées.
+ * @param vueAccueil La vue d'accueil de l'application.
+ * @param application L'application principale contenant les données à afficher.
+ */
 public class MenuApplication extends JPanel {
 	
 	// Constantes pour les dimensions
@@ -31,6 +41,13 @@ public class MenuApplication extends JPanel {
     
     ApplicationJo application;
 	
+    /**
+     * Constructeur du menu principal de l'application des Jeux Olympiques.
+     * 
+     * @param application L'application principale contenant les données à afficher.
+     * @param vueConteneur Le conteneur principal de l'interface graphique où les vues seront affichées.
+     * @param accueil La vue d'accueil de l'application.
+     */
     public MenuApplication(ApplicationJo application,JPanel vueConteneur,VueAccueil accueil) {
     	this.vueConteneur = vueConteneur;
     	
@@ -143,6 +160,12 @@ public class MenuApplication extends JPanel {
         
     }
     
+    /**
+     * Crée les boutons du menu
+     * 
+     * @param text Le contenu textuel du bouton
+     * @param couleur La couleurs du soulignement du bouton
+     */
     private JButton createMenuButton(String text, Couleur couleur) {
         JButton button = new JButton(text);
         button.setAlignmentX(Component.CENTER_ALIGNMENT);

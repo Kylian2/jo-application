@@ -79,7 +79,7 @@ public class VueAthlete extends JPanel {
         informations.setBackground(Color.WHITE);
         informations.setLayout(new BoxLayout(informations, BoxLayout.Y_AXIS));
         
-        // Title section
+        // Titre section
         JPanel titlePanel = new JPanel(new GridLayout(2, 1));
         titlePanel.setBackground(Color.WHITE);
         JLabel delegation = new JLabel(athlete.getPays().getCode(), JLabel.LEFT);
@@ -121,7 +121,7 @@ public class VueAthlete extends JPanel {
 
         
         
-        // Add sections to main panel
+        // ajouter les sections au panel principal
         informations.add(titlePanel, BorderLayout.NORTH);
         informations.add(description, BorderLayout.CENTER);
         informations.add(medaillesPanel, BorderLayout.SOUTH);
