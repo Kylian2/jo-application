@@ -32,14 +32,21 @@ import modeles.Discipline;
 import modeles.Epreuve;
 
 /**
- * Vue permettant d'ajouter une session
- * @author klentz
- * @author kylianrichard
+ * Vue permettant d'ajouter une session.
+ * Cette classe représente l'interface graphique pour ajouter une session avec les informations nécessaires.
+ * Elle interagit avec le contrôleur de session pour gérer les actions des utilisateurs.
+ * 
+ * @autor kilianlentz (vues)
+ * @autor kilianlentz (controlleur / eventListener)
  */
-
 public class VueAjouterSession extends JPanel {
 		
-	
+    /**
+     * Constructeur de la classe VueAjouterSession.
+     * Initialise les composants graphiques et configure les actions des boutons et des listes déroulantes.
+     *
+     * @param controleur Le contrôleur de session utilisé pour gérer les actions des utilisateurs.
+     */
 	VueAjouterSession(ControleurSession controleur){
 		this.setLayout(new BorderLayout());
 		
