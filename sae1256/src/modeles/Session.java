@@ -145,4 +145,8 @@ public class Session implements Serializable, Comparable<Session> {
 	public ArrayList<Athlete> getParticipants(){
 		return participants;
 	}
+
+	public String getSexe() {
+		return sexe;
+	}
 }

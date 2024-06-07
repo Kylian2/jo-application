@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
@@ -69,6 +71,17 @@ public class VueApercuSession extends JPanel {
             sessionEnCoursCard.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
             sessionEnCoursCard.setBackground(Couleur.ROUGE_JO.getColor());
             sessionEnCoursCard.setPreferredSize(new Dimension((int)dimension.getWidth(), 120));
+            
+            sessionEnCoursCard.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                	controleur.application.mainPanel.removeAll();
+                	controleur.application.mainPanel.add(new VueDescriptifSession(sessionEnCours));
+                    // Rafraîchir le conteneur
+                	controleur.application.mainPanel.revalidate();
+                	controleur.application.mainPanel.repaint();
+                }
+            });
             
             JPanel infoNiveau1 = new JPanel(new BorderLayout());
             infoNiveau1.setBackground(Couleur.ROUGE_JO.getColor());
@@ -148,6 +161,18 @@ public class VueApercuSession extends JPanel {
             sessionAVenirCard.add(infoNiveau1AVenir, BorderLayout.NORTH);
             sessionAVenirCard.add(infoNiveau2AVenir, BorderLayout.SOUTH);
             cardAVenirConteneur.add(sessionAVenirCard, BorderLayout.SOUTH);
+            
+            sessionAVenirCard.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                	controleur.application.mainPanel.removeAll();
+                	controleur.application.mainPanel.add(new VueDescriptifSession(sessionCourante));
+                    // Rafraîchir le conteneur
+                	controleur.application.mainPanel.revalidate();
+                	controleur.application.mainPanel.repaint();
+                }
+            });
+            
         }
         sessionAVenirPanel.add(cardAVenirConteneur, BorderLayout.SOUTH);
         
