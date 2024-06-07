@@ -75,7 +75,7 @@ public class VueListeAthleteEquipe extends JPanel {
 	    
 	    //Header
         JPanel header = new JPanel(new BorderLayout());
-        header.setMaximumSize(new Dimension(700, 150));
+        header.setMaximumSize(new Dimension(700, 70));
         header.setBackground(Color.WHITE);
         
 	    //Définir le titre
@@ -90,10 +90,6 @@ public class VueListeAthleteEquipe extends JPanel {
 	    //Bouton ajouter
 	    JPanel panelBouton = new JPanel();
 	    panelBouton.setLayout(new BorderLayout());
-	    panelBouton.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(0, 10, 10, 10), 
-                BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK) // Bordure de couleur de 2 pixels en bas
-        ));
 	    panelBouton.setBackground(Color.WHITE);
         
         JButton button = new JButton("Supprimer l'equipe");
