@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controleurs.ControleurAthlete;
+import controleurs.ControleurDiscipline;
 import modeles.ApplicationJo;
 import modeles.Discipline;
 
@@ -37,8 +38,6 @@ public class VueListeDiscipline extends JPanel {
     
     JPanel panelDiscipline;
     
-    ControleurAthlete controlleur; 
-    
     Dimension dimension;
     
     JPanel header;
@@ -55,7 +54,6 @@ public class VueListeDiscipline extends JPanel {
             
         this.application = application;
         application.recuperer();
-        this.controlleur = controlleur;
         
         this.dimension = dimension;
         
@@ -93,8 +91,9 @@ public class VueListeDiscipline extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 application.mainPanel.removeAll();
-                controlleur.setLastPanel(VueListeDiscipline.this);
-                // application.mainPanel.add(new VueAjouterAthlete(controlleur));
+                ControleurDiscipline controleur = new ControleurDiscipline(application);
+                controleur.setLastPanel(VueListeDiscipline.this);
+                application.mainPanel.add(new VueAjouterDiscipline(controleur));
 
                 // Rafraîchir le conteneur
                 application.mainPanel.revalidate();
