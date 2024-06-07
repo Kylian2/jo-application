@@ -85,7 +85,7 @@ public class Session implements Serializable, Comparable<Session> {
             LocalTime endTime = startTime.plus(Duration.ofMinutes(duree));
             return endTime.format(timeFormatter);
         } catch (DateTimeParseException | NumberFormatException e) {
-            System.err.println("Erreur de parsing: " + e.getMessage());
+            System.err.println("Erreur de parsing: " + e.getMessage() + heure);
             return null;
         }
 	}
@@ -130,12 +130,16 @@ public class Session implements Serializable, Comparable<Session> {
 		return duree;
 	}
 	
-	public void setLieu(String Lieu) {
+	public void setLieu(String lieu) {
 		this.lieu = lieu;
 	}
 
 	public String getLieu() {
 		return lieu;
+	}
+	
+	public LocalDate getDate() {
+		return date;
 	}
 	
 	public ArrayList<Athlete> getParticipants(){

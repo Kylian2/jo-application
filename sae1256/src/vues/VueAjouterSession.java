@@ -49,7 +49,6 @@ public class VueAjouterSession extends JPanel {
         // initialisation des panel globaux
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.setPreferredSize(new Dimension(1000,800));
         mainPanel.setBackground(Color.WHITE);
         
         // initialisation des sous-JPanel
@@ -131,7 +130,7 @@ public class VueAjouterSession extends JPanel {
         JPanel dureePanel = new JPanel();
         dureePanel.setLayout(new GridLayout(1,2));
         JLabel duree = new JLabel("Durée :     ", SwingConstants.RIGHT);
-        JTextField dureeTexte = new JTextField("Entrez une durée");
+        JTextField dureeTexte = new JTextField("Entrez une durée (en minutes)");
         dureePanel.setBackground(Color.WHITE);
         dureePanel.add(duree);
         dureePanel.add(dureeTexte);
