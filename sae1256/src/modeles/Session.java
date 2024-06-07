@@ -8,77 +8,108 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 
+/**
+ * Classe Session programmee par kylianrichard.
+ * 
+ * Cette classe represente une session d'epreuve sportive avec des participants, un lieu, une date, une heure, une duree et un sexe specifique.
+ * 
+ * @author kylianrichard
+ */
 public class Session implements Serializable, Comparable<Session> {
 
-	private static final long serialVersionUID = 1L;
-	
-	private ArrayList<Athlete> participants;
-	private String lieu;
-	private Epreuve epreuve;
-	private LocalDate date;
-	private String heure;
-	private int duree;
-	private String sexe;
-	
-	/**
-	 * 
-	 * @param date
-	 * @param heure
-	 * @param lieu
-	 */
-	public Session(LocalDate date, String heure, int duree, String lieu, String sexe) {
-		this.date = date;
-		this.heure = heure;
-		this.lieu = lieu;
-		this.duree = duree;
-		this.sexe = sexe;
-		
-		this.epreuve = null;
-		participants = new ArrayList<Athlete>();
-	}
-	
-	public Session(LocalDate date, String heure, int duree, String lieu, String sexe, ArrayList<Athlete> participants) {
-		this.date = date;
-		this.heure = heure;
-		this.lieu = lieu;
-		this.duree = duree;
-		this.sexe = sexe;
-		
-		this.epreuve = null;
-		this.participants = participants;
-	}
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 * @param athlete
-	 */
-	public boolean ajouterAthlete(Athlete athlete) {
-		participants.add(athlete);
-		return true;
-	}
+    private ArrayList<Athlete> participants;
+    private String lieu;
+    private Epreuve epreuve;
+    private LocalDate date;
+    private String heure;
+    private int duree;
+    private String sexe;
 
-	/**
-	 * 
-	 * @param athlete
-	 */
-	public void retirerAthlete(Athlete athlete) {
-		// TODO - implement Session.retirerAthlete
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Constructeur de la classe Session.
+     *
+     * @param date La date de la session.
+     * @param heure L'heure de la session.
+     * @param duree La duree de la session en minutes.
+     * @param lieu Le lieu de la session.
+     * @param sexe Le sexe des participants (M/F).
+     */
+    public Session(LocalDate date, String heure, int duree, String lieu, String sexe) {
+        this.date = date;
+        this.heure = heure;
+        this.lieu = lieu;
+        this.duree = duree;
+        this.sexe = sexe;
 
-	public void afficher() {
-		System.out.println("Epreuve : " +this.epreuve.getNom());
-		System.out.println("Discipline : " +this.epreuve.getDiscipline().getNom());
-		System.out.println("Date : " +this.date);
-		System.out.println("Heure : " +this.heure);
-		System.out.println("Duree : " + this.duree);
-	}
+        this.epreuve = null;
+        participants = new ArrayList<Athlete>();
+    }
 
-	public String calculerHeureFin() {
+    /**
+     * Constructeur de la classe Session avec participants.
+     *
+     * @param date La date de la session.
+     * @param heure L'heure de la session.
+     * @param duree La duree de la session en minutes.
+     * @param lieu Le lieu de la session.
+     * @param sexe Le sexe des participants (M/F).
+     * @param participants La liste des participants a la session.
+     */
+    public Session(LocalDate date, String heure, int duree, String lieu, String sexe, ArrayList<Athlete> participants) {
+        this.date = date;
+        this.heure = heure;
+        this.lieu = lieu;
+        this.duree = duree;
+        this.sexe = sexe;
+
+        this.epreuve = null;
+        this.participants = participants;
+    }
+
+    /**
+     * Ajoute un athlete a la session.
+     *
+     * @param athlete L'athlete a ajouter.
+     * @return true si l'athlete est ajoute avec succes.
+     */
+    public boolean ajouterAthlete(Athlete athlete) {
+        participants.add(athlete);
+        return true;
+    }
+
+    /**
+     * Retire un athlete de la session.
+     *
+     * @param athlete L'athlete a retirer.
+     */
+    public void retirerAthlete(Athlete athlete) {
+        // TODO - implement Session.retirerAthlete
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Affiche les details de la session.
+     */
+    public void afficher() {
+        System.out.println("Epreuve : " + this.epreuve.getNom());
+        System.out.println("Discipline : " + this.epreuve.getDiscipline().getNom());
+        System.out.println("Date : " + this.date);
+        System.out.println("Heure : " + this.heure);
+        System.out.println("Duree : " + this.duree);
+    }
+
+    /**
+     * Calcule l'heure de fin de la session.
+     *
+     * @return L'heure de fin au format HH:mm.
+     */
+    public String calculerHeureFin() {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
         try {
-            // Convertir l'heure de début en LocalTime
+            // Convertir l'heure de debut en LocalTime
             LocalTime startTime = LocalTime.parse(heure, timeFormatter);
 
             // Calculer l'heure de fin
@@ -88,23 +119,40 @@ public class Session implements Serializable, Comparable<Session> {
             System.err.println("Erreur de parsing: " + e.getMessage() + heure);
             return null;
         }
-	}
+    }
 
-	public boolean detruire() {
-		// TODO - implement Session.detruire
-		throw new UnsupportedOperationException();
-	}
-	
-	@Override
-	public String toString() {
-		return epreuve.getNom() + " - " + date + " - " + heure;
-	}
+    /**
+     * Detruit la session.
+     *
+     * @return true si la session est detruite avec succes.
+     */
+    public boolean detruire() {
+        // TODO - implement Session.detruire
+        throw new UnsupportedOperationException();
+    }
 
-	@Override
+    /**
+     * Retourne une representation sous forme de chaine de caracteres de la session.
+     *
+     * @return Une chaine de caracteres representant la session.
+     */
+    @Override
+    public String toString() {
+        return epreuve.getNom() + " - " + date + " - " + heure;
+    }
+
+    /**
+     * Compare cette session avec une autre session pour l'ordre.
+     *
+     * @param o L'autre session a comparer.
+     * @return Un nombre negatif, zero, ou un nombre positif si cette session
+     * est respectivement avant, egale, ou apres l'autre session.
+     */
+    @Override
     public int compareTo(Session o) {
         // On commence par comparer les dates
         int dateComparison = this.date.compareTo(o.date);
-        //Si les dates ne sont pas égales alors on sait laquelle est la plus grande (0 = egales)
+        // Si les dates ne sont pas egales alors on sait laquelle est la plus grande (0 = egales)
         if (dateComparison != 0) {
             return dateComparison;
         }
@@ -114,39 +162,84 @@ public class Session implements Serializable, Comparable<Session> {
         return thisTime.compareTo(otherTime);
     }
 
-	public void setEpreuve(Epreuve epreuve) {
-		this.epreuve = epreuve;
-	}
+    /**
+     * Definit l'epreuve de la session.
+     *
+     * @param epreuve L'epreuve de la session.
+     */
+    public void setEpreuve(Epreuve epreuve) {
+        this.epreuve = epreuve;
+    }
 
-	public Epreuve getEpreuve() {
-		return epreuve;
-	}
+    /**
+     * Obtient l'epreuve de la session.
+     *
+     * @return L'epreuve de la session.
+     */
+    public Epreuve getEpreuve() {
+        return epreuve;
+    }
 
-	public String getHeureDebut() {
-		return heure;
-	}
+    /**
+     * Obtient l'heure de debut de la session.
+     *
+     * @return L'heure de debut de la session.
+     */
+    public String getHeureDebut() {
+        return heure;
+    }
 
-	public int getDuree() {
-		return duree;
-	}
-	
-	public void setLieu(String lieu) {
-		this.lieu = lieu;
-	}
+    /**
+     * Obtient la duree de la session.
+     *
+     * @return La duree de la session en minutes.
+     */
+    public int getDuree() {
+        return duree;
+    }
 
-	public String getLieu() {
-		return lieu;
-	}
-	
-	public LocalDate getDate() {
-		return date;
-	}
-	
-	public ArrayList<Athlete> getParticipants(){
-		return participants;
-	}
+    /**
+     * Definit le lieu de la session.
+     *
+     * @param lieu Le lieu de la session.
+     */
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
+    }
 
-	public String getSexe() {
-		return sexe;
-	}
+    /**
+     * Obtient le lieu de la session.
+     *
+     * @return Le lieu de la session.
+     */
+    public String getLieu() {
+        return lieu;
+    }
+
+    /**
+     * Obtient la date de la session.
+     *
+     * @return La date de la session.
+     */
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /**
+     * Obtient la liste des participants a la session.
+     *
+     * @return La liste des participants a la session.
+     */
+    public ArrayList<Athlete> getParticipants() {
+        return participants;
+    }
+
+    /**
+     * Obtient le sexe des participants a la session.
+     *
+     * @return Le sexe des participants a la session (M/F).
+     */
+    public String getSexe() {
+        return sexe;
+    }
 }
