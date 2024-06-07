@@ -17,8 +17,12 @@ import modeles.Discipline;
 import modeles.Epreuve;
 
 /**
- * Vue permettant d'ajouter un athlete à une épreuve.
- * @author klentz
+ * Vue permettant d'ajouter un athlète à une épreuve.
+ * Cette classe représente l'interface graphique permettant de sélectionner 
+ * et ajouter un athlète à une épreuve spécifique dans une application de gestion d'événements sportifs.
+ * 
+ * @autor kilianlentz (vues)
+ * @author kylianrichard (controlleur / eventListener)
  */
 public class VueAjouterAthleteEquipe extends JPanel {
 	

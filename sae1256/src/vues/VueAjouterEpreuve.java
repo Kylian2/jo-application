@@ -15,15 +15,25 @@ import modeles.Discipline;
 import modeles.Epreuve;
 
 /**
- * Vue permettant d'ajouter une épreuve
- * @author klentz
+ * Vue permettant d'ajouter une épreuve à une discipline.
+ * Cette classe représente l'interface graphique permettant de saisir les détails
+ * d'une épreuve et de l'ajouter à une discipline dans une application de gestion d'événements sportifs.
+ * 
+ * @autor kilianlentz (vues)
+ * @autor kylianrichard (controlleur / eventListener)
  */
-
 public class VueAjouterEpreuve extends JPanel{
     
 	ControleurEpreuve controleur;
 	Discipline discipline;
 
+    /**
+     * Constructeur de la classe VueAjouterEpreuve.
+     * Initialise l'interface graphique pour l'ajout d'une épreuve.
+     * 
+     * @param controleur Le contrôleur associé à cette vue.
+     * @param discipline La discipline à laquelle l'épreuve sera ajoutée.
+     */
     VueAjouterEpreuve(ControleurEpreuve controleur, Discipline discipline) {
     	
     	this.controleur = controleur;

@@ -15,8 +15,12 @@ import javax.swing.border.*;
 import controleurs.ControleurAthlete;
 
 /**
- * Vue permettant d'ajouter un athlete
- * @author klentz
+ * Vue permettant d'ajouter un athlète.
+ * Cette vue est représentée par un panneau contenant des champs pour saisir les informations d'un athlète et deux boutons pour valider ou annuler l'opération.
+ * Elle utilise le modèle MVC en interagissant avec le contrôleur associé.
+ * 
+ * @author kilianlentz (vues)
+ * @author kylianrichard (controlleur / eventListener)
  */
 
 public class VueAjouterAthlete extends JPanel{
@@ -32,6 +36,12 @@ public class VueAjouterAthlete extends JPanel{
 	
 	protected ControleurAthlete controleur;
 
+    /**
+     * Constructeur de la vue VueAjouterAthlete.
+     * Initialise les composants de la vue et configure la mise en page.
+     * 
+     * @param controleur le contrôleur associé à cette vue
+     */
 	VueAjouterAthlete(ControleurAthlete controleur){
 		this.controleur = controleur;
 		
