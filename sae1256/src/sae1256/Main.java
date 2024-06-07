@@ -12,13 +12,9 @@ import modeles.*;
 import vues.*; 
 
 /**
- * Cette classe représente le point d'entrée de l'application SAE 1256.
+ * Cette classe représente la base de l'application SAE 1256.
  * Elle initialise et affiche l'interface utilisateur de l'application.
  * 
- * <p>
- * L'application permet de gérer les données relatives aux athlètes participant
- * à un événement sportif.
- * </p>
  * 
  * @author kylianrichard
  */
