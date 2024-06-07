@@ -22,8 +22,8 @@ import modeles.*;
  */
 public class VuePlanning extends JPanel {
 
-	protected final static String L9_00 = "900";
-	protected final static String L9_30 = "930";
+	protected final static String L9_00 = "0900";
+	protected final static String L9_30 = "0930";
 	protected final static String L10_00 = "1000";
 	protected final static String L10_30 = "1030";
 	protected final static String L11_00 = "1100";
@@ -35,7 +35,7 @@ public class VuePlanning extends JPanel {
 	protected final static String L14_00 = "1400";
 	protected final static String L14_30 = "1430";
 
-	protected final static String R9_30 = "9:30";
+	protected final static String R9_30 = "09:30";
 	protected final static String R10_00 = "10:00";
 	protected final static String R10_30 = "10:30";
 	protected final static String R11_00 = "11:00";
@@ -265,8 +265,8 @@ public class VuePlanning extends JPanel {
 	 */
 	private JPanel createSessionPanel(Color color, Session session){
 		
-		String titre = session.getEpreuve().getDiscipline().getNom() + " - " + session.getEpreuve().getNom();
-		String subtitle = session.getEpreuve().getDescription();
+		String titre = session.getEpreuve().getDiscipline().getNom();
+		String subtitle = session.getEpreuve().getNom();
 		String time = session.getHeureDebut();
 		String location = session.getLieu();
 
@@ -283,6 +283,7 @@ public class VuePlanning extends JPanel {
 		sessionPanel.setBorder(BorderFactory.createEmptyBorder(0, left, 0, right));
 		sessionPanel.setBackground(Color.WHITE);
 		JPanel sessionContent = new JPanel(new BorderLayout());
+		sessionContent.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		sessionContent.setBackground(color);
 		sessionPanel.add(sessionContent);
 
@@ -291,25 +292,19 @@ public class VuePlanning extends JPanel {
 		JPanel eastPanel = new JPanel(new BorderLayout());
 		eastPanel.setBackground(color);
 
-		JLabel titleLabel = new JLabel("  " + titre, SwingConstants.LEFT);
+		JLabel titleLabel = new JLabel(titre, SwingConstants.LEFT);
 		titleLabel.setFont(new Font("Source", Font.PLAIN, 17));
 		titleLabel.setForeground(Color.WHITE);
-		JLabel subtitleLabel = new JLabel("  " + subtitle, SwingConstants.LEFT);
+		JLabel subtitleLabel = new JLabel(subtitle, SwingConstants.LEFT);
 		subtitleLabel.setFont(new Font("Source", Font.PLAIN, 17));
 		subtitleLabel.setForeground(Color.WHITE);
 		westPanel.add(titleLabel, BorderLayout.NORTH);
 		westPanel.add(subtitleLabel, BorderLayout.SOUTH);
 
-		JLabel timeLabel;
-		if (session.calculerHeureFin() != null) {
-			timeLabel = new JLabel(time + " - " + session.calculerHeureFin() + "  ", SwingConstants.RIGHT);
-		}
-		else{
-			timeLabel = new JLabel(time + " - 0" + session.calculerHeureFin(), SwingConstants.RIGHT);
-		}		
+		JLabel timeLabel = new JLabel(time + " - " + session.calculerHeureFin(), SwingConstants.RIGHT);		
 		timeLabel.setFont(new Font("Source", Font.PLAIN, 17));
 		timeLabel.setForeground(Color.WHITE);
-		JLabel locationLabel = new JLabel(location + "  ", SwingConstants.RIGHT);
+		JLabel locationLabel = new JLabel(location, SwingConstants.RIGHT);
 		locationLabel.setFont(new Font("Source", Font.PLAIN, 17));
 		locationLabel.setForeground(Color.WHITE);
 		eastPanel.add(timeLabel, BorderLayout.NORTH);
@@ -351,7 +346,7 @@ public class VuePlanning extends JPanel {
 
 			}
 			if (e.getActionCommand().equalsIgnoreCase("<")) {
-				if (date.isAfter(LocalDate.of(2024, 7, 16))){
+				if (date.isAfter(LocalDate.of(2024, 7, 10))){
 					controleur.application.mainPanel.removeAll();
 					controleur.setLastPanel(VuePlanning.this);
 					controleur.application.mainPanel.add(new VuePlanning(controleur, date.minusDays(1)));
