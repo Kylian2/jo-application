@@ -98,4 +98,13 @@ public class Equipe implements Serializable{
 	public ArrayList<Athlete> getMembres() {
 		return membres;
 	}
+	
+	/**
+	 * Defini la liste des membres sur la liste en parametres
+	 * 
+	 * @param membres La nouvelle liste des membres de l'equipe
+	 */
+	public void setMembres(ArrayList<Athlete> membres) {
+		this.membres = membres;
+	}
 }
