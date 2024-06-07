@@ -196,13 +196,6 @@ public class VueAjouterSession extends JPanel {
         JButton ajouterAthlete = new JButton("Ajouter");
         ajouterAthlete.setForeground(Color.white);
         ajouterAthlete.setBackground((Couleur.ROUGE_JO).getColor());
-        
-        // ajout des composant a athletePanel 
-//        for (int i = 0; i < 4; i++) {			// ajout de panel vide est blanc pour placer correctement athletePanel
-//            JPanel panel = new JPanel();
-//            panel.setBackground(Color.WHITE);
-//            athletePanel.add(panel);
-//    }
 
         athletePanel.add(athlete);
         athletePanel.add(athleteTexte);	

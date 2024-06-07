@@ -3,16 +3,21 @@
  */
 package controleurs;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import modeles.ApplicationJo;
 import modeles.Athlete;
 import modeles.Discipline;
+import modeles.Epreuve;
 import modeles.Equipe;
 import modeles.Pays;
+import modeles.Session;
 import vues.VueListeAthlete;
+import vues.VueListeAthleteEquipe;
 import vues.VueListeEquipePays;
 
 /**
@@ -135,6 +140,22 @@ public class ControleurEquipe implements Controleur {
         application.mainPanel.revalidate();
         application.mainPanel.repaint();
     }
+    
+    /**
+     * Retourne au panneau precedent.
+     * Cette methode permet de revenir au panneau precedent dans l'interface utilisateur pour ajouter Athlete Equipe.
+     * 
+     * @author kilianlentz
+     */
+    public void retourMembre() {
+        application.mainPanel.removeAll();
+        application.mainPanel.add(lastPanel);
+        ((VueListeAthleteEquipe) lastPanel).refresh();
+        application.mainPanel.revalidate();
+        application.mainPanel.repaint();
+    }
+    
+    
 
     /**
      * Supprime une equipe du pays courant.
@@ -188,4 +209,19 @@ public class ControleurEquipe implements Controleur {
     public void enregistrer() {
         application.enregister();
     }
+    
+    /**
+     * Ajouter un membre à une équipe
+     * 
+     * @author kilianlentz
+     */
+    public boolean ajouterMembre(Equipe equipe, ArrayList<Athlete> athleteParticipants) {
+    	boolean estAjoutee = false;
+    	for (Athlete athlete : athleteParticipants) {
+    			equipe.ajouterMembre(athlete);
+    			estAjoutee = true;
+    	}
+		return estAjoutee;
+    }
+    
 }

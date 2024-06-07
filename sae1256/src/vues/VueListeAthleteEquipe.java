@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -32,6 +33,7 @@ import modeles.*;
  * 
  * 
  * @author kylianrichard
+ * @author kilianlentz
  * 
  */
 public class VueListeAthleteEquipe extends JPanel {
@@ -73,17 +75,21 @@ public class VueListeAthleteEquipe extends JPanel {
 	    
 	    //Header
         JPanel header = new JPanel(new BorderLayout());
-        header.setMaximumSize(new Dimension(700, 50));
+        header.setMaximumSize(new Dimension(700, 150));
         header.setBackground(Color.WHITE);
         
 	    //Définir le titre
+        JPanel titrePanel = new JPanel();
+        titrePanel.setBackground(Color.WHITE);
 	    JLabel titre = new JLabel("Membres de " + equipe.getNom());
 	    titre.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
 	    titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
-	    header.add(titre, BorderLayout.WEST);
+	    titrePanel.add(titre,BorderLayout.NORTH);
+	    header.add(titrePanel, BorderLayout.WEST);
 	    
 	    //Bouton ajouter
 	    JPanel panelBouton = new JPanel();
+	    panelBouton.setLayout(new BorderLayout());
 	    panelBouton.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(0, 10, 10, 10), 
                 BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK) // Bordure de couleur de 2 pixels en bas
@@ -91,6 +97,7 @@ public class VueListeAthleteEquipe extends JPanel {
 	    panelBouton.setBackground(Color.WHITE);
         
         JButton button = new JButton("Supprimer l'equipe");
+        JButton ajouterMembre = new JButton("Ajouter des membres à l'équipe");
         button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         button.setFocusPainted(false);
         button.addActionListener(new ActionListener() {
@@ -109,7 +116,23 @@ public class VueListeAthleteEquipe extends JPanel {
 				}
 			}
         });
-        panelBouton.add(button);
+        panelBouton.add(button, BorderLayout.NORTH);
+        panelBouton.add(ajouterMembre, BorderLayout.SOUTH);
+        
+        ajouterMembre.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					controleur.application.mainPanel.removeAll();
+					controleur.setLastPanel(VueListeAthleteEquipe.this);
+					controleur.application.mainPanel.add(new VueAjouterAthleteEquipe(equipe, controleur));
+					controleur.enregistrer();
+
+					// Rafraîchir le conteneur
+	                controleur.application.mainPanel.revalidate();
+	                controleur.application.mainPanel.repaint();
+				}
+        });
 	    
 	    header.add(panelBouton, BorderLayout.EAST);
 	    

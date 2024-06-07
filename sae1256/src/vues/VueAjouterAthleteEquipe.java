@@ -10,27 +10,34 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controleurs.ControleurEpreuve;
+import controleurs.ControleurEquipe;
 import vues.Couleur;
 import modeles.ApplicationJo;
 import modeles.Athlete;
 import modeles.Discipline;
 import modeles.Epreuve;
+import modeles.Equipe;
 
 /**
  * Vue permettant d'ajouter un athlète à une épreuve.
  * Cette classe représente l'interface graphique permettant de sélectionner 
  * et ajouter un athlète à une épreuve spécifique dans une application de gestion d'événements sportifs.
  * 
- * @author kilianlentz (vues)
+ * @author kilianlentz (vues / controlleur)
  * @author kylianrichard (controlleur / eventListener)
  */
 public class VueAjouterAthleteEquipe extends JPanel {
+	Equipe equipe;
 	
+	ControleurEquipe controleur;
     /**
      * Constructeur par défaut de la classe VueAjouterAthleteEquipe.
      * Initialise l'interface graphique pour ajouter un athlète à une épreuve.
      */
-	VueAjouterAthleteEquipe(){
+	VueAjouterAthleteEquipe(Equipe equipe, 	ControleurEquipe controleur){
+		this.controleur = controleur;
+		this.equipe = equipe;
+		
 		this.setLayout(new BorderLayout());
 		
 		//Déclaration du moedele de table
@@ -71,6 +78,46 @@ public class VueAjouterAthleteEquipe extends JPanel {
         JButton ajouterAthlete = new JButton("Ajouter");
         ajouterAthlete.setForeground(Color.white);
         ajouterAthlete.setBackground((Couleur.ROUGE_JO).getColor());
+        
+        ArrayList<Athlete> athletesDisponibles = new ArrayList<Athlete>();
+        ArrayList<Athlete> athletesAjoutes = new ArrayList<Athlete>();
+        String discipline = equipe.getDiscipline().getNom();
+        if(!discipline.equalsIgnoreCase("Choisir une discipline")) {
+        	athletesDisponibles.removeAll(athletesDisponibles);
+            athletesAjoutes.removeAll(athletesAjoutes);
+            athleteTexte.removeAllItems();
+            for(Athlete athlete1 : controleur.application.athletesList) {
+            	if(athlete1.getDiscipline().getNom().equalsIgnoreCase(discipline)) {
+            		athleteTexte.addItem(athlete1.getNom() + " " + athlete1.getPrenom());
+                	athletesDisponibles.add(athlete1);
+                }
+           }
+           }else {
+                	athletesDisponibles.removeAll(athletesDisponibles);
+                	athleteTexte.addItem("Choisir un athlète");
+           }
+        
+        ajouterAthlete.addActionListener( new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	int athleteIndex = athleteTexte.getSelectedIndex();
+            	if(!((String) athleteTexte.getSelectedItem()).equalsIgnoreCase("Choisir un athlète")) {
+            		Athlete athlete = athletesDisponibles.get(athleteIndex);
+            		String codePays = athlete.getPays().getCode();
+        			String nomAthlete = athlete.getNom();
+        			String prenomAthlete = athlete.getPrenom();
+        			modele.addRow(new Object[] {codePays,nomAthlete,prenomAthlete});
+        			athletesAjoutes.add(athlete);
+        			athletesDisponibles.remove(athleteIndex);
+        			athleteTexte.removeAllItems();
+        			for(Athlete athleteDisponible : athletesDisponibles) {
+        				athleteTexte.addItem(athleteDisponible.getNom() + " " + athleteDisponible.getPrenom());
+        			}
+            	}
+            }
+
+        });
+        
 
 
         athletePanel.add(athlete);
@@ -87,9 +134,6 @@ public class VueAjouterAthleteEquipe extends JPanel {
         tabPanel.setBackground(Color.WHITE);
         tabPanel.setLayout(new GridLayout(3,1));
         JTable tableau = new JTable(modele);
-        
-        ArrayList<Athlete> athletesDisponibles = new ArrayList<Athlete>();
-        ArrayList<Athlete> athletesAjoutes = new ArrayList<Athlete>();
         
         modele.addColumn("CodePays");
         modele.addColumn("NomAthlete");
@@ -130,6 +174,31 @@ public class VueAjouterAthleteEquipe extends JPanel {
         // changer la couleur de la police des boutons
         annuler.setForeground(Color.WHITE);
         valider.setForeground(Color.WHITE);
+        valider.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Recuperer les informations contenu dans les inputs
+				ArrayList<Athlete> athleteParticipants = athletesAjoutes;
+				boolean creation = controleur.ajouterMembre(equipe, athleteParticipants);
+				if(creation) {
+					controleur.enregistrer();
+					controleur.retourMembre();
+				}else {
+					
+				}
+				
+			}
+        	
+        });
+        
+        annuler.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controleur.retourMembre();	
+			}
+        });
        
         boutons.add(defaut);
         boutons.add(annuler);
@@ -146,22 +215,5 @@ public class VueAjouterAthleteEquipe extends JPanel {
         add(mainPanel, BorderLayout.CENTER);
 	}
 	
-	public static void main (String[] args) {
-		System.out.println("Hello SAE 1256 !");
-		
-		JFrame fenetre = new JFrame ();
-		fenetre.setSize(960,540);
-		//fenetre.setLocationRelativeTo(null); 
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenetre.getContentPane().setBackground(Color.WHITE); // Définir le fond blanc
-        
-	        
-		VueAjouterAthleteEquipe vue = new VueAjouterAthleteEquipe();
-        // Organiser les panneaux
-        fenetre.add(vue);
-        
-        // Afficher la fenetre
-     	fenetre.setVisible(true);
-	}
 
 }
