@@ -164,43 +164,4 @@ public class VueAthlete extends JPanel {
         add(informationsComplementairesPanel, BorderLayout.SOUTH);
 		
 	}
-	
-	public static void main (String[] args) {
-		System.out.println("Hello SAE 1256 !");
-		
-		JFrame fenetre = new JFrame ();
-		fenetre.setSize(960,540);
-		fenetre.setLocationRelativeTo(null); 
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenetre.getContentPane().setBackground(Color.WHITE); // Définir le fond blanc
-		
-		//Création de l'instance de l'application
-		ApplicationJo applicationJo = new ApplicationJo();
-		//Récupération des données sérializées
-		applicationJo.recuperer();
-		
-		//Panel qui va accueillir les vues
-		JPanel mainPanel = new JPanel();
-        mainPanel.setBackground(Color.WHITE);
-        mainPanel.setLayout(new BorderLayout());
-        
-        VueAthlete athelte = new VueAthlete(applicationJo.athletesList.get(1));
-        mainPanel.add(athelte);
-		
-		// Menu de navigation
-        JPanel menu = new JPanel();
-        menu.setPreferredSize(new Dimension(270, fenetre.getHeight())); 
-		
-        
-        // Organiser les panneaux
-        fenetre.setLayout(new BorderLayout());
-        fenetre.add(mainPanel, BorderLayout.CENTER);
-        fenetre.add(menu, BorderLayout.WEST);
-        
-        // Afficher la fenetre
-     	fenetre.setVisible(true);
-        
-		//Sauvegarde des données
-		applicationJo.enregister();
-	}
 }
