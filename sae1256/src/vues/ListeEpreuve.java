@@ -159,6 +159,8 @@ public class ListeEpreuve extends JPanel{
 		        });
 		        
 		        JButton supprimer = new JButton("Supprimer");
+		        supprimer.setBackground(Color.gray);
+		        supprimer.setForeground(Color.WHITE);
 		        panelSimpleEpreuve.add(supprimer, BorderLayout.EAST);
 		        supprimer.addActionListener(new ActionListener() {
 

@@ -70,6 +70,7 @@ public class VueAjouterSession extends JPanel {
         disciplinePanel.setLayout(new GridLayout(1,2));
         JLabel discipline = new JLabel("Discipline :     ", SwingConstants.RIGHT);
         JComboBox<String> disciplineTexte = new JComboBox<String>();
+        disciplineTexte.setBackground(Color.WHITE);
         disciplineTexte.addItem("Choisir une discipline");
         disciplinePanel.setBackground(Color.WHITE);
         disciplinePanel.add(discipline);
@@ -83,6 +84,7 @@ public class VueAjouterSession extends JPanel {
         epreuvesPanel.setLayout(new GridLayout(1,2));
         JLabel epreuves = new JLabel("Epreuves :     ", SwingConstants.RIGHT);
         JComboBox<String> epreuveTexte = new JComboBox<String>();
+        epreuveTexte.setBackground(Color.WHITE);
         epreuveTexte.addItem("Choisir une épreuve");
         epreuvesPanel.setBackground(Color.WHITE);
         epreuvesPanel.add(epreuves);
@@ -147,6 +149,7 @@ public class VueAjouterSession extends JPanel {
         sexePanel.setLayout(new GridLayout(1,2));
         JLabel sexe = new JLabel("Sexe :     ", SwingConstants.RIGHT);
         JComboBox<String> sexeTexte = new JComboBox<String>();
+        sexeTexte.setBackground(Color.WHITE);
         sexeTexte.addItem("Homme");
         sexeTexte.addItem("Femme");
         sexePanel.setBackground(Color.WHITE);
@@ -181,6 +184,7 @@ public class VueAjouterSession extends JPanel {
 		JLabel athlete = new JLabel(" Athlète :");
         athlete.setHorizontalAlignment(SwingConstants.LEFT);		// aligner le texte à droite dans son Panel
         JComboBox<String> athleteTexte = new JComboBox<String>();
+        athleteTexte.setBackground(Color.WHITE);
         athleteTexte.addItem("Choisir un athlète");
         JButton ajouterAthlete = new JButton("Ajouter");
         ajouterAthlete.setForeground(Color.white);
@@ -299,6 +303,13 @@ public class VueAjouterSession extends JPanel {
 				String lieu = lieuTexte.getText();
 				ArrayList<Athlete> athleteParticipants = athletesAjoutes;
 				boolean creation = controleur.ajouterSession(date, debut, duree, lieu, sexe, discipline, epreuve, athleteParticipants);
+				
+				if(creation) {
+					controleur.enregister();
+					controleur.retour();
+				}else {
+					
+				}
 				
 			}
         	

@@ -57,44 +57,46 @@ public class VueApercuSession extends JPanel {
         
         JLabel sessionEnCoursTitre = new JLabel("Session en cours");
         
-        Session sessionEnCours = toutSessionOrdonnee.get(0);
-        
-        sessionEnCoursTitre.setBackground(Color.WHITE);
-        sessionEnCoursTitre.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 24));
-        sessionEnCoursTitre.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
-        sessionEnCoursPanel.add(sessionEnCoursTitre, BorderLayout.WEST);
-        
-        JPanel sessionEnCoursCard = new JPanel(new BorderLayout());
-        sessionEnCoursCard.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        sessionEnCoursCard.setBackground(Couleur.ROUGE_JO.getColor());
-        sessionEnCoursCard.setPreferredSize(new Dimension((int)dimension.getWidth(), 120));
-        
-        JPanel infoNiveau1 = new JPanel(new BorderLayout());
-        infoNiveau1.setBackground(Couleur.ROUGE_JO.getColor());
+        if(toutSessionOrdonnee.size() >=1) {
+        	Session sessionEnCours = toutSessionOrdonnee.get(0);
+            
+            sessionEnCoursTitre.setBackground(Color.WHITE);
+            sessionEnCoursTitre.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 24));
+            sessionEnCoursTitre.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
+            sessionEnCoursPanel.add(sessionEnCoursTitre, BorderLayout.WEST);
+            
+            JPanel sessionEnCoursCard = new JPanel(new BorderLayout());
+            sessionEnCoursCard.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+            sessionEnCoursCard.setBackground(Couleur.ROUGE_JO.getColor());
+            sessionEnCoursCard.setPreferredSize(new Dimension((int)dimension.getWidth(), 120));
+            
+            JPanel infoNiveau1 = new JPanel(new BorderLayout());
+            infoNiveau1.setBackground(Couleur.ROUGE_JO.getColor());
 
-        JLabel sessionEnCoursDiscipline = new JLabel(sessionEnCours.getEpreuve().getDiscipline().getNom(), JLabel.CENTER);
-        sessionEnCoursDiscipline.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
-        JLabel sessionEnCoursEpreuve = new JLabel(toutSessionOrdonnee.get(0).getEpreuve().getNom(), JLabel.CENTER);
-        sessionEnCoursEpreuve.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
-        infoNiveau1.add(sessionEnCoursDiscipline, BorderLayout.NORTH);
-        infoNiveau1.add(sessionEnCoursEpreuve, BorderLayout.SOUTH);
-        
-        JPanel infoNiveau2 = new JPanel(new BorderLayout());
-        infoNiveau2.setBorder(BorderFactory.createEmptyBorder(0, 125, 0, 125));
-        infoNiveau2.setBackground(Couleur.ROUGE_JO.getColor());
+            JLabel sessionEnCoursDiscipline = new JLabel(sessionEnCours.getEpreuve().getDiscipline().getNom(), JLabel.CENTER);
+            sessionEnCoursDiscipline.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
+            JLabel sessionEnCoursEpreuve = new JLabel(toutSessionOrdonnee.get(0).getEpreuve().getNom(), JLabel.CENTER);
+            sessionEnCoursEpreuve.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
+            infoNiveau1.add(sessionEnCoursDiscipline, BorderLayout.NORTH);
+            infoNiveau1.add(sessionEnCoursEpreuve, BorderLayout.SOUTH);
+            
+            JPanel infoNiveau2 = new JPanel(new BorderLayout());
+            infoNiveau2.setBorder(BorderFactory.createEmptyBorder(0, 125, 0, 125));
+            infoNiveau2.setBackground(Couleur.ROUGE_JO.getColor());
 
-        String heureDebut = sessionEnCours.getHeureDebut(); 
-        int duree = sessionEnCours.getDuree(); 
-        JLabel sessionEnCoursHoraire = new JLabel(heureDebut +" - "+ sessionEnCours.calculerHeureFin());
-        sessionEnCoursHoraire.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
-        JLabel sessionEnCoursLieu = new JLabel(sessionEnCours.getLieu());
-        sessionEnCoursLieu.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
-        infoNiveau2.add(sessionEnCoursHoraire, BorderLayout.WEST);
-        infoNiveau2.add(sessionEnCoursLieu, BorderLayout.EAST);
-        
-        sessionEnCoursCard.add(infoNiveau1, BorderLayout.NORTH);
-        sessionEnCoursCard.add(infoNiveau2, BorderLayout.SOUTH);
-        sessionEnCoursPanel.add(sessionEnCoursCard, BorderLayout.SOUTH);
+            String heureDebut = sessionEnCours.getHeureDebut(); 
+            int duree = sessionEnCours.getDuree(); 
+            JLabel sessionEnCoursHoraire = new JLabel(heureDebut +" - "+ sessionEnCours.calculerHeureFin());
+            sessionEnCoursHoraire.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
+            JLabel sessionEnCoursLieu = new JLabel(sessionEnCours.getLieu());
+            sessionEnCoursLieu.setFont(new Font(titre.getFont().getName(), titre.getFont().getStyle(), 18));
+            infoNiveau2.add(sessionEnCoursHoraire, BorderLayout.WEST);
+            infoNiveau2.add(sessionEnCoursLieu, BorderLayout.EAST);
+            
+            sessionEnCoursCard.add(infoNiveau1, BorderLayout.NORTH);
+            sessionEnCoursCard.add(infoNiveau2, BorderLayout.SOUTH);
+            sessionEnCoursPanel.add(sessionEnCoursCard, BorderLayout.SOUTH);
+        }
         
         JPanel sessionAVenirPanel = new JPanel(new BorderLayout()); 
         sessionAVenirPanel.setBackground(Color.WHITE);
@@ -154,7 +156,7 @@ public class VueApercuSession extends JPanel {
         buttonPanel.setMaximumSize(new Dimension((int)dimension.getWidth(), 210));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         JButton voirToutButton = new JButton("Voir le planning complet");
-        voirToutButton.setBackground(Color.RED);
+        voirToutButton.setBackground(Couleur.ROUGE_JO.getColor());
         voirToutButton.setForeground(Color.WHITE);
         
         voirToutButton.addActionListener(new ActionListener() {

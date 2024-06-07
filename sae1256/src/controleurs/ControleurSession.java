@@ -8,6 +8,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -82,6 +83,24 @@ public class ControleurSession implements Controleur{
 		return new ArrayList<Epreuve>(); 
 	}
 	
+
+	public String verifierEtCorrigerFormatHeure(String heure) {
+	    // Expression régulière pour vérifier le format HH:mm ou H:mm
+	    Pattern pattern = Pattern.compile("^(\\d{2}):[0-5][0-9]$");
+	
+	    if (pattern.matcher(heure).matches()) {
+		        return heure;
+	    }else {
+    		if (heure.matches("^\\d:[0-5][0-9]$")) {
+		        heure = "0" + heure;
+		        return heure;
+    		}else {
+    			JOptionPane.showMessageDialog(null, "Format d'heure incorrect. Rappel : HH:mm'", "Erreur", JOptionPane.WARNING_MESSAGE);
+    		}
+	    }
+	    return null;
+	}
+	
 	public boolean ajouterSession(String date, String heure, String duree, String lieu, String sexe, String discipline, String epreuve, ArrayList<Athlete> athleteParticipants) {
 		
 		boolean dureeValide = true;
@@ -89,6 +108,12 @@ public class ControleurSession implements Controleur{
 		LocalDate dateFormatee = convertStringToLocalDate(date); 
 
 		Epreuve epreuvePourAjout = getEpreuve(epreuve, discipline);
+		
+		String heureValide = verifierEtCorrigerFormatHeure(heure);
+		System.out.println("heure"+heureValide);
+		if(heureValide == null) {
+			return false;
+		}
 		
 		if(dateFormatee == null) {
 			JOptionPane.showMessageDialog(null, "Format de date incorrect. Rappel : JJ/MM/AAAA", "Erreur", JOptionPane.WARNING_MESSAGE);
@@ -102,7 +127,7 @@ public class ControleurSession implements Controleur{
         }
 		
 		if(dureeValide && epreuvePourAjout != null && dateFormatee != null) {
-			Session newSession = new Session(dateFormatee, heure, dureeInt, lieu, sexe, athleteParticipants);
+			Session newSession = new Session(dateFormatee, heureValide, dureeInt, lieu, sexe, athleteParticipants);
 			newSession.setEpreuve(epreuvePourAjout);
 			newSession.afficher();
 			for(Athlete participant : newSession.getParticipants()) {
