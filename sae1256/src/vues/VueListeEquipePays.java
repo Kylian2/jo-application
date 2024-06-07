@@ -52,6 +52,8 @@ public class VueListeEquipePays extends JPanel {
 	    panelBouton.setBackground(Color.WHITE);
         
         JButton button = new JButton("Ajouter");
+        button.setBackground(Color.GRAY);
+        button.setForeground(Color.WHITE);
         button.setPreferredSize(new Dimension(90, 35));
         button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         button.setFocusPainted(false);

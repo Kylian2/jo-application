@@ -58,14 +58,6 @@ public class VueAjouterEquipe extends JPanel{
 		defaut10.setBackground(Color.WHITE);
 		JPanel defaut11 = new JPanel();
 		defaut11.setBackground(Color.WHITE);
-		JPanel defaut12 = new JPanel();
-		defaut12.setBackground(Color.WHITE);
-		JPanel defaut13 = new JPanel();
-		defaut13.setBackground(Color.WHITE);
-		JPanel defaut14 = new JPanel();
-		defaut14.setBackground(Color.WHITE);
-		JPanel defaut15 = new JPanel();
-		defaut15.setBackground(Color.WHITE);
 		
 		//////// définition du panel titre 
 		titrePanel = new JPanel();
@@ -93,6 +85,7 @@ public class VueAjouterEquipe extends JPanel{
 		discipline.setBorder(new CompoundBorder(borderDiscipline, marginDiscipline));		// bordure invisible pour décaler titre du bord de 50px
 		//inserer item dans liste
 		disciplineTexte = new JComboBox<String>();
+		disciplineTexte.setBackground(Color.WHITE);
 		for(Discipline discipline : controleur.getDisciplines()) {
 			disciplineTexte.addItem(discipline.getNom());
 		}
@@ -108,16 +101,10 @@ public class VueAjouterEquipe extends JPanel{
 		mainInfoPanel.add(defaut7);			// panel vide pour combler et décaller les composants suivant
 		mainInfoPanel.add(defaut8);
 		mainInfoPanel.add(defaut9);
-		mainInfoPanel.add(defaut10);
-		mainInfoPanel.add(defaut11);
-		mainInfoPanel.add(defaut12);
-		mainInfoPanel.add(defaut13);
 		mainInfoPanel.add(nomEquipe);
 		mainInfoPanel.add(nomEquipeTexte);
-		mainInfoPanel.add(defaut12);
-		mainInfoPanel.add(defaut13);
-		mainInfoPanel.add(defaut14);
-		mainInfoPanel.add(defaut15);
+		mainInfoPanel.add(defaut10);
+		mainInfoPanel.add(defaut11);
 			// panel vide pour combler et décaller les composants suivant
 
 		
