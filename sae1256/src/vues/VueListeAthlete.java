@@ -26,7 +26,11 @@ import javax.swing.border.MatteBorder;
 import controleurs.ControleurAthlete;
 import modeles.Athlete;
 import modeles.Pays;
-
+/**
+ * Cette classe l'affichage de la liste des athlètes.
+ * 
+ * @author kylianrichard
+ */
 public class VueListeAthlete extends JPanel {
 	
 	//Panel servant à contenir les pays
@@ -37,7 +41,13 @@ public class VueListeAthlete extends JPanel {
 	Dimension dimension;
 	
 	JPanel header;
-		
+	
+	 /**
+     * Constructeur de la vue pour afficher la liste des athlètes.
+     * 
+     * @param controleur Le contrôleur permettant de gérer les athlètes.
+     * @param dimension Les dimensions de la vue.
+     */
 	public VueListeAthlete(ControleurAthlete controleur, Dimension dimension) {
 			
 	    this.controleur = controleur;
@@ -116,6 +126,9 @@ public class VueListeAthlete extends JPanel {
 		this.setVisible(true);
     }
 	
+	/**
+     * Rafraîchie/crée la liste des athlètes pour prendre en comptes les modifications.
+     */
 	public void refresh() {
 		panelAthlete.removeAll();
 		panelAthlete.add(header);

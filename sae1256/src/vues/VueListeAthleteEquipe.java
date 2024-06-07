@@ -26,6 +26,14 @@ import javax.swing.border.MatteBorder;
 import controleurs.ControleurEquipe;
 import modeles.*;
 
+/**
+ * Cette classe représente la vue affichant la liste des athlètes d'une équipe dans l'application des Jeux Olympiques.
+ * Elle permet d'afficher les athlètes et de supprimer l'équipe.
+ * 
+ * 
+ * @author kylianrichard
+ * 
+ */
 public class VueListeAthleteEquipe extends JPanel {
 	
 	
@@ -39,7 +47,12 @@ public class VueListeAthleteEquipe extends JPanel {
 	Equipe equipe;
 
 	ControleurEquipe controleur;
-		
+	/**
+     * Constructeur de la vue pour afficher la liste des athletes d'une equipe.
+     * 
+     * @param controleur Le contrôleur permettant de gérer les équipes.
+     * @param equipe L'instance Equipe dont les athlètes doivent être affiches.
+     */
 	public VueListeAthleteEquipe(ControleurEquipe controleur, Equipe equipe) {
 			
 	    this.controleur = controleur;
@@ -123,6 +136,9 @@ public class VueListeAthleteEquipe extends JPanel {
 		this.setVisible(true);
     }
 	
+	/**
+     * Rafraîchie/crée la liste des athlètes pour prendre en comptes les modifications.
+     */
 	public void refresh() {
 		panelAthlete.removeAll();
 		panelAthlete.add(header);

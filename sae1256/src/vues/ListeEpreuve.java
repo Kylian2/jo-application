@@ -19,7 +19,16 @@ import javax.swing.JPanel;
 
 import controleurs.ControleurEpreuve;
 import modeles.*;
-
+/**
+ * Cette classe représente une liste des épreuves pour une discipline donnée dans une interface graphique.
+ * Elle permet d'afficher et de gérer les épreuves associées à une discipline.
+ * 
+ * @author [Votre nom]
+ * 
+ * @param application L'application principale contenant les données à afficher.
+ * @param dimension La dimension de la liste des épreuves.
+ * @param discipline La discipline pour laquelle afficher les épreuves.
+ */
 public class ListeEpreuve extends JPanel{
 	//Permet d'accéder aux données de l'application qui seront affichées. 
 		ApplicationJo application;
@@ -36,6 +45,13 @@ public class ListeEpreuve extends JPanel{
 		
 		ControleurEpreuve controleur;
 			
+		/**
+	     * Constructeur de la liste des épreuves.
+	     * 
+	     * @param application L'application principale contenant les données à afficher.
+	     * @param dimension La dimension de la liste des épreuves.
+	     * @param discipline La discipline pour laquelle afficher les épreuves.
+	     */
 		public ListeEpreuve(ApplicationJo application, Dimension dimension, Discipline discipline) {
 				
 		    this.application = application;
@@ -122,14 +138,9 @@ public class ListeEpreuve extends JPanel{
 		    this.refresh();
 		}
 		
-		public void masquer() {
-			this.setVisible(false);
-	    }
-		
-		public void afficher() {
-			this.setVisible(true);
-	    }
-		
+		/**
+	     * Rafraîchit la liste des épreuves avec les données mises à jour.
+	     */
 		public void refresh() {
 			panelEpreuve.removeAll();
 			panelEpreuve.add(header);
