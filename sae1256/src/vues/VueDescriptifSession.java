@@ -7,19 +7,31 @@ import javax.swing.border.EmptyBorder;
 import modeles.Athlete;
 import modeles.Session;
 
-public class VueDescriptifSession extends JPanel{
-	protected JPanel PanelAnnonceEvenement, PanelDetailEvenement, DateHeurePanel, PanelInfo, panelDesParticipants,
-	PanelRemplissage1, PanelRemplissage2;
+/**
+ * La classe VueDescriptifSession représente la vue descriptive d'une session.
+ * Elle affiche les détails de la session ainsi que les participants.
+ * 
+ * @author estebanrodrigues
+ */
+public class VueDescriptifSession extends JPanel {
+    protected JPanel PanelAnnonceEvenement, PanelDetailEvenement, DateHeurePanel, PanelInfo, panelDesParticipants,
+    PanelRemplissage1, PanelRetour;
     protected JLabel nomDiscipline, TypeSerie, DateSession, HeureSession, InformationSession, GenreSession,
-    Categorie, FormatSession, LieuSession, TexteDescriptif, Participant, Participant1, Participant2, Participant3,
-    Participant4;
+    LieuSession, Participant;
+    protected JButton BoutonRetour;
     
     Session session;
-	
-	public VueDescriptifSession(Session session) {
-		
-		this.session = session;
-		
+
+    /**
+     * Constructeur de la classe VueDescriptifSession.
+     * Initialise les composants de la vue descriptive d'une session.
+     * 
+     * @param session la session à décrire
+     */
+    public VueDescriptifSession(Session session) {
+        
+        this.session = session;
+        
         // Création des Panel de haut niveau
         JPanel PanelAnnonceEvenement = new JPanel(new BorderLayout());
         JPanel PanelSession = new JPanel(new GridLayout(2, 2));
@@ -32,7 +44,7 @@ public class VueDescriptifSession extends JPanel{
         // Création des Panel de bas niveau
         JPanel PanelInfo = new JPanel(new GridLayout(5, 1));
         JPanel PanelRemplissage1 = new JPanel();
-        JPanel PanelRemplissage2 = new JPanel();
+        JPanel PanelRetour = new JPanel(new BorderLayout());
 
         // Création des Label pour PanelAnnonceEvenement
         JLabel nomDiscipline = new JLabel(session.getEpreuve().getDiscipline().getNom(), SwingConstants.LEFT);
@@ -60,7 +72,7 @@ public class VueDescriptifSession extends JPanel{
         InformationSession.setFont(new Font("Arial", Font.BOLD, 14));
         JLabel GenreSession = new JLabel("Sexe : " + session.getSexe(), SwingConstants.LEFT);
         GenreSession.setFont(new Font("Arial", Font.PLAIN, 14));
-        JLabel LieuSession = new JLabel("Lieu : "+session.getLieu(), SwingConstants.LEFT);
+        JLabel LieuSession = new JLabel("Lieu : " + session.getLieu(), SwingConstants.LEFT);
         LieuSession.setFont(new Font("Arial", Font.PLAIN, 14));
 
         // Ajout dans les Panel de bas niveau
@@ -69,42 +81,46 @@ public class VueDescriptifSession extends JPanel{
         PanelInfo.add(LieuSession);
         PanelInfo.setBorder(BorderFactory.createEmptyBorder(60, 40, 0, 0));
 
-
         // Création des Label pour les athlètes de la session
-        
         JLabel titreParticipants = new JLabel("Participants : ", SwingConstants.LEFT);
         titreParticipants.setFont(new Font("Arial", Font.BOLD, 14));
         panelDesParticipants.add(titreParticipants);
+        panelDesParticipants.setBorder(BorderFactory.createEmptyBorder(60, 40, 0, 0));
         
-        for(Athlete athlete : session.getParticipants()) {
-        	JLabel participant = new JLabel(" - " + athlete.getNom() + " " + athlete.getPrenom(), SwingConstants.LEFT);
-        	participant.setFont(new Font("Arial", Font.PLAIN, 14));
-        	participant.add(Box.createVerticalStrut(100));
+        for (Athlete athlete : session.getParticipants()) {
+            JLabel participant = new JLabel(" - " + athlete.getNom() + " " + athlete.getPrenom(), SwingConstants.LEFT);
+            participant.setFont(new Font("Arial", Font.PLAIN, 14));
+            participant.add(Box.createVerticalStrut(100));
             panelDesParticipants.add(participant);
         }
 
-        // Ajout dans les Panel de niveau moyen
+        // Création du bouton pour le retour
+        JButton BoutonRetour = new JButton("Retour");
+        BoutonRetour.setFont(new Font("Arial", Font.PLAIN, 14));
+        BoutonRetour.setForeground(Color.WHITE);
+        BoutonRetour.setBackground(Color.GRAY);
+        PanelRetour.add(BoutonRetour, BorderLayout.SOUTH);
+        PanelRetour.setBorder(BorderFactory.createEmptyBorder(0, 0, 45, 0));
         
-        panelDesParticipants.setBorder(BorderFactory.createEmptyBorder(60, 60, 0, 0));
-
         // Ajout dans le Panel de session
         PanelSession.add(PanelInfo);
         PanelSession.add(panelDesParticipants); 
         PanelSession.add(PanelRemplissage1);
-        PanelSession.add(PanelRemplissage2);
+        PanelSession.add(PanelRetour);
 
-        //Changement des couleur de tous les background
-      	PanelAnnonceEvenement.setBackground(Color.WHITE);
-      	PanelDetailEvenement.setBackground(Color.WHITE);		
-      	DateHeurePanel.setBackground(Color.WHITE);
-      	PanelInfo.setBackground(Color.WHITE);
-      	panelDesParticipants.setBackground(Color.WHITE);
-      	PanelRemplissage1.setBackground(Color.WHITE);
-      	PanelRemplissage2.setBackground(Color.WHITE);
+        // Changement des couleur de tous les background
+        PanelAnnonceEvenement.setBackground(Color.WHITE);
+        PanelDetailEvenement.setBackground(Color.WHITE);        
+        DateHeurePanel.setBackground(Color.WHITE);
+        PanelInfo.setBackground(Color.WHITE);
+        panelDesParticipants.setBackground(Color.WHITE);
+        PanelRemplissage1.setBackground(Color.WHITE);
+        PanelRetour.setBackground(Color.WHITE);
         
-      	this.setBackground(Color.WHITE); 
+        this.setBackground(Color.WHITE); 
         this.setLayout(new BorderLayout());
         this.add(PanelAnnonceEvenement, BorderLayout.NORTH);
         this.add(PanelSession, BorderLayout.CENTER); 
+        
     }
 }
