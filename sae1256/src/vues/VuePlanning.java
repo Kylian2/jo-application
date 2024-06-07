@@ -22,6 +22,8 @@ import modeles.*;
 
 /**
  * La classe VuePlanning represente une interface graphique de planning pour afficher et gerer les sessions.
+ * 
+ * @author Mathieu_GUIBORAT--BOST
  */
 public class VuePlanning extends JPanel {
 
@@ -83,7 +85,7 @@ public class VuePlanning extends JPanel {
 	}
 
 	private static final int MAX_SESSIONS = 5;
-	
+
 	protected JPanel topPanel, middlePanel, bottomPanel;
 	protected JLabel nomPlanning, nom, code;
 	protected JTextField nomTexte, codeTexte;
@@ -93,9 +95,10 @@ public class VuePlanning extends JPanel {
 	ControleurSession controleur;
 
 	/**
-	 * Constructeur par defaut de la classe VuePlanning.
+	 * Constructeur de la classe VuePlanning.
 	 * Initialise l'interface utilisateur avec une disposition en grille et ajoute les composants necessaires.
-	 * @param controleur 
+	 * @param controleur Controleur pour gerer les actions de la vue
+	 * @param date Date pour laquelle afficher le planning
 	 */
 	public VuePlanning(ControleurSession controleur, LocalDate date) {
 
@@ -253,21 +256,12 @@ public class VuePlanning extends JPanel {
 	}
 
 	/**
-	 * Cree un panneau de session avec les proprietes specifiees.
-	 *
-	 * @param color La couleur de fond du panneau.
-	 * @param title Le titre de la session.
-	 * @param subtitle Le sous-titre de la session.
-	 * @param time Le creneau horaire de la session.
-	 * @param location Le lieu de la session.
-	 * @param top Marge superieure.
-	 * @param left Marge gauche.
-	 * @param bottom Marge inferieure.
-	 * @param right Marge droite.
-	 * @return Un panneau JPanel configure avec les parametres specifies.
+	 * Cree une ligne de session avec les informations de la session.
+	 * @param session La session pour laquelle creer une ligne
+	 * @param couleur La couleur de la ligne
 	 */
 	private JPanel createSessionPanel(Color color, Session session){
-		
+
 		String titre = session.getEpreuve().getDiscipline().getNom();
 		String subtitle = session.getEpreuve().getNom();
 		String time = session.getHeureDebut();
