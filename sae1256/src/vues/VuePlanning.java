@@ -4,6 +4,9 @@ import java.awt.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -280,6 +283,17 @@ public class VuePlanning extends JPanel {
 		sessionContent.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		sessionContent.setBackground(color);
 		sessionPanel.add(sessionContent);
+		
+		sessionPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            	controleur.application.mainPanel.removeAll();
+            	controleur.application.mainPanel.add(new VueDescriptifSession(session));
+                // Rafraîchir le conteneur
+            	controleur.application.mainPanel.revalidate();
+            	controleur.application.mainPanel.repaint();
+            }
+        });
 
 		JPanel westPanel = new JPanel(new BorderLayout());
 		westPanel.setBackground(color);
