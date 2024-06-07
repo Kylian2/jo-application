@@ -207,12 +207,26 @@ public class ControleurEquipe implements Controleur {
      * Ajouter un membre à une équipe
      * 
      * @author kilianlentz
+     * @author kylianrichard
      */
     public boolean ajouterMembre(Equipe equipe, ArrayList<Athlete> athleteParticipants) {
     	boolean estAjoutee = false;
+    	//Permet l'affichage au retour sur la page de l'equipe
     	for (Athlete athlete : athleteParticipants) {
     			equipe.ajouterMembre(athlete);
     			estAjoutee = true;
+    	}
+    	for (Pays pays : application.paysList) {
+    		if(pays.getNom().equalsIgnoreCase(equipe.getPays().getNom())) {
+    			for(Equipe equipeFromApp : pays.getEquipes()) {
+    				if(equipeFromApp.getNom().equalsIgnoreCase(equipe.getNom())) {
+    					ArrayList<Athlete> participant = equipeFromApp.getMembres();
+    					participant.addAll(athleteParticipants);
+    					equipeFromApp.setMembres(participant);
+    					estAjoutee = true;
+    				}
+    			}
+    		}
     	}
 		return estAjoutee;
     }

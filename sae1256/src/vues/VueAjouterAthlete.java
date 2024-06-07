@@ -323,28 +323,4 @@ public class VueAjouterAthlete extends JPanel{
 			
 		}
 	}
-
-	public static void main(String[] args) {
-		// Creer une fenetre
-		JFrame fenetre = new JFrame ();
-		fenetre.setSize(960,540);
-		fenetre.setLocationRelativeTo(null); 
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-
-		// Creer une instance de ma classe
-		ApplicationJo applicationJo = new ApplicationJo();
-		
-		applicationJo.recuperer();
-		
-		ControleurAthlete controleur = new ControleurAthlete(applicationJo);
-
-		VueAjouterAthlete p = new VueAjouterAthlete(controleur);
-
-		// Ajouter mon instance dans un des conteneurs de la fen?tre
-		fenetre.add(p);
-
-		// Afficher la fenetre
-		fenetre.setVisible(true);
-	}
 }

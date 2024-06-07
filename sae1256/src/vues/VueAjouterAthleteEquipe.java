@@ -180,14 +180,18 @@ public class VueAjouterAthleteEquipe extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				//Recuperer les informations contenu dans les inputs
 				ArrayList<Athlete> athleteParticipants = athletesAjoutes;
-				boolean creation = controleur.ajouterMembre(equipe, athleteParticipants);
-				if(creation) {
-					controleur.enregistrer();
-					controleur.retour();
-				}else {
-					
-				}
 				
+				if(athletesAjoutes.size() <= 0) {
+	    			JOptionPane.showMessageDialog(null, "Veuillez ajouter des membres", "Erreur", JOptionPane.WARNING_MESSAGE);
+				}else {
+					boolean creation = controleur.ajouterMembre(equipe, athleteParticipants);
+					if(creation) {
+						controleur.enregistrer();
+						controleur.retour();
+					}else {
+						System.out.println("Une erreur est survenue");
+					}
+				}
 			}
         	
         });
