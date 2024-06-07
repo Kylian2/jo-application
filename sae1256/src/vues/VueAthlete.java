@@ -50,10 +50,6 @@ public class VueAthlete extends JPanel {
 	    
 	    //Bouton ajouter
 	    JPanel panelBouton = new JPanel();
-	    panelBouton.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(10, 10, 10, 10), 
-                BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK) // Bordure de couleur de 2 pixels en bas
-        ));
 	    panelBouton.setBackground(Color.WHITE);
         
         JButton button = new JButton("Editer");
