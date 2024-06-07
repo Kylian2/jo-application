@@ -2,8 +2,12 @@ package vues;
 
 import javax.swing.*; 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.border.EmptyBorder;
 
+import controleurs.ControleurSession;
 import modeles.Athlete;
 import modeles.Session;
 
@@ -20,6 +24,8 @@ public class VueDescriptifSession extends JPanel {
     LieuSession, Participant;
     protected JButton BoutonRetour;
     
+    ControleurSession controleur;
+    
     Session session;
 
     /**
@@ -28,8 +34,8 @@ public class VueDescriptifSession extends JPanel {
      * 
      * @param session la session à décrire
      */
-    public VueDescriptifSession(Session session) {
-        
+    public VueDescriptifSession(ControleurSession controleur, Session session) {
+        this.controleur = controleur;
         this.session = session;
         
         // Création des Panel de haut niveau
@@ -101,6 +107,14 @@ public class VueDescriptifSession extends JPanel {
         BoutonRetour.setBackground(Color.GRAY);
         PanelRetour.add(BoutonRetour, BorderLayout.SOUTH);
         PanelRetour.setBorder(BorderFactory.createEmptyBorder(0, 0, 45, 0));
+        
+        BoutonRetour.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controleur.retour();
+			}
+        });
         
         // Ajout dans le Panel de session
         PanelSession.add(PanelInfo);

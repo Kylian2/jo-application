@@ -288,7 +288,8 @@ public class VuePlanning extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
             	controleur.application.mainPanel.removeAll();
-            	controleur.application.mainPanel.add(new VueDescriptifSession(session));
+            	controleur.setLastPanel(VuePlanning.this);
+            	controleur.application.mainPanel.add(new VueDescriptifSession(controleur, session));
                 // Rafraîchir le conteneur
             	controleur.application.mainPanel.revalidate();
             	controleur.application.mainPanel.repaint();

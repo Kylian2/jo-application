@@ -85,8 +85,8 @@ public class VueApercuSession extends JPanel {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                 	controleur.application.mainPanel.removeAll();
-                	controleur.application.mainPanel.add(new VueDescriptifSession(sessionEnCours));
-                    // Rafraîchir le conteneur
+                	controleur.setLastPanel(VueApercuSession.this);
+                	controleur.application.mainPanel.add(new VueDescriptifSession(controleur,sessionEnCours));                    // Rafraîchir le conteneur
                 	controleur.application.mainPanel.revalidate();
                 	controleur.application.mainPanel.repaint();
                 }
@@ -175,7 +175,8 @@ public class VueApercuSession extends JPanel {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                 	controleur.application.mainPanel.removeAll();
-                	controleur.application.mainPanel.add(new VueDescriptifSession(sessionCourante));
+                	controleur.setLastPanel(VueApercuSession.this);
+                	controleur.application.mainPanel.add(new VueDescriptifSession(controleur,sessionCourante));
                     // Rafraîchir le conteneur
                 	controleur.application.mainPanel.revalidate();
                 	controleur.application.mainPanel.repaint();
