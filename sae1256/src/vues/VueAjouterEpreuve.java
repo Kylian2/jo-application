@@ -19,8 +19,8 @@ import modeles.Epreuve;
  * Cette classe représente l'interface graphique permettant de saisir les détails
  * d'une épreuve et de l'ajouter à une discipline dans une application de gestion d'événements sportifs.
  * 
- * @autor kilianlentz (vues)
- * @autor kylianrichard (controlleur / eventListener)
+ * @author kilianlentz (vues)
+ * @author kylianrichard (controlleur / eventListener)
  */
 public class VueAjouterEpreuve extends JPanel{
     

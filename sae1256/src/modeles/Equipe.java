@@ -22,9 +22,8 @@ public class Equipe implements Serializable{
 
 	/**
 	 * 
-	 * @param nom
-	 * @param pays
-	 * @param discipline
+	 * @param nom Le nom
+	 * @param discipline La Discipline
 	 */
 	public Equipe(String nom, Discipline discipline) {
 		this.nom = nom; 
@@ -51,7 +50,7 @@ public class Equipe implements Serializable{
 
 	/**
 	 * 
-	 * @param Athlete
+	 * @param membre Le membre p ajouter
 	 */
 	public void ajouterMembre(Athlete membre) {
 		if(membre.getPays().getNom().equalsIgnoreCase(pays.getNom())) { //A voir si possibilité de faire comme en C++ pour comparer
@@ -59,49 +58,6 @@ public class Equipe implements Serializable{
 		}else {
 			throw new Error("L'athlète ne fait pas partie du pays de l'équipe");
 		}
-	}
-
-	public boolean afficherAthlete() {
-		// TODO - implement Equipe.afficherAthlete
-		throw new UnsupportedOperationException();
-	}
-
-	public void afficher() {
-		// TODO - implement Equipe.afficher
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param nom
-	 */
-	public Athlete[] rechercherAthlete(String nom) {
-		// TODO - implement Equipe.rechercherAthlete
-		throw new UnsupportedOperationException();
-	}
-
-	public double tauxPodium() {
-		// TODO - implement Equipe.tauxPodium
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param Athlete
-	 */
-	public void retirerMembre(Athlete membre) {
-		// TODO - implement Equipe.retirerMembre
-		throw new UnsupportedOperationException();
-	}
-
-	public boolean modifier() {
-		// TODO - implement Equipe.modifier
-		throw new UnsupportedOperationException();
-	}
-
-	public boolean detruire() {
-		// TODO - implement Equipe.detruire
-		throw new UnsupportedOperationException();
 	}
 	
 	public ArrayList<Athlete> getMembres() {

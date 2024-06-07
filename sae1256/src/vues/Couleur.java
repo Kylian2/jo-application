@@ -2,6 +2,10 @@ package vues;
 
 import java.awt.Color;
 
+/**
+ * Enumération contenant les couleurs de l'application.
+ * @author kylianrichard
+ */
 public enum Couleur {
     BLEU_JO(new Color(2, 120, 208)),
     JAUNE_JO(new Color(254, 202, 78)),

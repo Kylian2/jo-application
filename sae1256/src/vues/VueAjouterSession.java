@@ -36,8 +36,8 @@ import modeles.Epreuve;
  * Cette classe représente l'interface graphique pour ajouter une session avec les informations nécessaires.
  * Elle interagit avec le contrôleur de session pour gérer les actions des utilisateurs.
  * 
- * @autor kilianlentz (vues)
- * @autor kilianlentz (controlleur / eventListener)
+ * @author kilianlentz (vues)
+ * @author kilianlentz (controlleur / eventListener)
  */
 public class VueAjouterSession extends JPanel {
 		

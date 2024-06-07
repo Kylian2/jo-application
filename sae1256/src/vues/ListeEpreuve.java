@@ -23,11 +23,8 @@ import modeles.*;
  * Cette classe représente une liste des épreuves pour une discipline donnée dans une interface graphique.
  * Elle permet d'afficher et de gérer les épreuves associées à une discipline.
  * 
- * @author [Votre nom]
+ * @author kylianrichard
  * 
- * @param application L'application principale contenant les données à afficher.
- * @param dimension La dimension de la liste des épreuves.
- * @param discipline La discipline pour laquelle afficher les épreuves.
  */
 public class ListeEpreuve extends JPanel{
 	//Permet d'accéder aux données de l'application qui seront affichées. 

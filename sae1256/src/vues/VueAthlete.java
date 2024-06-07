@@ -18,11 +18,19 @@ import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
 import modeles.*;
-
+/**
+ * Vue qui affiche les informations disponibles à propos d'un athelte.
+ * @author kylianrichard
+ */
 public class VueAthlete extends JPanel {
 	
 	Athlete athlete;
 	
+	/**
+	 * Contructeur de la classe VueApercuSession
+	 * 
+	 * @param athlete L'athlete pour lequel les infos vont être affichées.
+	 */
 	VueAthlete(Athlete athlete){
 		this.athlete = athlete;
 		

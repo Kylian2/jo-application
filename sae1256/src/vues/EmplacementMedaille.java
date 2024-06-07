@@ -9,7 +9,6 @@ import java.awt.*;
  * 
  * @author kylianrichard
  * 
- * @param texts contient le nombre de chaque medaille {OR, ARGENT, BRONZE}
  */
 public class EmplacementMedaille extends JPanel {
 	

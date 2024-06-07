@@ -30,11 +30,10 @@ public class Epreuve implements Serializable, Planning{
 
 	/**
 	 * 
-	 * @param nom
-	 * @param description
-	 * @param individuelle
-	 * @param unite
-	 * @param discipline
+	 * @param nom Le nom
+	 * @param description La description
+	 * @param individuelle Individuel ou pas
+	 * @param unite L'unite de mesure
 	 */
 	public Epreuve(String nom, String description, boolean individuelle, String unite) {
 		this.nom = nom;

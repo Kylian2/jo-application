@@ -11,7 +11,7 @@ import controleurs.ControleurDiscipline;
 /**
  * Cette classe représente la vue pour ajouter une discipline.
  * Elle hérite de JPanel.
- * @autor estebanrodrigues
+ * @author estebanrodrigues
  */
 public class VueAjouterDiscipline extends JPanel {
 

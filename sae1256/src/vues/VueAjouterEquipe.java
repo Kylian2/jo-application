@@ -18,8 +18,8 @@ import controleurs.ControleurEquipe;
  * Cette classe représente une vue graphique permettant à l'utilisateur d'ajouter une nouvelle équipe.
  * Elle contient des champs pour entrer le nom de l'équipe et sélectionner une discipline, ainsi que des boutons pour valider ou annuler l'opération.
  * 
- * @autor kilianlentz (vues)
- * @autor kilianlentz (controlleur / eventListener)
+ * @author kilianlentz (vues)
+ * @author kylianrichard (controlleur / eventListener)
  */
 
 public class VueAjouterEquipe extends JPanel{

@@ -35,13 +35,13 @@ public class Athlete implements Serializable{
 
 	/**
 	 * 
-	 * @param nom
-	 * @param prenom
-	 * @param taille
-	 * @param poids
-	 * @param description
-	 * @param dateNaissance
-	 * @param genre
+	 * @param nom Le nom de l'athlete
+	 * @param prenom Le prenom de l'athlete
+	 * @param taille La taille de l'athlete
+	 * @param poids Le poids de l'athlete
+	 * @param description La description
+	 * @param dateNaissance La date de naissance de l'athlete
+	 * @param genre Le genre de l'athlete
 	 */
 	public Athlete(String nom, String prenom, int taille, int poids, String description, String dateNaissance, char genre) {
 		this.nom = nom; 
@@ -78,7 +78,7 @@ public class Athlete implements Serializable{
 
 	/**
 	 * 
-	 * @param discipline
+	 * @param discipline La discipline à definir
 	 */
 	public boolean setDiscipline(Discipline discipline) {
 		this.discipline = discipline;
@@ -87,58 +87,6 @@ public class Athlete implements Serializable{
 	
 	public Discipline getDiscipline() {
 		return this.discipline;
-	}
-
-	/**
-	 * 
-	 * @param session
-	 */
-	public boolean engager(Session session) {
-		// TODO - implement Athlete.engager
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param session
-	 */
-	public boolean desengager(Session session) {
-		// TODO - implement Athlete.desengager
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param equipe
-	 */
-	public boolean ajouterEquipe(Equipe equipe) {
-		// TODO - implement Athlete.ajouterEquipe
-		throw new UnsupportedOperationException();
-	}
-
-	public boolean retirerEquipe() {
-		// TODO - implement Athlete.retirerEquipe
-		throw new UnsupportedOperationException();
-	}
-
-	public Athlete rechercher() {
-		// TODO - implement Athlete.rechercher
-		throw new UnsupportedOperationException();
-	}
-
-	public int calculerAge() {
-		// TODO - implement Athlete.calculerAge
-		throw new UnsupportedOperationException();
-	}
-
-	public boolean afficherEpreuves() {
-		// TODO - implement Athlete.afficherEpreuves
-		throw new UnsupportedOperationException();
-	}
-
-	public boolean afficher() {
-		// TODO - implement Athlete.afficher
-		throw new UnsupportedOperationException();
 	}
 	
 	//Affichage console

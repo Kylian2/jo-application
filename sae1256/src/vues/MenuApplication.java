@@ -25,9 +25,6 @@ import java.awt.event.MouseEvent;
  * 
  * @author kylianrichard
  * 
- * @param vueConteneur Le conteneur principal de l'interface graphique où les vues seront affichées.
- * @param vueAccueil La vue d'accueil de l'application.
- * @param application L'application principale contenant les données à afficher.
  */
 public class MenuApplication extends JPanel {
 	

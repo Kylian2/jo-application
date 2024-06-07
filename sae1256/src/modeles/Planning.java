@@ -12,7 +12,7 @@ public interface Planning {
     /**
      * Ordonne par ordre chronologique les sessions pour une épreuve donnée.
      *
-     * @param epreuve l'épreuve (test ou examen) à planifier
+     * @param sessionsNonOrdonnee L'épreuve à planifier
      */
     public ArrayList<Session> OrdonneSession(ArrayList<Session> sessionsNonOrdonnee);
 

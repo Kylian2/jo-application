@@ -31,8 +31,8 @@ public class VueListeEquipePays extends JPanel {
 	/**
      * Constructeur de la classe VueListeEquipePays.
      * 
-     * @param application L'instance de l'application qui contient les données.
-     * @param dimension La dimension de cette vue.
+     * @param pays L'instance de pays
+     * @param controleur Le controleur s'occupant de la gestion des données
      * 
      * @author kylianrichard
      */

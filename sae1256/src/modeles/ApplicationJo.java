@@ -19,12 +19,6 @@ import vues.VueListeAthlete;
  * 
  * @author kylianrichard
  * 
- * @param paysList Liste des pays participant aux Jeux Olympiques.
- * @param disciplinesList Liste des disciplines sportives des Jeux Olympiques.
- * @param athletesList Liste des athlètes participant aux Jeux Olympiques.
- * @param mainPanel Le panneau principal de l'interface graphique de l'application.
- * @param vueListeAthlete La vue affichant la liste des athlètes dans l'interface graphique.
- * @param fileName Le nom du fichier de sauvegarde des données de l'application.
  */
 public class ApplicationJo implements Serializable{
 	
