@@ -3,12 +3,16 @@ package vues;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import controleurs.ControleurAthlete;
 import controleurs.ControleurSession;
 import modeles.ApplicationJo;
+import sae1256.Main;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 //TODO : 
@@ -22,20 +26,16 @@ public class MenuApplication extends JPanel {
     private static final int BUTTON_HEIGHT = 50;
     
     public JPanel vueConteneur;
-    
-    public VueListePays vuePays; 
-    public VueListeAthlete vueAthlete;
+     
     public VueAccueil vueAccueil;
     
     ApplicationJo application;
 	
-    public MenuApplication(ApplicationJo application,JPanel vueConteneur,VueAccueil accueil, VueListePays vuePays, VueListeAthlete vueAthlete, VueListeDiscipline vueDiscipline) {
+    public MenuApplication(ApplicationJo application,JPanel vueConteneur,VueAccueil accueil) {
     	this.vueConteneur = vueConteneur;
     	
     	this.application = application;
     	
-    	this.vuePays = vuePays;
-    	this.vueAthlete = vueAthlete;
     	this.vueAccueil = accueil;
     	
         // Panneau principal
@@ -53,6 +53,17 @@ public class MenuApplication extends JPanel {
         logo.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(logo);
         
+        logo.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            	application.mainPanel.removeAll();
+            	application.mainPanel.add(accueil);
+                // Rafraîchir le conteneur
+            	application.mainPanel.revalidate();
+            	application.mainPanel.repaint();
+            }
+        });
+        
         // Boutons du menu
         JButton athletesButton = createMenuButton("Athlètes", Couleur.BLEU_JO);
         athletesButton.addActionListener(new ActionListener() {
@@ -62,7 +73,8 @@ public class MenuApplication extends JPanel {
 				//Masquer les autres
 				vueConteneur.removeAll();
 				//Afficher le panel correspondant
-				vueConteneur.add(vueAthlete);
+				ControleurAthlete controleur = new ControleurAthlete(application);
+				vueConteneur.add(new VueListeAthlete(controleur, Main.DIMENSION), BorderLayout.CENTER);
 				
 				// Rafraîchir le conteneur
                 vueConteneur.revalidate();
@@ -110,7 +122,7 @@ public class MenuApplication extends JPanel {
 				//Masquer les autres
 				vueConteneur.removeAll();
 				//Afficher le panel correspondant
-				vueConteneur.add(vueDiscipline, BorderLayout.CENTER);
+				vueConteneur.add(new VueListeDiscipline(application, Main.DIMENSION), BorderLayout.CENTER);
 				
 				// Rafraîchir le conteneur
                 vueConteneur.revalidate();
