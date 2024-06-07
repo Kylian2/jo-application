@@ -183,7 +183,7 @@ public class VueAjouterAthleteEquipe extends JPanel {
 				boolean creation = controleur.ajouterMembre(equipe, athleteParticipants);
 				if(creation) {
 					controleur.enregistrer();
-					controleur.retourMembre();
+					controleur.retour();
 				}else {
 					
 				}
@@ -196,7 +196,7 @@ public class VueAjouterAthleteEquipe extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controleur.retourMembre();	
+				controleur.retour();	
 			}
         });
        

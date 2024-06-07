@@ -136,24 +136,17 @@ public class ControleurEquipe implements Controleur {
     public void retour() {
         application.mainPanel.removeAll();
         application.mainPanel.add(lastPanel);
-        ((VueListeEquipePays) lastPanel).refresh();
+        if (lastPanel instanceof VueListeAthleteEquipe) {
+            ((VueListeAthleteEquipe) lastPanel).refresh();
+        }
+        else if (lastPanel instanceof VueListeEquipePays) {
+        	((VueListeEquipePays) lastPanel).refresh();
+        }
+
         application.mainPanel.revalidate();
         application.mainPanel.repaint();
     }
-    
-    /**
-     * Retourne au panneau precedent.
-     * Cette methode permet de revenir au panneau precedent dans l'interface utilisateur pour ajouter Athlete Equipe.
-     * 
-     * @author kilianlentz
-     */
-    public void retourMembre() {
-        application.mainPanel.removeAll();
-        application.mainPanel.add(lastPanel);
-        ((VueListeAthleteEquipe) lastPanel).refresh();
-        application.mainPanel.revalidate();
-        application.mainPanel.repaint();
-    }
+   
     
     
 
