@@ -10,7 +10,7 @@ Ce projet était commun à plusieurs matières : DOO (Développement Orienté Ob
 - **Kylian Richard** as Kylian2
 - **Kilian Lentz** as Kili1n
 - **Guiborat--Bost** Mathieu as mguiborat
-- **Rodriguez Esteban** as Laren21
+- **Rodrigues Esteban** as Esteban141
 
 ## Conventions et règles 
 
